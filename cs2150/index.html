@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Midterm 2 Lecture Notes</title>
+  <meta name="description" content="Midterm 2 Lecture Notes" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Midterm 2 Lecture Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Midterm 2 Lecture Notes" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="hash-tables.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Trees</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#binary-search-trees"><i class="fa fa-check"></i><b>1.1</b> Binary Search Trees</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#relationship-between-h-and-n"><i class="fa fa-check"></i><b>1.1.1</b> Relationship between <span class="math inline">\(H\)</span> and <span class="math inline">\(N\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#perfect-binary-tree"><i class="fa fa-check"></i><b>1.1.2</b> Perfect binary tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#expression-trees"><i class="fa fa-check"></i><b>1.2</b> Expression Trees</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#expression-tree-traversals"><i class="fa fa-check"></i><b>1.2.1</b> Expression tree traversals</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#building-an-expression-tree"><i class="fa fa-check"></i><b>1.2.2</b> Building an expression tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#avl-trees"><i class="fa fa-check"></i><b>1.3</b> AVL Trees</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.3.1</b> Basics</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#structure-property"><i class="fa fa-check"></i><b>1.3.2</b> Structure Property</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#balance-factor"><i class="fa fa-check"></i><b>1.3.3</b> Balance Factor</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#tree-balance"><i class="fa fa-check"></i><b>1.3.4</b> Tree Balance</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#find-insert"><i class="fa fa-check"></i><b>1.3.5</b> Find, insert</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#tree-operations"><i class="fa fa-check"></i><b>1.3.6</b> Tree operations</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#how-many-times-to-fix-the-tree"><i class="fa fa-check"></i><b>1.3.7</b> How many times to “fix” the tree?</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#avl-insert"><i class="fa fa-check"></i><b>1.3.8</b> AVL Insert</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#avl-single-right-rotation"><i class="fa fa-check"></i><b>1.3.9</b> AVL single right rotation</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#avl-single-left-rotation"><i class="fa fa-check"></i><b>1.3.10</b> AVL single left rotation</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#side-effect-of-tree-rotations"><i class="fa fa-check"></i><b>1.3.11</b> Side-effect of tree rotations</a></li>
+<li class="chapter" data-level="1.3.12" data-path="index.html"><a href="index.html#double-rotation"><i class="fa fa-check"></i><b>1.3.12</b> Double rotation</a></li>
+<li class="chapter" data-level="1.3.13" data-path="index.html"><a href="index.html#runtime-analysis"><i class="fa fa-check"></i><b>1.3.13</b> Runtime Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursion"><i class="fa fa-check"></i><b>1.4</b> Recursion</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#sum-the-numbers-from-1-to-n"><i class="fa fa-check"></i><b>1.4.1</b> Sum the numbers from 1 to <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#factorial-via-recursion"><i class="fa fa-check"></i><b>1.4.2</b> Factorial via recursion</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#pros-and-cons"><i class="fa fa-check"></i><b>1.4.3</b> Pros and cons</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#fibonacci-sequence"><i class="fa fa-check"></i><b>1.4.4</b> Fibonacci Sequence</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#recursion-on-trees"><i class="fa fa-check"></i><b>1.4.5</b> Recursion on trees</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#recursion-on-lists"><i class="fa fa-check"></i><b>1.4.6</b> Recursion on lists</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#tail-recursion"><i class="fa fa-check"></i><b>1.4.7</b> Tail recursion</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#why-tail-recursion"><i class="fa fa-check"></i><b>1.4.8</b> Why tail recursion?</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#factorial-via-tail-recursion"><i class="fa fa-check"></i><b>1.4.9</b> Factorial via Tail Recursion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#red-black-trees"><i class="fa fa-check"></i><b>1.5</b> Red-black trees</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#properties"><i class="fa fa-check"></i><b>1.5.1</b> Properties</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#insert"><i class="fa fa-check"></i><b>1.5.2</b> Insert</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#removal"><i class="fa fa-check"></i><b>1.5.3</b> Removal</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#why-red-black-vs-avl"><i class="fa fa-check"></i><b>1.5.4</b> Why red-black vs AVL?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#splay-trees"><i class="fa fa-check"></i><b>1.6</b> Splay Trees</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#main-operation-splaying"><i class="fa fa-check"></i><b>1.6.1</b> Main operation: splaying</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#time-complexity"><i class="fa fa-check"></i><b>1.6.2</b> Time complexity</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#amortized-analysis"><i class="fa fa-check"></i><b>1.6.3</b> Amortized analysis</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#splay-tree-conclusions"><i class="fa fa-check"></i><b>1.6.4</b> Splay tree conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#tree-applications"><i class="fa fa-check"></i><b>1.7</b> Tree applications</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#when-are-trees-not-good-to-use"><i class="fa fa-check"></i><b>1.7.1</b> When are trees not good to use?</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#programs"><i class="fa fa-check"></i><b>1.7.2</b> Programs</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#comparing-two-programs"><i class="fa fa-check"></i><b>1.7.3</b> Comparing two programs</a></li>
+<li class="chapter" data-level="1.7.4" data-path="index.html"><a href="index.html#measure-of-structural-similarity"><i class="fa fa-check"></i><b>1.7.4</b> Measure of Structural Similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hash-tables.html"><a href="hash-tables.html"><i class="fa fa-check"></i><b>2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hash-tables.html"><a href="hash-tables.html#review"><i class="fa fa-check"></i><b>2.1</b> Review</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="hash-tables.html"><a href="hash-tables.html#lists"><i class="fa fa-check"></i><b>2.1.1</b> Lists</a></li>
+<li class="chapter" data-level="2.1.2" data-path="hash-tables.html"><a href="hash-tables.html#stacks"><i class="fa fa-check"></i><b>2.1.2</b> Stacks</a></li>
+<li class="chapter" data-level="2.1.3" data-path="hash-tables.html"><a href="hash-tables.html#queues"><i class="fa fa-check"></i><b>2.1.3</b> Queues</a></li>
+<li class="chapter" data-level="2.1.4" data-path="hash-tables.html"><a href="hash-tables.html#trees-1"><i class="fa fa-check"></i><b>2.1.4</b> Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-1"><i class="fa fa-check"></i><b>2.2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="hash-tables.html"><a href="hash-tables.html#is-there-anything-faster-than-what-was-reviewed"><i class="fa fa-check"></i><b>2.2.1</b> Is there anything faster than what was reviewed?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-lookup-table"><i class="fa fa-check"></i><b>2.2.2</b> Hash tables (lookup table)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="hash-tables.html"><a href="hash-tables.html#key-value-pairs"><i class="fa fa-check"></i><b>2.2.3</b> Key-value pairs</a></li>
+<li class="chapter" data-level="2.2.4" data-path="hash-tables.html"><a href="hash-tables.html#hash-function"><i class="fa fa-check"></i><b>2.2.4</b> Hash function</a></li>
+<li class="chapter" data-level="2.2.5" data-path="hash-tables.html"><a href="hash-tables.html#keys"><i class="fa fa-check"></i><b>2.2.5</b> Keys</a></li>
+<li class="chapter" data-level="2.2.6" data-path="hash-tables.html"><a href="hash-tables.html#table-size-issues"><i class="fa fa-check"></i><b>2.2.6</b> Table size issues</a></li>
+<li class="chapter" data-level="2.2.7" data-path="hash-tables.html"><a href="hash-tables.html#hash-table-part-2"><i class="fa fa-check"></i><b>2.2.7</b> Hash table part 2</a></li>
+<li class="chapter" data-level="2.2.8" data-path="hash-tables.html"><a href="hash-tables.html#hash-functions-part-2"><i class="fa fa-check"></i><b>2.2.8</b> Hash functions part 2</a></li>
+<li class="chapter" data-level="2.2.9" data-path="hash-tables.html"><a href="hash-tables.html#sample-string-hash-functions"><i class="fa fa-check"></i><b>2.2.9</b> Sample string hash functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="hash-tables.html"><a href="hash-tables.html#hash-function-summary"><i class="fa fa-check"></i><b>2.3</b> Hash Function Summary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hash-tables.html"><a href="hash-tables.html#collision-resolution"><i class="fa fa-check"></i><b>2.3.1</b> Collision Resolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining"><i class="fa fa-check"></i><b>2.4</b> Separate Chaining</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="hash-tables.html"><a href="hash-tables.html#analysis-of-find"><i class="fa fa-check"></i><b>2.4.1</b> Analysis of find</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hash-tables.html"><a href="hash-tables.html#load-factor"><i class="fa fa-check"></i><b>2.4.2</b> Load factor</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining-find"><i class="fa fa-check"></i><b>2.4.3</b> Separate Chaining: <code>find()</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="hash-tables.html"><a href="hash-tables.html#what-data-structure-to-use-for-the-buckets"><i class="fa fa-check"></i><b>2.4.4</b> What data structure to use for the buckets?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="hash-tables.html"><a href="hash-tables.html#requirements-for-hopeful-case"><i class="fa fa-check"></i><b>2.4.5</b> Requirements for “hopeful” case</a></li>
+<li class="chapter" data-level="2.4.6" data-path="hash-tables.html"><a href="hash-tables.html#sepearete-chaining-insert-is-theta1"><i class="fa fa-check"></i><b>2.4.6</b> Sepearete Chaining insert is <span class="math inline">\(\Theta(1)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hash-tables.html"><a href="hash-tables.html#open-addressing"><i class="fa fa-check"></i><b>2.5</b> Open Addressing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="hash-tables.html"><a href="hash-tables.html#saving-memory"><i class="fa fa-check"></i><b>2.5.1</b> Saving memory</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hash-tables.html"><a href="hash-tables.html#three-types-of-probing-strategies"><i class="fa fa-check"></i><b>2.5.2</b> Three types of probing strategies</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing"><i class="fa fa-check"></i><b>2.5.3</b> Linear probing</a></li>
+<li class="chapter" data-level="2.5.4" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing-table-example"><i class="fa fa-check"></i><b>2.5.4</b> Linear probing table example</a></li>
+<li class="chapter" data-level="2.5.5" data-path="hash-tables.html"><a href="hash-tables.html#problems-with-linear-probing"><i class="fa fa-check"></i><b>2.5.5</b> Problems with linear probing</a></li>
+<li class="chapter" data-level="2.5.6" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing"><i class="fa fa-check"></i><b>2.5.6</b> Quadratic Probing</a></li>
+<li class="chapter" data-level="2.5.7" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing-table-example"><i class="fa fa-check"></i><b>2.5.7</b> Quadratic probing table example</a></li>
+<li class="chapter" data-level="2.5.8" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing"><i class="fa fa-check"></i><b>2.5.8</b> Double Hashing</a></li>
+<li class="chapter" data-level="2.5.9" data-path="hash-tables.html"><a href="hash-tables.html#double-hasing-table-example"><i class="fa fa-check"></i><b>2.5.9</b> Double hasing table example</a></li>
+<li class="chapter" data-level="2.5.10" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing-thrashing"><i class="fa fa-check"></i><b>2.5.10</b> Double hashing thrashing</a></li>
+<li class="chapter" data-level="2.5.11" data-path="hash-tables.html"><a href="hash-tables.html#table-size-must-be-prime"><i class="fa fa-check"></i><b>2.5.11</b> Table size must be prime!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hash-tables.html"><a href="hash-tables.html#miscellaneous"><i class="fa fa-check"></i><b>2.6</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="hash-tables.html"><a href="hash-tables.html#rehashing"><i class="fa fa-check"></i><b>2.6.1</b> Rehashing</a></li>
+<li class="chapter" data-level="2.6.2" data-path="hash-tables.html"><a href="hash-tables.html#removing-an-element"><i class="fa fa-check"></i><b>2.6.2</b> Removing an element</a></li>
+<li class="chapter" data-level="2.6.3" data-path="hash-tables.html"><a href="hash-tables.html#hashing-md5"><i class="fa fa-check"></i><b>2.6.3</b> Hashing: MD5</a></li>
+<li class="chapter" data-level="2.6.4" data-path="hash-tables.html"><a href="hash-tables.html#can-you-reverse-an-md5-hash"><i class="fa fa-check"></i><b>2.6.4</b> Can you reverse an MD5 hash?</a></li>
+<li class="chapter" data-level="2.6.5" data-path="hash-tables.html"><a href="hash-tables.html#more-hashing-sha"><i class="fa fa-check"></i><b>2.6.5</b> More hashing: SHA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html"><i class="fa fa-check"></i><b>3</b> IBCM (Machine Language)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language"><i class="fa fa-check"></i><b>3.1.1</b> Assembly Language</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#why-learn-assembly-language"><i class="fa fa-check"></i><b>3.1.2</b> Why learn assembly language?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-1"><i class="fa fa-check"></i><b>3.1.3</b> Memory Hierarchy, part 1</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-2"><i class="fa fa-check"></i><b>3.1.4</b> Memory Hierarchy, Part 2</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#fetch-execute-cycle"><i class="fa fa-check"></i><b>3.1.5</b> Fetch Execute Cycle</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language-instructions"><i class="fa fa-check"></i><b>3.1.6</b> Assembly Language Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-description"><i class="fa fa-check"></i><b>3.2</b> IBCM Description</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#running-ibcm-programs"><i class="fa fa-check"></i><b>3.2.1</b> Running IBCM Programs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-description-cpu"><i class="fa fa-check"></i><b>3.2.2</b> IBCM Machine Description: CPU</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-memory"><i class="fa fa-check"></i><b>3.2.3</b> IBCM Machine: Memory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-instruction-types"><i class="fa fa-check"></i><b>3.2.4</b> IBCM instruction types</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#halt"><i class="fa fa-check"></i><b>3.2.5</b> Halt</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#input-and-output"><i class="fa fa-check"></i><b>3.2.6</b> Input and output</a></li>
+<li class="chapter" data-level="3.2.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#shifts"><i class="fa fa-check"></i><b>3.2.7</b> Shifts</a></li>
+<li class="chapter" data-level="3.2.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#other-instructions"><i class="fa fa-check"></i><b>3.2.8</b> Other Instructions</a></li>
+<li class="chapter" data-level="3.2.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#labels"><i class="fa fa-check"></i><b>3.2.9</b> Labels</a></li>
+<li class="chapter" data-level="3.2.10" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#declaring-variables"><i class="fa fa-check"></i><b>3.2.10</b> Declaring variables</a></li>
+<li class="chapter" data-level="3.2.11" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#sample-program"><i class="fa fa-check"></i><b>3.2.11</b> Sample Program</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#writing-ibcm-code"><i class="fa fa-check"></i><b>3.3</b> Writing IBCM Code</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#simulator"><i class="fa fa-check"></i><b>3.3.1</b> Simulator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-compute-a-sum"><i class="fa fa-check"></i><b>3.3.2</b> IBCM code to compute a sum</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-1"><i class="fa fa-check"></i><b>3.3.3</b> IBCM summation program: part 1</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-2"><i class="fa fa-check"></i><b>3.3.4</b> IBCM summation program: part 2</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-would-we-code-this"><i class="fa fa-check"></i><b>3.3.5</b> How would we code this:</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-sum-elements-in-an-array"><i class="fa fa-check"></i><b>3.3.6</b> IBCM code to sum elements in an array</a></li>
+<li class="chapter" data-level="3.3.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-initialization-and-halting"><i class="fa fa-check"></i><b>3.3.7</b> Array Summation: initialization and halting</a></li>
+<li class="chapter" data-level="3.3.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-the-inner-loop"><i class="fa fa-check"></i><b>3.3.8</b> Array Summation: the inner loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#conclusions"><i class="fa fa-check"></i><b>3.4</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#notes"><i class="fa fa-check"></i><b>3.4.1</b> Notes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-tipsreminders"><i class="fa fa-check"></i><b>3.4.2</b> IBCM tips/reminders</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#use-the-simulators-to-debug-your-code"><i class="fa fa-check"></i><b>3.4.3</b> Use the simulators to debug your code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#whats-missing-from-ibcm"><i class="fa fa-check"></i><b>3.4.4</b> What’s missing from IBCM?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#emulating-ibcm-in-c"><i class="fa fa-check"></i><b>3.4.5</b> Emulating IBCM in C++</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-to-decode-the-parts-of-an-instruction"><i class="fa fa-check"></i><b>3.4.6</b> How to decode the parts of an instruction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#what-about-encoding"><i class="fa fa-check"></i><b>3.4.7</b> What about encoding?</a></li>
+<li class="chapter" data-level="3.4.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#a-data-structure-to-make-it-easier"><i class="fa fa-check"></i><b>3.4.8</b> A data structure to make it easier</a></li>
+<li class="chapter" data-level="3.4.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#using-that-data-structure"><i class="fa fa-check"></i><b>3.4.9</b> Using that data structure</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bit-x86.html"><a href="bit-x86.html"><i class="fa fa-check"></i><b>4</b> 64 Bit x86</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bit-x86.html"><a href="bit-x86.html#introduction-to-x86"><i class="fa fa-check"></i><b>4.1</b> Introduction to x86</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="bit-x86.html"><a href="bit-x86.html#registers"><i class="fa fa-check"></i><b>4.1.1</b> Registers</a></li>
+<li class="chapter" data-level="4.1.2" data-path="bit-x86.html"><a href="bit-x86.html#ibcm-vs-x86-fetch-execute-cycle-same"><i class="fa fa-check"></i><b>4.1.2</b> IBCM vs x86: fetch execute cycle (same)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="bit-x86.html"><a href="bit-x86.html#declaring-variables-in-x86"><i class="fa fa-check"></i><b>4.1.3</b> Declaring variables in x86</a></li>
+<li class="chapter" data-level="4.1.4" data-path="bit-x86.html"><a href="bit-x86.html#mov-command"><i class="fa fa-check"></i><b>4.1.4</b> Mov command</a></li>
+<li class="chapter" data-level="4.1.5" data-path="bit-x86.html"><a href="bit-x86.html#addressing-memory"><i class="fa fa-check"></i><b>4.1.5</b> Addressing memory</a></li>
+<li class="chapter" data-level="4.1.6" data-path="bit-x86.html"><a href="bit-x86.html#example-4"><i class="fa fa-check"></i><b>4.1.6</b> Example</a></li>
+<li class="chapter" data-level="4.1.7" data-path="bit-x86.html"><a href="bit-x86.html#valid-or-not"><i class="fa fa-check"></i><b>4.1.7</b> Valid or not?</a></li>
+<li class="chapter" data-level="4.1.8" data-path="bit-x86.html"><a href="bit-x86.html#memory-addressing-restrictions"><i class="fa fa-check"></i><b>4.1.8</b> Memory addressing restrictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="bit-x86.html"><a href="bit-x86.html#x86-instruction-set"><i class="fa fa-check"></i><b>4.2</b> x86 Instruction Set</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="bit-x86.html"><a href="bit-x86.html#data-movement-instructions"><i class="fa fa-check"></i><b>4.2.1</b> Data movement instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="bit-x86.html"><a href="bit-x86.html#arithmetic-instructions"><i class="fa fa-check"></i><b>4.2.2</b> Arithmetic instructions</a></li>
+<li class="chapter" data-level="4.2.3" data-path="bit-x86.html"><a href="bit-x86.html#logical-instructions"><i class="fa fa-check"></i><b>4.2.3</b> Logical instructions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="bit-x86.html"><a href="bit-x86.html#control-instructions"><i class="fa fa-check"></i><b>4.2.4</b> Control Instructions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="bit-x86.html"><a href="bit-x86.html#a-code-block-in-both-cc-and-assembly"><i class="fa fa-check"></i><b>4.2.5</b> A code block in both C/C++ and Assembly</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions"><i class="fa fa-check"></i><b>4.3</b> Calling Conventions</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bit-x86.html"><a href="bit-x86.html#calling-of-a-subroutine-c"><i class="fa fa-check"></i><b>4.3.1</b> Calling of a subroutine: C++</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions-1"><i class="fa fa-check"></i><b>4.3.2</b> Calling Conventions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention"><i class="fa fa-check"></i><b>4.3.3</b> C Calling Convention</a></li>
+<li class="chapter" data-level="4.3.4" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention-overview"><i class="fa fa-check"></i><b>4.3.4</b> C Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.5" data-path="bit-x86.html"><a href="bit-x86.html#calling-convention-overview"><i class="fa fa-check"></i><b>4.3.5</b> Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.6" data-path="bit-x86.html"><a href="bit-x86.html#register-usage"><i class="fa fa-check"></i><b>4.3.6</b> Register Usage</a></li>
+<li class="chapter" data-level="4.3.7" data-path="bit-x86.html"><a href="bit-x86.html#varying-number-of-parameters"><i class="fa fa-check"></i><b>4.3.7</b> Varying number of parameters</a></li>
+<li class="chapter" data-level="4.3.8" data-path="bit-x86.html"><a href="bit-x86.html#variable-number-of-arguments-in-cc"><i class="fa fa-check"></i><b>4.3.8</b> Variable number of arguments in C/C++</a></li>
+<li class="chapter" data-level="4.3.9" data-path="bit-x86.html"><a href="bit-x86.html#example-output-in-c"><i class="fa fa-check"></i><b>4.3.9</b> Example: output in C</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules"><i class="fa fa-check"></i><b>4.4</b> Caller Rules</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="bit-x86.html"><a href="bit-x86.html#caller-summary"><i class="fa fa-check"></i><b>4.4.1</b> Caller Summary</a></li>
+<li class="chapter" data-level="4.4.2" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary"><i class="fa fa-check"></i><b>4.4.2</b> Callee Summary</a></li>
+<li class="chapter" data-level="4.4.3" data-path="bit-x86.html"><a href="bit-x86.html#caller-rulesresponsibilities"><i class="fa fa-check"></i><b>4.4.3</b> Caller Rules/Responsibilities</a></li>
+<li class="chapter" data-level="4.4.4" data-path="bit-x86.html"><a href="bit-x86.html#prologue"><i class="fa fa-check"></i><b>4.4.4</b> Prologue</a></li>
+<li class="chapter" data-level="4.4.5" data-path="bit-x86.html"><a href="bit-x86.html#epilogue"><i class="fa fa-check"></i><b>4.4.5</b> Epilogue</a></li>
+<li class="chapter" data-level="4.4.6" data-path="bit-x86.html"><a href="bit-x86.html#example-5"><i class="fa fa-check"></i><b>4.4.6</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules"><i class="fa fa-check"></i><b>4.5</b> Callee Rules</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary-again"><i class="fa fa-check"></i><b>4.5.1</b> Callee Summary (again)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules-example"><i class="fa fa-check"></i><b>4.5.2</b> Caller Rules Example</a></li>
+<li class="chapter" data-level="4.5.3" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-prologue"><i class="fa fa-check"></i><b>4.5.3</b> Callee Rules (prologue)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="bit-x86.html"><a href="bit-x86.html#public-service-announcement"><i class="fa fa-check"></i><b>4.5.4</b> Public Service Announcement!</a></li>
+<li class="chapter" data-level="4.5.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-epilogue"><i class="fa fa-check"></i><b>4.5.5</b> Callee Rules (epilogue)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-with-some-more-code"><i class="fa fa-check"></i><b>4.5.6</b> Callee Rules Example (with some more code)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-making-myfunc"><i class="fa fa-check"></i><b>4.5.7</b> Callee Rules Example: Making myFunc</a></li>
+<li class="chapter" data-level="4.5.8" data-path="bit-x86.html"><a href="bit-x86.html#callee-program-step-by-step"><i class="fa fa-check"></i><b>4.5.8</b> Callee Program: Step by Step</a></li>
+<li class="chapter" data-level="4.5.9" data-path="bit-x86.html"><a href="bit-x86.html#that-subroutine-again"><i class="fa fa-check"></i><b>4.5.9</b> That subroutine, again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bit-x86.html"><a href="bit-x86.html#activation-records"><i class="fa fa-check"></i><b>4.6</b> Activation Records</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="bit-x86.html"><a href="bit-x86.html#memory-management"><i class="fa fa-check"></i><b>4.6.1</b> Memory Management</a></li>
+<li class="chapter" data-level="4.6.2" data-path="bit-x86.html"><a href="bit-x86.html#consider-this-subroutine"><i class="fa fa-check"></i><b>4.6.2</b> Consider this subroutine…</a></li>
+<li class="chapter" data-level="4.6.3" data-path="bit-x86.html"><a href="bit-x86.html#buffer-overflow-attack"><i class="fa fa-check"></i><b>4.6.3</b> Buffer Overflow Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="bit-x86.html"><a href="bit-x86.html#x86-examples"><i class="fa fa-check"></i><b>4.7</b> x86 Examples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="bit-x86.html"><a href="bit-x86.html#a-note-about-x86-compatibility"><i class="fa fa-check"></i><b>4.7.1</b> A note about x86 compatibility</a></li>
+<li class="chapter" data-level="4.7.2" data-path="bit-x86.html"><a href="bit-x86.html#test_abs.cpp"><i class="fa fa-check"></i><b>4.7.2</b> test_abs.cpp</a></li>
+<li class="chapter" data-level="4.7.3" data-path="bit-x86.html"><a href="bit-x86.html#generating-assembly-with-clang"><i class="fa fa-check"></i><b>4.7.3</b> Generating assembly with clang++</a></li>
+<li class="chapter" data-level="4.7.4" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value"><i class="fa fa-check"></i><b>4.7.4</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.5" data-path="bit-x86.html"><a href="bit-x86.html#assembly-diffeerences"><i class="fa fa-check"></i><b>4.7.5</b> Assembly diffeerences</a></li>
+<li class="chapter" data-level="4.7.6" data-path="bit-x86.html"><a href="bit-x86.html#assembly-syntax-flavors"><i class="fa fa-check"></i><b>4.7.6</b> Assembly syntax “flavors”</a></li>
+<li class="chapter" data-level="4.7.7" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value-1"><i class="fa fa-check"></i><b>4.7.7</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.8" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_int.cpp"><i class="fa fa-check"></i><b>4.7.8</b> test_abs_int.cpp</a></li>
+<li class="chapter" data-level="4.7.9" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_c.c"><i class="fa fa-check"></i><b>4.7.9</b> test_abs_c.c</a></li>
+<li class="chapter" data-level="4.7.10" data-path="bit-x86.html"><a href="bit-x86.html#int-maxint-x-int-y"><i class="fa fa-check"></i><b>4.7.10</b> int max(int x, int y)</a></li>
+<li class="chapter" data-level="4.7.11" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max"><i class="fa fa-check"></i><b>4.7.11</b> x86 code for max()</a></li>
+<li class="chapter" data-level="4.7.12" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max-using--o2"><i class="fa fa-check"></i><b>4.7.12</b> x86 code for max() using -O2</a></li>
+<li class="chapter" data-level="4.7.13" data-path="bit-x86.html"><a href="bit-x86.html#c-string-comparison-compare_string"><i class="fa fa-check"></i><b>4.7.13</b> C-string comparison compare_string()</a></li>
+<li class="chapter" data-level="4.7.14" data-path="bit-x86.html"><a href="bit-x86.html#x86-for-compare_string"><i class="fa fa-check"></i><b>4.7.14</b> x86 for compare_string()</a></li>
+<li class="chapter" data-level="4.7.15" data-path="bit-x86.html"><a href="bit-x86.html#int-fact-factorial"><i class="fa fa-check"></i><b>4.7.15</b> int fact() factorial</a></li>
+<li class="chapter" data-level="4.7.16" data-path="bit-x86.html"><a href="bit-x86.html#x86-assembly-for-fact"><i class="fa fa-check"></i><b>4.7.16</b> x86 assembly for fact()</a></li>
+<li class="chapter" data-level="4.7.17" data-path="bit-x86.html"><a href="bit-x86.html#an-advantage-of-little-endian"><i class="fa fa-check"></i><b>4.7.17</b> An advantage of little-endian</a></li>
+<li class="chapter" data-level="4.7.18" data-path="bit-x86.html"><a href="bit-x86.html#risc-versus-cisc"><i class="fa fa-check"></i><b>4.7.18</b> RISC versus CISC</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Midterm 2 Lecture Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Midterm 2 Lecture Notes</h1>
+<h2 class="subtitle"><em>CS 2150</em></h2>
+<p class="author"><em>Nico Bravo</em></p>
+</div>
+<div id="trees" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Trees</h1>
+<div id="binary-search-trees" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Binary Search Trees</h2>
+<div id="relationship-between-h-and-n" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Relationship between <span class="math inline">\(H\)</span> and <span class="math inline">\(N\)</span></h3>
+<ul>
+<li>Given <span class="math inline">\(n\)</span> nodes and height <span class="math inline">\(h\)</span>, then by the claim <span class="math inline">\(n \leq 2^{h+1}=1\)</span></li>
+<li>We can simplify:
+<ul>
+<li><span class="math inline">\(n+1 \leq 2^{h+1}\)</span></li>
+<li><span class="math inline">\(\log_2(n+1) \leq \log_2(2^{h+1})\)</span></li>
+<li><span class="math inline">\(\log_2(n+1) \leq h+1\)</span></li>
+</ul></li>
+<li>Thus, <span class="math inline">\(h \geq \log_2(n+1)-1\)</span></li>
+<li>This means that the shortest tree we can achieve for <span class="math inline">\(n\)</span> nodes is proportional to the base-2 log of the height</li>
+</ul>
+</div>
+<div id="perfect-binary-tree" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Perfect binary tree</h3>
+<ul>
+<li>All leaves have the same depth
+<ul>
+<li>And all nodes have 0 or 2 children (not 1)</li>
+</ul></li>
+<li>Number of leaves: <span class="math inline">\(2^h\)</span></li>
+<li>Number of nodes: <span class="math inline">\(1 + 2 + 2^2 + 2^3+ \dots + 2^h = 2^{h+1}-1\)</span></li>
+<li>Problem: a perfect binary only holds <span class="math inline">\(2^{h+1}-1\)</span> values
+<ul>
+<li>So you can’t have 5 values in a perfect binary tree</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="expression-trees" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Expression Trees</h2>
+<ul>
+<li>A way to keep an internal representation of a mathematical equation
+<ul>
+<li>Allows a computer to compute the value of each node</li>
+</ul></li>
+</ul>
+<div id="expression-tree-traversals" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Expression tree traversals</h3>
+<ul>
+<li>Infix notation: (a + ((b + c) * d))</li>
+<li>Postfix notation: a b c + d * +</li>
+<li>Prefix notation: + a * + b c d</li>
+</ul>
+</div>
+<div id="building-an-expression-tree" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Building an expression tree</h3>
+<ul>
+<li>Read tokens from input
+<ul>
+<li>If a number or variable, push onto stack</li>
+<li>If an operator, pop off two values, attach them as children of the operator, and push back onto stack</li>
+</ul></li>
+<li>Proper postfix expression only has one value in stack once complete</li>
+</ul>
+<blockquote>
+<h3 id="example">Example</h3>
+<p>Consider the postfix expression a b + c d e + * <em>
+1. Read a, push onto the stack
+2. Read b, push onto the stack
+3. Read +, pop off a and b, put them as children of +, and push back onto stack
+4. Read c, push onto the stack
+5. Read d, push onto the stack
+6. Read e, push onto the stack
+7. Read +, pop off d and e, put them as children of +, and push back onto stack
+8. Read </em>, pop off + and c, put them as children of <em>, and push back onto stack
+9. Read </em>, pop off * and +, put them as children of *, and push back onto stack</p>
+<p>This is the final result, as there is only one value left in the stack.</p>
+</blockquote>
+</div>
+</div>
+<div id="avl-trees" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> AVL Trees</h2>
+<div id="basics" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Basics</h3>
+<ul>
+<li>Motivation: to guarantee <span class="math inline">\(\Theta(\log n)\)</span> running time on find, insert, and remove</li>
+<li>Idea: keep tree balanced after each operation</li>
+<li>Solution: AVL trees</li>
+</ul>
+</div>
+<div id="structure-property" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Structure Property</h3>
+<ul>
+<li>For every node in the tree, the height of the left and right sub-trees differs at most by 1
+<ul>
+<li>Height = root to most distant leaf</li>
+<li>If we keep inserting things in left or right subtree, they must be rebalanced</li>
+</ul></li>
+<li>Essentially is a binary search tree, but it gets rebalanced if the heights differ by at most 1 (1 difference is ok).</li>
+</ul>
+</div>
+<div id="balance-factor" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Balance Factor</h3>
+<ul>
+<li>Each node of a BST holds:
+<ul>
+<li>The data</li>
+<li>Left and right child pointers</li>
+<li>Possibly a parent node pointer</li>
+</ul></li>
+<li>An AVL tree also holds a balance factor
+<ul>
+<li>The height of the right subtree minus the height of the left subtree
+<ul>
+<li>We could have it be left minus right, but the convention in this class is to always have it be right minus left</li>
+</ul></li>
+<li>Can be computed on the fly, as well, but that’s VERY slow, and defeats the purpose of using AVL trees for speed</li>
+</ul></li>
+</ul>
+</div>
+<div id="tree-balance" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Tree Balance</h3>
+<ul>
+<li>“Balanced” trees
+<ul>
+<li>0 means balanced</li>
+<li>1 means the right subtree is one longer than the left subtree</li>
+<li>-1 means the left subtree is one longer than the right subtree</li>
+</ul></li>
+<li>“Unbalanced” trees
+<ul>
+<li>A balance factor of -2 or 2</li>
+<li>We’ll fix the tree</li>
+</ul></li>
+<li>Will we ever hit -3 or 3?
+<ul>
+<li>No, because we immediately fix it after each operation if it reaches -2 or 2</li>
+</ul></li>
+<li>By definition, a BST is a valid AVL tree if the balance factor for EVERY node is -1, 0, or 1
+<ul>
+<li>The balance factor is tracked for every node individually, so some can be balanced while others can be unbalanced</li>
+</ul></li>
+</ul>
+</div>
+<div id="find-insert" class="section level3" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Find, insert</h3>
+<ul>
+<li>find: same as BST find</li>
+<li>insert: same as BST insert, except might need to “fix” the AVL tree after the insert (via rotations)</li>
+<li>Runtime analysis:
+<ul>
+<li><span class="math inline">\(\Theta(d)\)</span>, where <span class="math inline">\(d\)</span> is the depth of the node being found/inserted</li>
+<li>What is the maximum ehight of an <span class="math inline">\(n\)</span>-node AVL tree?</li>
+</ul></li>
+</ul>
+</div>
+<div id="tree-operations" class="section level3" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> Tree operations</h3>
+<ul>
+<li>Perform the operation (insert, delete)</li>
+<li>Move back up to the root, updating the balance factors
+<ul>
+<li>Why only those nodes? Because those are the only ones who have had their subtrees altered</li>
+</ul></li>
+<li>Do tree rotations where the balance factors are 2 or -2</li>
+</ul>
+</div>
+<div id="how-many-times-to-fix-the-tree" class="section level3" number="1.3.7">
+<h3><span class="header-section-number">1.3.7</span> How many times to “fix” the tree?</h3>
+<ul>
+<li>Any single insert will only modify the balance factor by one
+<ul>
+<li>So we fix the lowest off-balance nodes</li>
+<li>Then everything above it is then balanced</li>
+</ul></li>
+<li>This means that we will have to only look at the bottom two unbalanced nodes</li>
+</ul>
+</div>
+<div id="avl-insert" class="section level3" number="1.3.8">
+<h3><span class="header-section-number">1.3.8</span> AVL Insert</h3>
+<ul>
+<li><p>Let <span class="math inline">\(x\)</span> be the deepest node where inbalance occurs</p></li>
+<li><p>Four cases where the insert happened:</p>
+<ol style="list-style-type: decimal">
+<li>In the left subtree of the left child of <span class="math inline">\(x\)</span></li>
+<li>In the right subtree of the left child of <span class="math inline">\(x\)</span></li>
+<li>In the left subtree of the right child of <span class="math inline">\(x\)</span></li>
+<li>In the right subtree of the right child of <span class="math inline">\(x\)</span></li>
+</ol></li>
+<li><p>Cases 1 and 4</p>
+<ul>
+<li>Perform a single rotation</li>
+</ul></li>
+<li><p>Cases 2 and 3</p>
+<ul>
+<li>Perform a double rotation</li>
+</ul></li>
+</ul>
+</div>
+<div id="avl-single-right-rotation" class="section level3" number="1.3.9">
+<h3><span class="header-section-number">1.3.9</span> AVL single right rotation</h3>
+<ul>
+<li>On a tree with root 3 (-2), left child 2 (-1), left child to that 1 (0):
+<ul>
+<li>The node just inserted was node 1</li>
+<li>The lowest node, immediately after the insert, with an inbalance is node 3</li>
+<li>Because node 1 is in the “left subtree of the left child” of node 3, this means we need to perform a single right rotation</li>
+</ul></li>
+<li>We end with a tree with 2 as root (0), with left child 1 (0) and right child 3 (0)</li>
+<li>This was “rotated” once to the right</li>
+<li>Left got too heavy (number was negative), rotate to right to balance</li>
+</ul>
+</div>
+<div id="avl-single-left-rotation" class="section level3" number="1.3.10">
+<h3><span class="header-section-number">1.3.10</span> AVL single left rotation</h3>
+<ul>
+<li>Mirror image of the single right rotation</li>
+<li>On a tree with root 1 (+2), right child 2 (+1), right child to that 3 (0):
+<ul>
+<li>The node just inserted was node 3</li>
+<li>The lowest node, immediately after the insert, with inbalance is node 1</li>
+<li>Because node 3 is in the “right subtree of the right child” of node 1, this means we need to perform a single left rotation</li>
+</ul></li>
+<li>We end with a tree with 2 as root (0), with left child 1 (0) and right child 3 (0)</li>
+<li>This was “rotated” once to the left</li>
+<li>Right was too heavy (number was positive), rotate to left to balance</li>
+</ul>
+</div>
+<div id="side-effect-of-tree-rotations" class="section level3" number="1.3.11">
+<h3><span class="header-section-number">1.3.11</span> Side-effect of tree rotations</h3>
+<ul>
+<li>At least one node moves “up” (depth decreases)</li>
+<li>At least one node moves “down” (depth increases)</li>
+</ul>
+</div>
+<div id="double-rotation" class="section level3" number="1.3.12">
+<h3><span class="header-section-number">1.3.12</span> Double rotation</h3>
+<ul>
+<li>Two single rotations, in different directions!</li>
+</ul>
+</div>
+<div id="runtime-analysis" class="section level3" number="1.3.13">
+<h3><span class="header-section-number">1.3.13</span> Runtime Analysis</h3>
+<ul>
+<li>Find
+<ul>
+<li><span class="math inline">\(\Theta(\log n)\)</span> time</li>
+<li>Height of tree is always <span class="math inline">\(\Theta(\log n)\)</span></li>
+</ul></li>
+<li>Insert
+<ul>
+<li><span class="math inline">\(\Theta(\log n)\)</span> time</li>
+<li>find() takes <span class="math inline">\(\Theta(\log n)\)</span>, then may have to visit every node on the path back up to root to perform up to 2 single rotations</li>
+</ul></li>
+<li>Remove
+<ul>
+<li><span class="math inline">\(\Theta(\log n)\)</span> time</li>
+<li>Left as an exercise</li>
+</ul></li>
+<li>Print
+<ul>
+<li><span class="math inline">\(\Theta(n)\)</span> time</li>
+<li>No matter the data structure, it will still take <span class="math inline">\(n\)</span> steps to print <span class="math inline">\(n\)</span> elements</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="recursion" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Recursion</h2>
+<div id="sum-the-numbers-from-1-to-n" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Sum the numbers from 1 to <span class="math inline">\(n\)</span></h3>
+<ul>
+<li>We can do this iteratively</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sum (<span class="dt">int</span> n) {</span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> s = <span class="dv">0</span>;</span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; i++ )</span>
+<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a>        s += i;</span>
+<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s;</span>
+<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>OR we can do this recursively
+<ul>
+<li>What problems arise?</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sum (<span class="dt">int</span> n) {</span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n + sum (n-<span class="dv">1</span>);</span>
+<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Recursion always needs three things to work
+<ul>
+<li>A way to make the problem simpler or smaller</li>
+<li>A way to detect when it should terminate or end</li>
+<li>A way to terminate or end
+<ul>
+<li>(the last example didn’t end)</li>
+</ul></li>
+</ul></li>
+<li>Now, let’s do the last example correctly</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> sum (<span class="dt">unsigned</span> <span class="dt">int</span> n) {</span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb3-5"><a href="index.html#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n + sum (n-<span class="dv">1</span>);</span>
+<span id="cb3-6"><a href="index.html#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Negative numbers break this, which is why <code>unsigned</code> was added</li>
+</ul>
+</div>
+<div id="factorial-via-recursion" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Factorial via recursion</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> fact (<span class="dt">unsigned</span> <span class="dt">long</span> n) {</span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n == <span class="dv">0</span>)</span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n * fact (n-<span class="dv">1</span>);</span>
+<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="pros-and-cons" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Pros and cons</h3>
+<ul>
+<li>Pros
+<ul>
+<li>It’s a more natural way to think about the problem, as you only focus on one “instance”</li>
+<li>Some problems work well with recursion, but not with iteration (like tree traversals)</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>Invokng a subroutine at each step slows performance</li>
+</ul></li>
+</ul>
+</div>
+<div id="fibonacci-sequence" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Fibonacci Sequence</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> fib (<span class="dt">unsigned</span> <span class="dt">int</span> n) {</span>
+<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( n &lt;= <span class="dv">1</span> )</span>
+<span id="cb5-3"><a href="index.html#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb5-4"><a href="index.html#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb5-5"><a href="index.html#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n-<span class="dv">1</span>) + fib(n-<span class="dv">2</span>);</span>
+<span id="cb5-6"><a href="index.html#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>This is incredibly inefficient, it is much quicker to do this in a while loop</li>
+</ul>
+</div>
+<div id="recursion-on-trees" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Recursion on trees</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> func (BinaryNode *node) {</span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( node == NULL )</span>
+<span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>;</span>
+<span id="cb6-4"><a href="index.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    func (node-&gt;left);</span>
+<span id="cb6-5"><a href="index.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    do_something_with_node_value (node);</span>
+<span id="cb6-6"><a href="index.html#cb6-6" aria-hidden="true" tabindex="-1"></a>    func (node-&gt;right);</span>
+<span id="cb6-7"><a href="index.html#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>You cannot traverse a tree via iteration (not easily at at least…)</li>
+</ul>
+</div>
+<div id="recursion-on-lists" class="section level3" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Recursion on lists</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> is_in_list (<span class="dt">int</span> x, ListNode *l) {</span>
+<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( l == NULL )</span>
+<span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span>;</span>
+<span id="cb7-4"><a href="index.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> ( x == l-&gt;value )</span>
+<span id="cb7-5"><a href="index.html#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span>;</span>
+<span id="cb7-6"><a href="index.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb7-7"><a href="index.html#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> is_in_list (x, l-&gt;next);</span>
+<span id="cb7-8"><a href="index.html#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>It would probably be better with iteration, but this just shows recursion is possible</li>
+</ul>
+</div>
+<div id="tail-recursion" class="section level3" number="1.4.7">
+<h3><span class="header-section-number">1.4.7</span> Tail recursion</h3>
+<ul>
+<li>The non-tail recursive version of sum():</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> sum (<span class="dt">unsigned</span> <span class="dt">int</span> n) {</span>
+<span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( n == <span class="dv">0</span> )</span>
+<span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb8-4"><a href="index.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb8-5"><a href="index.html#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n + sum (n-<span class="dv">1</span>);</span>
+<span id="cb8-6"><a href="index.html#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Note that after the recursive call is completed, then we have to do something else
+<ul>
+<li>We need to keep track of n, and then we need to add them together and return that value</li>
+<li>This is a performance penalty</li>
+</ul></li>
+<li>Compare this to the tail recursive version of sum():</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb9-1"><a href="index.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> sum (<span class="dt">unsigned</span> <span class="dt">int</span> n, <span class="dt">unsigned</span> <span class="dt">int</span> s) {</span>
+<span id="cb9-2"><a href="index.html#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( n == <span class="dv">0</span> )</span>
+<span id="cb9-3"><a href="index.html#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s;</span>
+<span id="cb9-4"><a href="index.html#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb9-5"><a href="index.html#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> sum (n-<span class="dv">1</span>, n+s);</span>
+<span id="cb9-6"><a href="index.html#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>The recursive call is the only thing returned by this call
+<ul>
+<li>Whatever return returns is the only thing we worry about</li>
+<li>We don’t have to do anything else to it</li>
+<li>The recursive call can replace the return of the one-level-up call</li>
+</ul></li>
+</ul>
+</div>
+<div id="why-tail-recursion" class="section level3" number="1.4.8">
+<h3><span class="header-section-number">1.4.8</span> Why tail recursion?</h3>
+<ul>
+<li>Compilers recognize tail recursion and turn it into a for loop
+<ul>
+<li>And then optimize, so there is no subroutine invocation penalty</li>
+</ul></li>
+<li>We get to write as recursion with speed benefits of iteration</li>
+<li>Not all problems can be solved with tail recursion, but for example the list recursion example was tail recursive</li>
+</ul>
+</div>
+<div id="factorial-via-tail-recursion" class="section level3" number="1.4.9">
+<h3><span class="header-section-number">1.4.9</span> Factorial via Tail Recursion</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> fact_tr (<span class="dt">unsigned</span> <span class="dt">int</span> n, <span class="dt">unsigned</span> <span class="dt">long</span> s) {</span>
+<span id="cb10-2"><a href="index.html#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( n == <span class="dv">0</span> )</span>
+<span id="cb10-3"><a href="index.html#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s;</span>
+<span id="cb10-4"><a href="index.html#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb10-5"><a href="index.html#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fact_tr (n-<span class="dv">1</span>, n*s);</span>
+<span id="cb10-6"><a href="index.html#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-7"><a href="index.html#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="index.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> fact (<span class="dt">unsigned</span> <span class="dt">int</span> n) {</span>
+<span id="cb10-9"><a href="index.html#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fact_tr (n,<span class="dv">1</span>);</span>
+<span id="cb10-10"><a href="index.html#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="red-black-trees" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Red-black trees</h2>
+<ul>
+<li>Always used instead of AVL trees</li>
+<li>Each node has a color attribute, with is either red or black
+<ul>
+<li>Saved as a bool, probably</li>
+</ul></li>
+</ul>
+<div id="properties" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Properties</h3>
+<ol style="list-style-type: decimal">
+<li>A node is either red or black</li>
+<li>The root is black</li>
+<li>All leaves are black
+<ul>
+<li>The leaves may be the NULL children</li>
+</ul></li>
+<li>Both children of every red node are black
+<ul>
+<li>Therefore, a black node is the only possible parent for a red node</li>
+</ul></li>
+<li>Every simple path from a node to any descendant leaf contains the same number of black nodes
+<ul>
+<li>Counting or not counting the NULL black nodes, it doesn’t make a difference as long as you are consistent</li>
+</ul></li>
+</ol>
+</div>
+<div id="insert" class="section level3" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Insert</h3>
+<ul>
+<li>Insert the node as for a normal BST
+<ul>
+<li>Color it red</li>
+</ul></li>
+<li>5 possible cases:
+<ol style="list-style-type: decimal">
+<li>The new node is the root node
+<ul>
+<li>Thus, must be painted black, as per rule 2</li>
+<li>This adds a black node to every path in the tree, so property 5 still holds</li>
+</ul></li>
+<li>The new node’s parent is black
+<ul>
+<li>Property 4 is not invalidated</li>
+<li>Property 5 is not threatened
+<ul>
+<li>The new node’s children are black, but that’s the same number of black nodes as the node it replaced</li>
+</ul></li>
+</ul></li>
+<li>Both the parent and uncle are red
+<ul>
+<li>We change grandparent to red
+<ul>
+<li>Parent and uncle change to black</li>
+</ul></li>
+<li>Property 5 still holds</li>
+<li>However, grandparent may threated property 2 or 4
+<ul>
+<li>Recursively do this on the grandparent</li>
+<li>Occurs prior to any rotations</li>
+</ul></li>
+</ul></li>
+<li>Parent is red, uncle is black, new node is the right child of parent
+<ul>
+<li>Perform a left rotation on P and N
+<ul>
+<li>Property 4 is still violated</li>
+</ul></li>
+<li>Now treat it as case 5</li>
+</ul></li>
+<li>Parent is red, uncle is black, new node is the left child of parent
+<ul>
+<li>Perform a right rotation on P and G</li>
+<li>This satisfies properties 4 and 5</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="removal" class="section level3" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Removal</h3>
+<ul>
+<li>Do a normal BST remove
+<ul>
+<li>Find next highest/lowest value, put its value in the node to be deleted, remove that highest/lowest node
+<ul>
+<li>That node won’t have 2 children</li>
+</ul></li>
+<li>We replace the node to be deleted with left child
+<ul>
+<li>This child is N, sibling is S, parent is P</li>
+</ul></li>
+</ul></li>
+<li>6 possible cases
+<ol style="list-style-type: decimal">
+<li>N is the new root</li>
+<li>S is red</li>
+<li>P, S, and S’s children are black</li>
+<li>S and S’s children are black, but P is red</li>
+<li>S is black, S’s left child is red, S’s right child is black, and N is the left child of its parent</li>
+<li>S is black, S’s right child is red, and N is the left child of parent P</li>
+</ol></li>
+</ul>
+</div>
+<div id="why-red-black-vs-avl" class="section level3" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> Why red-black vs AVL?</h3>
+<ul>
+<li>AVL trees are more rigidly balanced than red-black trees
+<ul>
+<li>More rotations required</li>
+</ul></li>
+<li>Time-critical applications have a performance boost</li>
+<li>Functional programming languages use red-black trees for hashes/associative arrays</li>
+</ul>
+</div>
+</div>
+<div id="splay-trees" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Splay Trees</h2>
+<ul>
+<li>A self-balancing tree that keeps “recently” used nodes close to the top
+<ul>
+<li>This improves performance in <em>some</em> cases</li>
+<li>Great for cashes</li>
+<li>Not good for uniform access</li>
+</ul></li>
+<li>Easier to implement than red-black or AVL trees</li>
+</ul>
+<div id="main-operation-splaying" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Main operation: splaying</h3>
+<ul>
+<li>Anytime you find/insert/delete a node, you <em>splay</em> the tree around that node
+<ul>
+<li>Perform tree rotations to make that node the new root node
+<ul>
+<li>Binary search tree find</li>
+<li>Then, rotate that node to the top of the tree</li>
+<li>Then, just look at the root</li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html">Animation site</a></li>
+<li>This is good, as the most recently looked up node is at the root, and nodes that have been recently looked for are near the root</li>
+<li>If a value is not found, the tree rotates around where the note would be</li>
+<li>If inserting a node, find where it would be, insert, then splay to make the inserted node the root</li>
+</ul>
+</div>
+<div id="time-complexity" class="section level3" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Time complexity</h3>
+<ul>
+<li>How long does a splay take?
+<ul>
+<li><span class="math inline">\(\Theta(h)\)</span>, where <span class="math inline">\(h\)</span> is the height of the tree</li>
+</ul></li>
+<li>A splay tree can look like a linked list
+<ul>
+<li>Which means the worst case running time can be linear, and the running time can be <span class="math inline">\(\Theta(n)\)</span></li>
+</ul></li>
+<li>A splay tree is <span class="math inline">\(\Theta(\log n)\)</span> <em>amortized</em> time
+<ul>
+<li>This means a sequence of operations will average to <span class="math inline">\(\Theta(\log n)\)</span> time</li>
+</ul></li>
+</ul>
+</div>
+<div id="amortized-analysis" class="section level3" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Amortized analysis</h3>
+<ul>
+<li>An AVL tree will take <span class="math inline">\(\Theta(\log n)\)</span> time for each and every operation in a series of <span class="math inline">\(m\)</span> operations, guaranteed</li>
+<li>A splay tree will take an <em>average</em> of <span class="math inline">\(\Theta(\log n)\)</span> time for the same set of <span class="math inline">\(m\)</span> operations
+<ul>
+<li>Some individual ones will take less time</li>
+<li>The total cumulative time to insert a set of elements will be the same for both types of trees</li>
+</ul></li>
+<li>Consider a vector insert
+<ul>
+<li>Worst case is that you have to double the size of the array (from <span class="math inline">\(n\)</span> to <span class="math inline">\(2n\)</span>), and then copy the elements over, which takes <span class="math inline">\(n\)</span> steps</li>
+<li>This doesn’t happen often though</li>
+<li>Consider a vector of initial capacity 100 elements, in which we insert 1,600 elements
+<ul>
+<li><span class="math inline">\(n\)</span> = 1600</li>
+<li>First “doubling” is from 100 <span class="math inline">\(\rightarrow\)</span> 200, costing 100 copies</li>
+<li>Second is 200 <span class="math inline">\(\rightarrow\)</span> 400, costing 200 copies</li>
+<li>Third is 400 <span class="math inline">\(\rightarrow\)</span> 800, costing 400 copies</li>
+<li>Fourth is 800 <span class="math inline">\(\rightarrow\)</span> 1600, costing 800 copies</li>
+<li>Assume we have not (yet) doubled from 1600 <span class="math inline">\(\rightarrow\)</span> 3200</li>
+<li>For 1,600 elements, we have 100+200+400+800=1500 copies
+<ul>
+<li><span class="math inline">\(n\)</span> elements requires <span class="math inline">\(n-100\)</span> copies</li>
+<li>Number of copies is proportional to <span class="math inline">\(n\)</span></li>
+</ul></li>
+<li>Vector insert is
+<ul>
+<li><span class="math inline">\(\Theta(n)\)</span> for the worst-case</li>
+<li><span class="math inline">\(\Theta(1)\)</span> <em>amortized</em> when executing many operations</li>
+</ul></li>
+<li>Although an <em>individual</em> operation may take <span class="math inline">\(n\)</span> steps, a series of <span class="math inline">\(c\)</span> operations will take <span class="math inline">\(c \cdot n\)</span> steps
+<ul>
+<li>Where <span class="math inline">\(c\)</span> is constant</li>
+<li>And when you divide by <span class="math inline">\(n\)</span>, then each operation takes an <em>average</em> of <span class="math inline">\(c\)</span> steps</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="splay-tree-conclusions" class="section level3" number="1.6.4">
+<h3><span class="header-section-number">1.6.4</span> Splay tree conclusions</h3>
+<ul>
+<li>Pros
+<ul>
+<li>Easy to implement</li>
+<li><span class="math inline">\(\Theta(\log n)\)</span> amortized time</li>
+<li>Good for caches where locality matters</li>
+</ul></li>
+<li>Cons
+<ul>
+<li>Not guaranteed <span class="math inline">\(\Theta(\log n)\)</span> time for a single operation</li>
+<li>Bad access time for uniform access</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="tree-applications" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Tree applications</h2>
+<div id="when-are-trees-not-good-to-use" class="section level3" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> When are trees not good to use?</h3>
+<ul>
+<li>They’re fast, so when would we NOT want to use them?
+<ul>
+<li>When the items don’t have a sorted order
+<ul>
+<li>Ex. a list of to-do items</li>
+</ul></li>
+<li>When we want less complexity
+<ul>
+<li>Ex. a stack or queue</li>
+</ul></li>
+<li>When we want <span class="math inline">\(\Theta(1)\)</span> operation on retrieves
+<ul>
+<li>Vector get()</li>
+</ul></li>
+<li>When we want <span class="math inline">\(\Theta(1)\)</span> time for <em>all</em> operations
+<ul>
+<li>Hash tables almost achieve that</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="programs" class="section level3" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Programs</h3>
+<ul>
+<li>Any program can be represented as a tree</li>
+<li>Consider the following program:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="index.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> z;</span>
+<span id="cb11-2"><a href="index.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="index.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> foo (<span class="dt">int</span> x) {</span>
+<span id="cb11-4"><a href="index.html#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ( <span class="dt">int</span> y = <span class="dv">0</span>; y &lt; x; y++ )</span>
+<span id="cb11-5"><a href="index.html#cb11-5" aria-hidden="true" tabindex="-1"></a>        cout &lt;&lt; y &lt;&lt; endl;</span>
+<span id="cb11-6"><a href="index.html#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="index.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="index.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb11-9"><a href="index.html#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> z = <span class="dv">5</span>;</span>
+<span id="cb11-10"><a href="index.html#cb11-10" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;enter x&quot;</span> &lt;&lt; endl;</span>
+<span id="cb11-11"><a href="index.html#cb11-11" aria-hidden="true" tabindex="-1"></a>    cin &gt;&gt; z;</span>
+<span id="cb11-12"><a href="index.html#cb11-12" aria-hidden="true" tabindex="-1"></a>    foo(z);</span>
+<span id="cb11-13"><a href="index.html#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Note that there are two <code>int z</code> declarations
+<ul>
+<li>One in main</li>
+<li>One global</li>
+</ul></li>
+<li>As a tree, it looks like this:</li>
+</ul>
+<div class="figure">
+<img src="program-tree-1.svg" alt="" />
+<p class="caption">The Program Tree</p>
+</div>
+<ul>
+<li>This is called an “abstract syntax tree” or “parse tree”</li>
+<li>Each note can be a different type
+<ul>
+<li>Having different propreties and different number of children
+<ul>
+<li>A <code>for</code> loop node has four children</li>
+<li>A function node has at least three children</li>
+<li>A body node has a variable number of children</li>
+</ul></li>
+<li>Done through inheritance</li>
+</ul></li>
+<li>A compiler will build this tree in memory
+<ul>
+<li>And trasverse it many times
+<ul>
+<li>For example, to figure out which <code>z</code> to use</li>
+<li>Or for code generation</li>
+<li>Or for type checking</li>
+<li>Or for code optimization</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="comparing-two-programs" class="section level3" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Comparing two programs</h3>
+<ul>
+<li>If we read in two programs and built parse trees for each, then compared their structure,</li>
+<li>We would be able to compare the programs while ignoring
+<ul>
+<li>Function/method order</li>
+<li>Variable renaming</li>
+<li>Different comments</li>
+</ul></li>
+</ul>
+</div>
+<div id="measure-of-structural-similarity" class="section level3" number="1.7.4">
+<h3><span class="header-section-number">1.7.4</span> Measure of Structural Similarity</h3>
+<ul>
+<li>“MOSS”</li>
+<li>A system for detecting software plagiarism</li>
+<li>Loads up all the programs for a class</li>
+<li>Do all <span class="math inline">\(n^2\)</span> comparisons</li>
+<li>Display the most similar programs</li>
+</ul>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="hash-tables.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

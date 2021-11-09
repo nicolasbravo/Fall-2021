@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Hash Tables | Midterm 2 Lecture Notes</title>
+  <meta name="description" content="2 Hash Tables | Midterm 2 Lecture Notes" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Hash Tables | Midterm 2 Lecture Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Hash Tables | Midterm 2 Lecture Notes" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ibcm-machine-language.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Trees</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#binary-search-trees"><i class="fa fa-check"></i><b>1.1</b> Binary Search Trees</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#relationship-between-h-and-n"><i class="fa fa-check"></i><b>1.1.1</b> Relationship between <span class="math inline">\(H\)</span> and <span class="math inline">\(N\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#perfect-binary-tree"><i class="fa fa-check"></i><b>1.1.2</b> Perfect binary tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#expression-trees"><i class="fa fa-check"></i><b>1.2</b> Expression Trees</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#expression-tree-traversals"><i class="fa fa-check"></i><b>1.2.1</b> Expression tree traversals</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#building-an-expression-tree"><i class="fa fa-check"></i><b>1.2.2</b> Building an expression tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#avl-trees"><i class="fa fa-check"></i><b>1.3</b> AVL Trees</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.3.1</b> Basics</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#structure-property"><i class="fa fa-check"></i><b>1.3.2</b> Structure Property</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#balance-factor"><i class="fa fa-check"></i><b>1.3.3</b> Balance Factor</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#tree-balance"><i class="fa fa-check"></i><b>1.3.4</b> Tree Balance</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#find-insert"><i class="fa fa-check"></i><b>1.3.5</b> Find, insert</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#tree-operations"><i class="fa fa-check"></i><b>1.3.6</b> Tree operations</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#how-many-times-to-fix-the-tree"><i class="fa fa-check"></i><b>1.3.7</b> How many times to “fix” the tree?</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#avl-insert"><i class="fa fa-check"></i><b>1.3.8</b> AVL Insert</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#avl-single-right-rotation"><i class="fa fa-check"></i><b>1.3.9</b> AVL single right rotation</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#avl-single-left-rotation"><i class="fa fa-check"></i><b>1.3.10</b> AVL single left rotation</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#side-effect-of-tree-rotations"><i class="fa fa-check"></i><b>1.3.11</b> Side-effect of tree rotations</a></li>
+<li class="chapter" data-level="1.3.12" data-path="index.html"><a href="index.html#double-rotation"><i class="fa fa-check"></i><b>1.3.12</b> Double rotation</a></li>
+<li class="chapter" data-level="1.3.13" data-path="index.html"><a href="index.html#runtime-analysis"><i class="fa fa-check"></i><b>1.3.13</b> Runtime Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursion"><i class="fa fa-check"></i><b>1.4</b> Recursion</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#sum-the-numbers-from-1-to-n"><i class="fa fa-check"></i><b>1.4.1</b> Sum the numbers from 1 to <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#factorial-via-recursion"><i class="fa fa-check"></i><b>1.4.2</b> Factorial via recursion</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#pros-and-cons"><i class="fa fa-check"></i><b>1.4.3</b> Pros and cons</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#fibonacci-sequence"><i class="fa fa-check"></i><b>1.4.4</b> Fibonacci Sequence</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#recursion-on-trees"><i class="fa fa-check"></i><b>1.4.5</b> Recursion on trees</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#recursion-on-lists"><i class="fa fa-check"></i><b>1.4.6</b> Recursion on lists</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#tail-recursion"><i class="fa fa-check"></i><b>1.4.7</b> Tail recursion</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#why-tail-recursion"><i class="fa fa-check"></i><b>1.4.8</b> Why tail recursion?</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#factorial-via-tail-recursion"><i class="fa fa-check"></i><b>1.4.9</b> Factorial via Tail Recursion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#red-black-trees"><i class="fa fa-check"></i><b>1.5</b> Red-black trees</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#properties"><i class="fa fa-check"></i><b>1.5.1</b> Properties</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#insert"><i class="fa fa-check"></i><b>1.5.2</b> Insert</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#removal"><i class="fa fa-check"></i><b>1.5.3</b> Removal</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#why-red-black-vs-avl"><i class="fa fa-check"></i><b>1.5.4</b> Why red-black vs AVL?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#splay-trees"><i class="fa fa-check"></i><b>1.6</b> Splay Trees</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#main-operation-splaying"><i class="fa fa-check"></i><b>1.6.1</b> Main operation: splaying</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#time-complexity"><i class="fa fa-check"></i><b>1.6.2</b> Time complexity</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#amortized-analysis"><i class="fa fa-check"></i><b>1.6.3</b> Amortized analysis</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#splay-tree-conclusions"><i class="fa fa-check"></i><b>1.6.4</b> Splay tree conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#tree-applications"><i class="fa fa-check"></i><b>1.7</b> Tree applications</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#when-are-trees-not-good-to-use"><i class="fa fa-check"></i><b>1.7.1</b> When are trees not good to use?</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#programs"><i class="fa fa-check"></i><b>1.7.2</b> Programs</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#comparing-two-programs"><i class="fa fa-check"></i><b>1.7.3</b> Comparing two programs</a></li>
+<li class="chapter" data-level="1.7.4" data-path="index.html"><a href="index.html#measure-of-structural-similarity"><i class="fa fa-check"></i><b>1.7.4</b> Measure of Structural Similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hash-tables.html"><a href="hash-tables.html"><i class="fa fa-check"></i><b>2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hash-tables.html"><a href="hash-tables.html#review"><i class="fa fa-check"></i><b>2.1</b> Review</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="hash-tables.html"><a href="hash-tables.html#lists"><i class="fa fa-check"></i><b>2.1.1</b> Lists</a></li>
+<li class="chapter" data-level="2.1.2" data-path="hash-tables.html"><a href="hash-tables.html#stacks"><i class="fa fa-check"></i><b>2.1.2</b> Stacks</a></li>
+<li class="chapter" data-level="2.1.3" data-path="hash-tables.html"><a href="hash-tables.html#queues"><i class="fa fa-check"></i><b>2.1.3</b> Queues</a></li>
+<li class="chapter" data-level="2.1.4" data-path="hash-tables.html"><a href="hash-tables.html#trees-1"><i class="fa fa-check"></i><b>2.1.4</b> Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-1"><i class="fa fa-check"></i><b>2.2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="hash-tables.html"><a href="hash-tables.html#is-there-anything-faster-than-what-was-reviewed"><i class="fa fa-check"></i><b>2.2.1</b> Is there anything faster than what was reviewed?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-lookup-table"><i class="fa fa-check"></i><b>2.2.2</b> Hash tables (lookup table)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="hash-tables.html"><a href="hash-tables.html#key-value-pairs"><i class="fa fa-check"></i><b>2.2.3</b> Key-value pairs</a></li>
+<li class="chapter" data-level="2.2.4" data-path="hash-tables.html"><a href="hash-tables.html#hash-function"><i class="fa fa-check"></i><b>2.2.4</b> Hash function</a></li>
+<li class="chapter" data-level="2.2.5" data-path="hash-tables.html"><a href="hash-tables.html#keys"><i class="fa fa-check"></i><b>2.2.5</b> Keys</a></li>
+<li class="chapter" data-level="2.2.6" data-path="hash-tables.html"><a href="hash-tables.html#table-size-issues"><i class="fa fa-check"></i><b>2.2.6</b> Table size issues</a></li>
+<li class="chapter" data-level="2.2.7" data-path="hash-tables.html"><a href="hash-tables.html#hash-table-part-2"><i class="fa fa-check"></i><b>2.2.7</b> Hash table part 2</a></li>
+<li class="chapter" data-level="2.2.8" data-path="hash-tables.html"><a href="hash-tables.html#hash-functions-part-2"><i class="fa fa-check"></i><b>2.2.8</b> Hash functions part 2</a></li>
+<li class="chapter" data-level="2.2.9" data-path="hash-tables.html"><a href="hash-tables.html#sample-string-hash-functions"><i class="fa fa-check"></i><b>2.2.9</b> Sample string hash functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="hash-tables.html"><a href="hash-tables.html#hash-function-summary"><i class="fa fa-check"></i><b>2.3</b> Hash Function Summary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hash-tables.html"><a href="hash-tables.html#collision-resolution"><i class="fa fa-check"></i><b>2.3.1</b> Collision Resolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining"><i class="fa fa-check"></i><b>2.4</b> Separate Chaining</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="hash-tables.html"><a href="hash-tables.html#analysis-of-find"><i class="fa fa-check"></i><b>2.4.1</b> Analysis of find</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hash-tables.html"><a href="hash-tables.html#load-factor"><i class="fa fa-check"></i><b>2.4.2</b> Load factor</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining-find"><i class="fa fa-check"></i><b>2.4.3</b> Separate Chaining: <code>find()</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="hash-tables.html"><a href="hash-tables.html#what-data-structure-to-use-for-the-buckets"><i class="fa fa-check"></i><b>2.4.4</b> What data structure to use for the buckets?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="hash-tables.html"><a href="hash-tables.html#requirements-for-hopeful-case"><i class="fa fa-check"></i><b>2.4.5</b> Requirements for “hopeful” case</a></li>
+<li class="chapter" data-level="2.4.6" data-path="hash-tables.html"><a href="hash-tables.html#sepearete-chaining-insert-is-theta1"><i class="fa fa-check"></i><b>2.4.6</b> Sepearete Chaining insert is <span class="math inline">\(\Theta(1)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hash-tables.html"><a href="hash-tables.html#open-addressing"><i class="fa fa-check"></i><b>2.5</b> Open Addressing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="hash-tables.html"><a href="hash-tables.html#saving-memory"><i class="fa fa-check"></i><b>2.5.1</b> Saving memory</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hash-tables.html"><a href="hash-tables.html#three-types-of-probing-strategies"><i class="fa fa-check"></i><b>2.5.2</b> Three types of probing strategies</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing"><i class="fa fa-check"></i><b>2.5.3</b> Linear probing</a></li>
+<li class="chapter" data-level="2.5.4" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing-table-example"><i class="fa fa-check"></i><b>2.5.4</b> Linear probing table example</a></li>
+<li class="chapter" data-level="2.5.5" data-path="hash-tables.html"><a href="hash-tables.html#problems-with-linear-probing"><i class="fa fa-check"></i><b>2.5.5</b> Problems with linear probing</a></li>
+<li class="chapter" data-level="2.5.6" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing"><i class="fa fa-check"></i><b>2.5.6</b> Quadratic Probing</a></li>
+<li class="chapter" data-level="2.5.7" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing-table-example"><i class="fa fa-check"></i><b>2.5.7</b> Quadratic probing table example</a></li>
+<li class="chapter" data-level="2.5.8" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing"><i class="fa fa-check"></i><b>2.5.8</b> Double Hashing</a></li>
+<li class="chapter" data-level="2.5.9" data-path="hash-tables.html"><a href="hash-tables.html#double-hasing-table-example"><i class="fa fa-check"></i><b>2.5.9</b> Double hasing table example</a></li>
+<li class="chapter" data-level="2.5.10" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing-thrashing"><i class="fa fa-check"></i><b>2.5.10</b> Double hashing thrashing</a></li>
+<li class="chapter" data-level="2.5.11" data-path="hash-tables.html"><a href="hash-tables.html#table-size-must-be-prime"><i class="fa fa-check"></i><b>2.5.11</b> Table size must be prime!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hash-tables.html"><a href="hash-tables.html#miscellaneous"><i class="fa fa-check"></i><b>2.6</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="hash-tables.html"><a href="hash-tables.html#rehashing"><i class="fa fa-check"></i><b>2.6.1</b> Rehashing</a></li>
+<li class="chapter" data-level="2.6.2" data-path="hash-tables.html"><a href="hash-tables.html#removing-an-element"><i class="fa fa-check"></i><b>2.6.2</b> Removing an element</a></li>
+<li class="chapter" data-level="2.6.3" data-path="hash-tables.html"><a href="hash-tables.html#hashing-md5"><i class="fa fa-check"></i><b>2.6.3</b> Hashing: MD5</a></li>
+<li class="chapter" data-level="2.6.4" data-path="hash-tables.html"><a href="hash-tables.html#can-you-reverse-an-md5-hash"><i class="fa fa-check"></i><b>2.6.4</b> Can you reverse an MD5 hash?</a></li>
+<li class="chapter" data-level="2.6.5" data-path="hash-tables.html"><a href="hash-tables.html#more-hashing-sha"><i class="fa fa-check"></i><b>2.6.5</b> More hashing: SHA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html"><i class="fa fa-check"></i><b>3</b> IBCM (Machine Language)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language"><i class="fa fa-check"></i><b>3.1.1</b> Assembly Language</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#why-learn-assembly-language"><i class="fa fa-check"></i><b>3.1.2</b> Why learn assembly language?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-1"><i class="fa fa-check"></i><b>3.1.3</b> Memory Hierarchy, part 1</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-2"><i class="fa fa-check"></i><b>3.1.4</b> Memory Hierarchy, Part 2</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#fetch-execute-cycle"><i class="fa fa-check"></i><b>3.1.5</b> Fetch Execute Cycle</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language-instructions"><i class="fa fa-check"></i><b>3.1.6</b> Assembly Language Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-description"><i class="fa fa-check"></i><b>3.2</b> IBCM Description</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#running-ibcm-programs"><i class="fa fa-check"></i><b>3.2.1</b> Running IBCM Programs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-description-cpu"><i class="fa fa-check"></i><b>3.2.2</b> IBCM Machine Description: CPU</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-memory"><i class="fa fa-check"></i><b>3.2.3</b> IBCM Machine: Memory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-instruction-types"><i class="fa fa-check"></i><b>3.2.4</b> IBCM instruction types</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#halt"><i class="fa fa-check"></i><b>3.2.5</b> Halt</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#input-and-output"><i class="fa fa-check"></i><b>3.2.6</b> Input and output</a></li>
+<li class="chapter" data-level="3.2.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#shifts"><i class="fa fa-check"></i><b>3.2.7</b> Shifts</a></li>
+<li class="chapter" data-level="3.2.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#other-instructions"><i class="fa fa-check"></i><b>3.2.8</b> Other Instructions</a></li>
+<li class="chapter" data-level="3.2.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#labels"><i class="fa fa-check"></i><b>3.2.9</b> Labels</a></li>
+<li class="chapter" data-level="3.2.10" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#declaring-variables"><i class="fa fa-check"></i><b>3.2.10</b> Declaring variables</a></li>
+<li class="chapter" data-level="3.2.11" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#sample-program"><i class="fa fa-check"></i><b>3.2.11</b> Sample Program</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#writing-ibcm-code"><i class="fa fa-check"></i><b>3.3</b> Writing IBCM Code</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#simulator"><i class="fa fa-check"></i><b>3.3.1</b> Simulator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-compute-a-sum"><i class="fa fa-check"></i><b>3.3.2</b> IBCM code to compute a sum</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-1"><i class="fa fa-check"></i><b>3.3.3</b> IBCM summation program: part 1</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-2"><i class="fa fa-check"></i><b>3.3.4</b> IBCM summation program: part 2</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-would-we-code-this"><i class="fa fa-check"></i><b>3.3.5</b> How would we code this:</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-sum-elements-in-an-array"><i class="fa fa-check"></i><b>3.3.6</b> IBCM code to sum elements in an array</a></li>
+<li class="chapter" data-level="3.3.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-initialization-and-halting"><i class="fa fa-check"></i><b>3.3.7</b> Array Summation: initialization and halting</a></li>
+<li class="chapter" data-level="3.3.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-the-inner-loop"><i class="fa fa-check"></i><b>3.3.8</b> Array Summation: the inner loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#conclusions"><i class="fa fa-check"></i><b>3.4</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#notes"><i class="fa fa-check"></i><b>3.4.1</b> Notes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-tipsreminders"><i class="fa fa-check"></i><b>3.4.2</b> IBCM tips/reminders</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#use-the-simulators-to-debug-your-code"><i class="fa fa-check"></i><b>3.4.3</b> Use the simulators to debug your code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#whats-missing-from-ibcm"><i class="fa fa-check"></i><b>3.4.4</b> What’s missing from IBCM?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#emulating-ibcm-in-c"><i class="fa fa-check"></i><b>3.4.5</b> Emulating IBCM in C++</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-to-decode-the-parts-of-an-instruction"><i class="fa fa-check"></i><b>3.4.6</b> How to decode the parts of an instruction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#what-about-encoding"><i class="fa fa-check"></i><b>3.4.7</b> What about encoding?</a></li>
+<li class="chapter" data-level="3.4.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#a-data-structure-to-make-it-easier"><i class="fa fa-check"></i><b>3.4.8</b> A data structure to make it easier</a></li>
+<li class="chapter" data-level="3.4.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#using-that-data-structure"><i class="fa fa-check"></i><b>3.4.9</b> Using that data structure</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bit-x86.html"><a href="bit-x86.html"><i class="fa fa-check"></i><b>4</b> 64 Bit x86</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bit-x86.html"><a href="bit-x86.html#introduction-to-x86"><i class="fa fa-check"></i><b>4.1</b> Introduction to x86</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="bit-x86.html"><a href="bit-x86.html#registers"><i class="fa fa-check"></i><b>4.1.1</b> Registers</a></li>
+<li class="chapter" data-level="4.1.2" data-path="bit-x86.html"><a href="bit-x86.html#ibcm-vs-x86-fetch-execute-cycle-same"><i class="fa fa-check"></i><b>4.1.2</b> IBCM vs x86: fetch execute cycle (same)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="bit-x86.html"><a href="bit-x86.html#declaring-variables-in-x86"><i class="fa fa-check"></i><b>4.1.3</b> Declaring variables in x86</a></li>
+<li class="chapter" data-level="4.1.4" data-path="bit-x86.html"><a href="bit-x86.html#mov-command"><i class="fa fa-check"></i><b>4.1.4</b> Mov command</a></li>
+<li class="chapter" data-level="4.1.5" data-path="bit-x86.html"><a href="bit-x86.html#addressing-memory"><i class="fa fa-check"></i><b>4.1.5</b> Addressing memory</a></li>
+<li class="chapter" data-level="4.1.6" data-path="bit-x86.html"><a href="bit-x86.html#example-4"><i class="fa fa-check"></i><b>4.1.6</b> Example</a></li>
+<li class="chapter" data-level="4.1.7" data-path="bit-x86.html"><a href="bit-x86.html#valid-or-not"><i class="fa fa-check"></i><b>4.1.7</b> Valid or not?</a></li>
+<li class="chapter" data-level="4.1.8" data-path="bit-x86.html"><a href="bit-x86.html#memory-addressing-restrictions"><i class="fa fa-check"></i><b>4.1.8</b> Memory addressing restrictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="bit-x86.html"><a href="bit-x86.html#x86-instruction-set"><i class="fa fa-check"></i><b>4.2</b> x86 Instruction Set</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="bit-x86.html"><a href="bit-x86.html#data-movement-instructions"><i class="fa fa-check"></i><b>4.2.1</b> Data movement instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="bit-x86.html"><a href="bit-x86.html#arithmetic-instructions"><i class="fa fa-check"></i><b>4.2.2</b> Arithmetic instructions</a></li>
+<li class="chapter" data-level="4.2.3" data-path="bit-x86.html"><a href="bit-x86.html#logical-instructions"><i class="fa fa-check"></i><b>4.2.3</b> Logical instructions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="bit-x86.html"><a href="bit-x86.html#control-instructions"><i class="fa fa-check"></i><b>4.2.4</b> Control Instructions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="bit-x86.html"><a href="bit-x86.html#a-code-block-in-both-cc-and-assembly"><i class="fa fa-check"></i><b>4.2.5</b> A code block in both C/C++ and Assembly</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions"><i class="fa fa-check"></i><b>4.3</b> Calling Conventions</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bit-x86.html"><a href="bit-x86.html#calling-of-a-subroutine-c"><i class="fa fa-check"></i><b>4.3.1</b> Calling of a subroutine: C++</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions-1"><i class="fa fa-check"></i><b>4.3.2</b> Calling Conventions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention"><i class="fa fa-check"></i><b>4.3.3</b> C Calling Convention</a></li>
+<li class="chapter" data-level="4.3.4" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention-overview"><i class="fa fa-check"></i><b>4.3.4</b> C Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.5" data-path="bit-x86.html"><a href="bit-x86.html#calling-convention-overview"><i class="fa fa-check"></i><b>4.3.5</b> Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.6" data-path="bit-x86.html"><a href="bit-x86.html#register-usage"><i class="fa fa-check"></i><b>4.3.6</b> Register Usage</a></li>
+<li class="chapter" data-level="4.3.7" data-path="bit-x86.html"><a href="bit-x86.html#varying-number-of-parameters"><i class="fa fa-check"></i><b>4.3.7</b> Varying number of parameters</a></li>
+<li class="chapter" data-level="4.3.8" data-path="bit-x86.html"><a href="bit-x86.html#variable-number-of-arguments-in-cc"><i class="fa fa-check"></i><b>4.3.8</b> Variable number of arguments in C/C++</a></li>
+<li class="chapter" data-level="4.3.9" data-path="bit-x86.html"><a href="bit-x86.html#example-output-in-c"><i class="fa fa-check"></i><b>4.3.9</b> Example: output in C</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules"><i class="fa fa-check"></i><b>4.4</b> Caller Rules</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="bit-x86.html"><a href="bit-x86.html#caller-summary"><i class="fa fa-check"></i><b>4.4.1</b> Caller Summary</a></li>
+<li class="chapter" data-level="4.4.2" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary"><i class="fa fa-check"></i><b>4.4.2</b> Callee Summary</a></li>
+<li class="chapter" data-level="4.4.3" data-path="bit-x86.html"><a href="bit-x86.html#caller-rulesresponsibilities"><i class="fa fa-check"></i><b>4.4.3</b> Caller Rules/Responsibilities</a></li>
+<li class="chapter" data-level="4.4.4" data-path="bit-x86.html"><a href="bit-x86.html#prologue"><i class="fa fa-check"></i><b>4.4.4</b> Prologue</a></li>
+<li class="chapter" data-level="4.4.5" data-path="bit-x86.html"><a href="bit-x86.html#epilogue"><i class="fa fa-check"></i><b>4.4.5</b> Epilogue</a></li>
+<li class="chapter" data-level="4.4.6" data-path="bit-x86.html"><a href="bit-x86.html#example-5"><i class="fa fa-check"></i><b>4.4.6</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules"><i class="fa fa-check"></i><b>4.5</b> Callee Rules</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary-again"><i class="fa fa-check"></i><b>4.5.1</b> Callee Summary (again)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules-example"><i class="fa fa-check"></i><b>4.5.2</b> Caller Rules Example</a></li>
+<li class="chapter" data-level="4.5.3" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-prologue"><i class="fa fa-check"></i><b>4.5.3</b> Callee Rules (prologue)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="bit-x86.html"><a href="bit-x86.html#public-service-announcement"><i class="fa fa-check"></i><b>4.5.4</b> Public Service Announcement!</a></li>
+<li class="chapter" data-level="4.5.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-epilogue"><i class="fa fa-check"></i><b>4.5.5</b> Callee Rules (epilogue)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-with-some-more-code"><i class="fa fa-check"></i><b>4.5.6</b> Callee Rules Example (with some more code)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-making-myfunc"><i class="fa fa-check"></i><b>4.5.7</b> Callee Rules Example: Making myFunc</a></li>
+<li class="chapter" data-level="4.5.8" data-path="bit-x86.html"><a href="bit-x86.html#callee-program-step-by-step"><i class="fa fa-check"></i><b>4.5.8</b> Callee Program: Step by Step</a></li>
+<li class="chapter" data-level="4.5.9" data-path="bit-x86.html"><a href="bit-x86.html#that-subroutine-again"><i class="fa fa-check"></i><b>4.5.9</b> That subroutine, again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bit-x86.html"><a href="bit-x86.html#activation-records"><i class="fa fa-check"></i><b>4.6</b> Activation Records</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="bit-x86.html"><a href="bit-x86.html#memory-management"><i class="fa fa-check"></i><b>4.6.1</b> Memory Management</a></li>
+<li class="chapter" data-level="4.6.2" data-path="bit-x86.html"><a href="bit-x86.html#consider-this-subroutine"><i class="fa fa-check"></i><b>4.6.2</b> Consider this subroutine…</a></li>
+<li class="chapter" data-level="4.6.3" data-path="bit-x86.html"><a href="bit-x86.html#buffer-overflow-attack"><i class="fa fa-check"></i><b>4.6.3</b> Buffer Overflow Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="bit-x86.html"><a href="bit-x86.html#x86-examples"><i class="fa fa-check"></i><b>4.7</b> x86 Examples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="bit-x86.html"><a href="bit-x86.html#a-note-about-x86-compatibility"><i class="fa fa-check"></i><b>4.7.1</b> A note about x86 compatibility</a></li>
+<li class="chapter" data-level="4.7.2" data-path="bit-x86.html"><a href="bit-x86.html#test_abs.cpp"><i class="fa fa-check"></i><b>4.7.2</b> test_abs.cpp</a></li>
+<li class="chapter" data-level="4.7.3" data-path="bit-x86.html"><a href="bit-x86.html#generating-assembly-with-clang"><i class="fa fa-check"></i><b>4.7.3</b> Generating assembly with clang++</a></li>
+<li class="chapter" data-level="4.7.4" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value"><i class="fa fa-check"></i><b>4.7.4</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.5" data-path="bit-x86.html"><a href="bit-x86.html#assembly-diffeerences"><i class="fa fa-check"></i><b>4.7.5</b> Assembly diffeerences</a></li>
+<li class="chapter" data-level="4.7.6" data-path="bit-x86.html"><a href="bit-x86.html#assembly-syntax-flavors"><i class="fa fa-check"></i><b>4.7.6</b> Assembly syntax “flavors”</a></li>
+<li class="chapter" data-level="4.7.7" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value-1"><i class="fa fa-check"></i><b>4.7.7</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.8" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_int.cpp"><i class="fa fa-check"></i><b>4.7.8</b> test_abs_int.cpp</a></li>
+<li class="chapter" data-level="4.7.9" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_c.c"><i class="fa fa-check"></i><b>4.7.9</b> test_abs_c.c</a></li>
+<li class="chapter" data-level="4.7.10" data-path="bit-x86.html"><a href="bit-x86.html#int-maxint-x-int-y"><i class="fa fa-check"></i><b>4.7.10</b> int max(int x, int y)</a></li>
+<li class="chapter" data-level="4.7.11" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max"><i class="fa fa-check"></i><b>4.7.11</b> x86 code for max()</a></li>
+<li class="chapter" data-level="4.7.12" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max-using--o2"><i class="fa fa-check"></i><b>4.7.12</b> x86 code for max() using -O2</a></li>
+<li class="chapter" data-level="4.7.13" data-path="bit-x86.html"><a href="bit-x86.html#c-string-comparison-compare_string"><i class="fa fa-check"></i><b>4.7.13</b> C-string comparison compare_string()</a></li>
+<li class="chapter" data-level="4.7.14" data-path="bit-x86.html"><a href="bit-x86.html#x86-for-compare_string"><i class="fa fa-check"></i><b>4.7.14</b> x86 for compare_string()</a></li>
+<li class="chapter" data-level="4.7.15" data-path="bit-x86.html"><a href="bit-x86.html#int-fact-factorial"><i class="fa fa-check"></i><b>4.7.15</b> int fact() factorial</a></li>
+<li class="chapter" data-level="4.7.16" data-path="bit-x86.html"><a href="bit-x86.html#x86-assembly-for-fact"><i class="fa fa-check"></i><b>4.7.16</b> x86 assembly for fact()</a></li>
+<li class="chapter" data-level="4.7.17" data-path="bit-x86.html"><a href="bit-x86.html#an-advantage-of-little-endian"><i class="fa fa-check"></i><b>4.7.17</b> An advantage of little-endian</a></li>
+<li class="chapter" data-level="4.7.18" data-path="bit-x86.html"><a href="bit-x86.html#risc-versus-cisc"><i class="fa fa-check"></i><b>4.7.18</b> RISC versus CISC</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Midterm 2 Lecture Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hash-tables" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Hash Tables</h1>
+<div id="review" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Review</h2>
+<div id="lists" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Lists</h3>
+<ul>
+<li>Operations
+<ul>
+<li>find</li>
+<li>insert</li>
+<li>remove</li>
+<li>findKth</li>
+</ul></li>
+<li>Implementations: generally linear-time
+<ul>
+<li>Array (vector)
+<ul>
+<li>find: <span class="math inline">\(\Theta(n)\)</span></li>
+<li>insert: <span class="math inline">\(\Theta(n)\)</span> worst case, often <span class="math inline">\(\Theta(1)\)</span></li>
+<li>remove: <span class="math inline">\(\Theta(n)\)</span></li>
+<li>findKth: <span class="math inline">\(\Theta(1)\)</span></li>
+</ul></li>
+<li>Linked list
+<ul>
+<li>find: <span class="math inline">\(\Theta(n)\)</span></li>
+<li>insert: <span class="math inline">\(\Theta(1)\)</span></li>
+<li>remove: <span class="math inline">\(\Theta(n)\)</span></li>
+<li>findKth: <span class="math inline">\(\Theta(n)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="stacks" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Stacks</h3>
+<ul>
+<li>List with data handled last-in first-out</li>
+<li>Operations
+<ul>
+<li>push</li>
+<li>pop</li>
+<li>top</li>
+</ul></li>
+<li>Implementations: generally constant-time
+<ul>
+<li>Array (vector)
+<ul>
+<li>push: <span class="math inline">\(\Theta(n)\)</span> worst case, often <span class="math inline">\(\Theta(1)\)</span></li>
+<li>pop: <span class="math inline">\(\Theta(1)\)</span></li>
+<li>top: <span class="math inline">\(\Theta(1)\)</span></li>
+</ul></li>
+<li>Linked list
+<ul>
+<li>push: <span class="math inline">\(\Theta(1)\)</span></li>
+<li>pop: <span class="math inline">\(\Theta(1)\)</span></li>
+<li>top: <span class="math inline">\(\Theta(1)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="queues" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Queues</h3>
+<ul>
+<li>First-in first-out list</li>
+<li>Operations
+<ul>
+<li>enqueue</li>
+<li>dequeue</li>
+</ul></li>
+<li>Implementations
+<ul>
+<li>Array (vector)
+<ul>
+<li>enqueue: <span class="math inline">\(\Theta(n)\)</span> worst case, often <span class="math inline">\(\Theta(1)\)</span></li>
+<li>dequeue: <span class="math inline">\(\Theta(1)\)</span></li>
+</ul></li>
+<li>Linked list
+<ul>
+<li>enqueue: <span class="math inline">\(\Theta(1)\)</span></li>
+<li>dequeue: <span class="math inline">\(\Theta(1)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="trees-1" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Trees</h3>
+<ul>
+<li>Goal is <span class="math inline">\(\Theta(\log n)\)</span> runtime for most operations (balanced trees are generally logarithmic-time operations)
+<ul>
+<li>Binary search trees
+<ul>
+<li>find: <span class="math inline">\(\Theta(h)\)</span>, where <span class="math inline">\(\log n &lt; h \leq n-1\)</span>; worst case is <span class="math inline">\(\Theta(n)\)</span></li>
+<li>insert: <span class="math inline">\(\Theta(h)\)</span>, where <span class="math inline">\(\log n &lt; h \leq n-1\)</span>; worst case is <span class="math inline">\(\Theta(n)\)</span></li>
+<li>remove: <span class="math inline">\(\Theta(h)\)</span>, where <span class="math inline">\(\log n &lt; h \leq n-1\)</span>; worst case is <span class="math inline">\(\Theta(n)\)</span></li>
+</ul></li>
+<li>AVL Trees
+<ul>
+<li>find: <span class="math inline">\(\Theta(\log n)\)</span></li>
+<li>insert: <span class="math inline">\(\Theta(\log n)\)</span></li>
+<li>remove: <span class="math inline">\(\Theta(\log n)\)</span></li>
+</ul></li>
+<li>Red-black trees
+<ul>
+<li>find: <span class="math inline">\(\Theta(\log n)\)</span></li>
+<li>insert: <span class="math inline">\(\Theta(\log n)\)</span></li>
+<li>remove: <span class="math inline">\(\Theta(\log n)\)</span></li>
+</ul></li>
+<li>Splay trees
+<ul>
+<li>find: <span class="math inline">\(\Theta(\log n)\)</span> amortized</li>
+<li>insert: <span class="math inline">\(\Theta(\log n)\)</span> amortized</li>
+<li>remove: <span class="math inline">\(\Theta(\log n)\)</span> amortized</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="hash-tables-1" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Hash Tables</h2>
+<div id="is-there-anything-faster-than-what-was-reviewed" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Is there anything faster than what was reviewed?</h3>
+<ul>
+<li>Binary comparison searches are <span class="math inline">\(\Omega(\log n)\)</span></li>
+<li>We can do better: almost constant <span class="math inline">\(\Theta(1)\)</span> is possible with <strong>hash tables</strong></li>
+</ul>
+</div>
+<div id="hash-tables-lookup-table" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Hash tables (lookup table)</h3>
+<ul>
+<li>Fixed size array of some size, usually a prime number
+<ul>
+<li>Should be larger than the number of elements</li>
+</ul></li>
+<li>Has a hash function
+<ul>
+<li>Has a key, does manipulation on it to find where it goes on the table</li>
+</ul></li>
+<li>Standard set of operations
+<ul>
+<li>find</li>
+<li>insert</li>
+<li>delete</li>
+</ul></li>
+<li>No ordering property (no findMin or findMax)</li>
+</ul>
+</div>
+<div id="key-value-pairs" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Key-value pairs</h3>
+<ul>
+<li>Hash tables store key-value pairs
+<ul>
+<li>Each value has a specific key associated with it</li>
+<li>Keys and values need not be the same type</li>
+</ul></li>
+</ul>
+<blockquote>
+<h3 id="example-1">Example</h3>
+<p>Dictionary: word and definition</p>
+</blockquote>
+</div>
+<div id="hash-function" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Hash function</h3>
+<ul>
+<li>Input/output
+<ul>
+<li>Takes in a string, int, object, etc</li>
+<li>Outputs an unsigned integer value
+<ul>
+<li>This is then mod’ed by the size of the hash table to yield a spot within the bounds of the hash table array</li>
+</ul></li>
+</ul></li>
+<li>Three required properties
+<ul>
+<li>Must be deterministic
+<ul>
+<li>Meaning must return/output the same value each time for the same input</li>
+</ul></li>
+<li>Must be fast</li>
+<li>Must be evenly distributed</li>
+<li>Technically, only the first is required for correctness, but the other two are required for fast running times</li>
+</ul></li>
+</ul>
+</div>
+<div id="keys" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Keys</h3>
+<ul>
+<li>How can we hash the keys if the keys can be anything?
+<ul>
+<li>Best one binary comparison can do is eliminate one half of the elements <span class="math inline">\(\Theta(\log n)\)</span></li>
+<li>We want <span class="math inline">\(\Theta(1)\)</span></li>
+<li>The keys must be bits, so we can do better</li>
+</ul></li>
+<li>Lookup table
+<ul>
+<li>This can work, unless the key space is sparse, or we don’t know the keys ahead of time</li>
+<li>It’s slow to look up a value in a table</li>
+</ul></li>
+</ul>
+<blockquote>
+<h3 id="example-2">Example</h3>
+<ul>
+<li>Key space: integers</li>
+<li>Table size: 10</li>
+<li><code>hash(k) = k%10</code>
+<ul>
+<li>Technically, <code>hash(k) = k</code>, which is then mod’ed by the table size of 10</li>
+</ul></li>
+<li>Insert: 7, 18, 41, 34</li>
+<li>How do we find them?
+<ul>
+<li>By looking up the hash value</li>
+</ul></li>
+</ul>
+</blockquote>
+</div>
+<div id="table-size-issues" class="section level3" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Table size issues</h3>
+<ul>
+<li>Why not just have a table of size 100 and map them directly to the location corresponding to their key?</li>
+<li>We assume the key space is too large (ex. all students’ SSNs… there are not 999,999,999 students at UVA)</li>
+<li>Do you see why findMax and findMin are not easy?
+<ul>
+<li>We have not preserved any ordering information</li>
+</ul></li>
+</ul>
+<blockquote>
+<h3 id="another-example">Another example</h3>
+<ul>
+<li>Key space: integers</li>
+<li>Table size: 6</li>
+<li><code>hash(k) = k%6</code></li>
+<li>Insert: 7, 18, 41, 34, 12</li>
+<li>How do we find them?
+<ul>
+<li>A good hash function is required</li>
+</ul></li>
+</ul>
+</blockquote>
+</div>
+<div id="hash-table-part-2" class="section level3" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Hash table part 2</h3>
+<ul>
+<li>Hash function: <code>hash: key $\rightarrow$ [0,$m$-1]</code>
+<ul>
+<li>Really to any unsigned integer, which is then mod’ed by <span class="math inline">\(m\)</span>, the table size</li>
+</ul></li>
+<li>Here, `hash(key) = firstletter(key)</li>
+</ul>
+</div>
+<div id="hash-functions-part-2" class="section level3" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Hash functions part 2</h3>
+<ul>
+<li>Required properties described earlier
+<ul>
+<li>Must be deterministic</li>
+<li>Must be fast</li>
+<li>Must be evenly distributed
+<ul>
+<li>This implies avoiding of collisions</li>
+</ul></li>
+</ul></li>
+<li>A perfect hash function has:
+<ul>
+<li>No blanks (no empty cells)</li>
+<li>No collisions</li>
+</ul></li>
+</ul>
+</div>
+<div id="sample-string-hash-functions" class="section level3" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Sample string hash functions</h3>
+<ul>
+<li>Key space: strings</li>
+<li>A string <span class="math inline">\(s\)</span> is made up of characters <span class="math inline">\(s_i\)</span></li>
+<li><span class="math inline">\(s = s_0 s_1 s_2 s_3 \dots s_{k-1}\)</span></li>
+</ul>
+<p>We can come up with different options for functions:</p>
+<ol style="list-style-type: decimal">
+<li>hash(<span class="math inline">\(s\)</span>) = <span class="math inline">\(s_0\)</span> % table_size</li>
+</ol>
+<ul>
+<li>fast, deterministic, but not evenly distributed</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>hash(<span class="math inline">\(s\)</span>) = <span class="math inline">\((\sum_{i=0}^{k-1} s_i)\)</span> % table_size</li>
+</ol>
+<ul>
+<li>We can sum the characters instead</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>hash(<span class="math inline">\(s\)</span>) = <span class="math inline">\((\sum_{i=0}^{k-1} s_i \cdot 37^i)\)</span> % table_size</li>
+</ol>
+<ul>
+<li>Take each letter, and multiply it by <span class="math inline">\(37^i\)</span>
+<ul>
+<li>37 is for no reason other than it being a prime number</li>
+<li>Don’t use <code>pow()</code> function as it is slow (waste of computation), precompute the values instead</li>
+</ul></li>
+<li>As the word gets bigger, the size will increase</li>
+<li>It will overflow after a couple characters
+<ul>
+<li>This doesn’t matter, as it is an unsigned int</li>
+<li>If we overflow the same way each time, we can still find it</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="hash-function-summary" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Hash Function Summary</h2>
+<ul>
+<li>Should always return an unsigned int
+<ul>
+<li>Otherwise program will be trying to find a negative array index</li>
+</ul></li>
+<li>Integer overflow is fine, as long as it overflows deterministically
+<ul>
+<li>Meaning same way every time</li>
+<li>Will especially be true with the last of the string hash functions mentioned (the third one)</li>
+</ul></li>
+</ul>
+<div id="collision-resolution" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Collision Resolution</h3>
+<ul>
+<li>Collision: when two keys map to the same location in the hash table</li>
+<li>Two primary ways to resolve collisions
+<ol style="list-style-type: decimal">
+<li>Separate Chaining (make each spot in the table a ‘bucket’ or collection)</li>
+<li>Open addressing, of which there are three types:
+<ul>
+<li>Linear probing</li>
+<li>Quadratic probing</li>
+<li>Double hashing</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="separate-chaining" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Separate Chaining</h2>
+<ul>
+<li>All keys that map to the same hash value are kept in a “bucket”
+<ul>
+<li>This “bucket” is another data structure, typically a linked list</li>
+</ul></li>
+<li>The worst case is linear time
+<ul>
+<li>This is when everything maps to the same position in the table, then you get the last element</li>
+</ul></li>
+</ul>
+<blockquote>
+<h3 id="example-3">Example:</h3>
+<p><code>hash(k) = k%10</code></p>
+<p>Insert: 10, 22, 107, 12, 42</p>
+</blockquote>
+<div id="analysis-of-find" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Analysis of find</h3>
+<ul>
+<li>Definition: the <em>load factor</em> <span class="math inline">\(\lambda\)</span> of a hash table is the ratio of the number of elements divided by the table size</li>
+<li>For separate chaining, <span class="math inline">\(\lambda\)</span> is the average number of elements in the bucket
+<ul>
+<li>Average time on unsuccesful find: <span class="math inline">\(\lambda\)</span>
+<ul>
+<li>Average length of a list at <code>hash(k)</code></li>
+</ul></li>
+<li>Average time on successful find: <span class="math inline">\(1 + (\lambda/2)\)</span>
+<ul>
+<li>One node, plus half the average length of a list (not including the item)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="load-factor" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Load factor</h3>
+<ul>
+<li>How big should we make the hash table?
+<ul>
+<li>We want “constant” time for find and insert</li>
+</ul></li>
+<li>Possible sizes for hash table with separate chaining
+<ul>
+<li><span class="math inline">\(\lambda = 1\)</span>
+<ul>
+<li>Make hash table be the number of elements expected
+<ul>
+<li>Average bucket size is 1</li>
+</ul></li>
+<li>Also make it a prime number</li>
+</ul></li>
+<li><span class="math inline">\(\lambda = 0.75\)</span>
+<ul>
+<li>Java’s hashtable but can be set to another value</li>
+<li>Table will always be bigger than number of elements
+<ul>
+<li>Reduces the chance of a collision</li>
+</ul></li>
+<li>Good trade-off between memory use and time</li>
+</ul></li>
+<li><span class="math inline">\(\lambda = 0.5\)</span>
+<ul>
+<li>Uses more memory, but fewer collisions</li>
+</ul></li>
+</ul></li>
+<li>So…
+<ul>
+<li>High load factor = less memory used, more collisions</li>
+<li>Lower load factor = more memory used, less collisions</li>
+</ul></li>
+</ul>
+</div>
+<div id="separate-chaining-find" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Separate Chaining: <code>find()</code></h3>
+<ul>
+<li>Note that we now have to keep each key in the chain, as well as the value
+<ul>
+<li>In the worst case, every key could hash to the same spot
+<ul>
+<li>As nobody uses anything other than a linked list as the secondary data structure, a find will be <span class="math inline">\(\Theta(n)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="what-data-structure-to-use-for-the-buckets" class="section level3" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> What data structure to use for the buckets?</h3>
+<ul>
+<li>AVL &amp; red-black trees will give the best running time, but that’s a lot of overhead</li>
+<li>Vectors are easier and simpler, but take up a lot of space
+<ul>
+<li>A lot of extra, unused cells</li>
+<li>Don’t <em>ever</em> use vectors for this!</li>
+</ul></li>
+<li>Linked lists are quick and easy, and take up very little extra space
+<ul>
+<li>That’s <span class="math inline">\(\Theta(n)\)</span></li>
+<li>Still faster <em>in practice</em> than trees due to having a very small number of items in the bucket</li>
+<li>For our analyses, we assume linked list as the bucket object</li>
+<li>Everyone uses linked lists for this anyways apparently</li>
+</ul></li>
+</ul>
+</div>
+<div id="requirements-for-hopeful-case" class="section level3" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Requirements for “hopeful” case</h3>
+<ul>
+<li>Our ideal hash function and hash table:
+<ul>
+<li>Function <code>hash(k)</code> is well distributed for key space
+<ul>
+<li>For a randomly selected <span class="math inline">\(k \in K\)</span>, the probability that hash(<span class="math inline">\(k\)</span>) = <span class="math inline">\(i\)</span> is 1/table_size</li>
+</ul></li>
+<li>Size of table scales linearly with number of elements
+<ul>
+<li>Expected bucket size is <span class="math inline">\(\Theta\)</span>(num_elements/table_size)</li>
+</ul></li>
+</ul></li>
+<li>Finding a good hash function can be hard</li>
+</ul>
+</div>
+<div id="sepearete-chaining-insert-is-theta1" class="section level3" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> Sepearete Chaining insert is <span class="math inline">\(\Theta(1)\)</span></h3>
+<ul>
+<li>In an unsorted linked list, just put it in the front</li>
+<li>All inserts into a seperate chained hash table that uses linked lists are therefore constant time
+<ul>
+<li>If it were sorted, then linear time</li>
+<li>Finds and deletes are still linear time</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="open-addressing" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Open Addressing</h2>
+<div id="saving-memory" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Saving memory</h3>
+<ul>
+<li>Can we avoid the overhead of all the linked lists used?</li>
+</ul>
+</div>
+<div id="three-types-of-probing-strategies" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Three types of probing strategies</h3>
+<ul>
+<li>The three types:
+<ul>
+<li>Linear</li>
+<li>Quadratic</li>
+<li>Double hashing</li>
+</ul></li>
+<li>The general idea with all of them is that, if a spot is occupied, to ‘probe’, or try, other spots in the table to use
+<ul>
+<li>How we determine where else to probe depends on which strategy we are using</li>
+</ul></li>
+</ul>
+</div>
+<div id="linear-probing" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Linear probing</h3>
+<ul>
+<li>With all open addressing schemes, we examine (probe) the cells in the order:
+<ul>
+<li><span class="math inline">\(p_0 (k), p_1 (k), p_2 (k), \dots\)</span></li>
+<li>Where <span class="math inline">\(p_i (k) =\)</span> (hash(<span class="math inline">\(k\)</span>) + <span class="math inline">\(f(i)\)</span>) % table_size</li>
+</ul></li>
+<li>With linear probing, <span class="math inline">\(f(i) = i\)</span>
+<ul>
+<li>After searching spot hash(<span class="math inline">\(k\)</span>) in the array, look in
+<ul>
+<li>hash(k) + 1</li>
+<li>hash(k) + 2</li>
+<li>hash(k) + 3</li>
+<li>etc, etc</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="linear-probing-table-example" class="section level3" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Linear probing table example</h3>
+<ul>
+<li>Chceck spots in order
+<ul>
+<li>hash(k)</li>
+<li>hash(k) + 1</li>
+<li>hash(k) + 2</li>
+<li>etc, etc</li>
+</ul></li>
+<li>hash(k) = 3k+7
+<ul>
+<li>Which is then mod’ed by the table size (10 in this example)</li>
+<li>Result: hash(k) = (3k+7) % 10</li>
+</ul></li>
+<li>Insert: 4, 27, 37, 14, 21
+<ul>
+<li>hash(k) values: 19, 88, 118, 49, 70 respectively</li>
+<li>What if we want to insert 1?
+<ul>
+<li><span class="math inline">\(3(1)+7 = 10 \% 10 = 0\)</span>
+<ul>
+<li>0 is used (37), keep moving up…</li>
+<li>1 is used (14), move up</li>
+<li>2 is used (21), move up</li>
+<li>cell 3 is empty! fill it with 1.</li>
+</ul></li>
+</ul></li>
+<li>Worst case is linear, but expected case is constant time</li>
+</ul></li>
+<li>Delete:
+<ul>
+<li>What if we delete 14 (slot 1)?</li>
+<li>Then we find 21…
+<ul>
+<li><span class="math inline">\(3(21) + 7 = 70 \% 10 = 0\)</span>
+<ul>
+<li>0 is used (37), keep moving up…</li>
+<li>1 is empty! 21 is not here</li>
+<li>BUT… 21 is actually in slot 2</li>
+<li>This can be an issue</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="problems-with-linear-probing" class="section level3" number="2.5.5">
+<h3><span class="header-section-number">2.5.5</span> Problems with linear probing</h3>
+<ul>
+<li>Primary clustering
+<ul>
+<li>Large blocks of occupied cells</li>
+<li>As table fills, increased number of attempts required to solve collisions
+<ul>
+<li>And slower lookup times</li>
+</ul></li>
+<li>“Holes” when an element is removed</li>
+<li>When to stop looking???</li>
+</ul></li>
+</ul>
+</div>
+<div id="quadratic-probing" class="section level3" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> Quadratic Probing</h3>
+<ul>
+<li>With all open addressing schemes, we examine (probe) the cells in the order:
+<ul>
+<li><span class="math inline">\(p_0 (k), p_1 (k), p_2 (k), \dots\)</span></li>
+<li>Where <span class="math inline">\(p_i (k) =\)</span> (hash(<span class="math inline">\(k\)</span>) + <span class="math inline">\(f(i)\)</span>) % table_size</li>
+</ul></li>
+<li>With linear probing, <span class="math inline">\(f(i) = i^2\)</span>
+<ul>
+<li>After searching spot hash(<span class="math inline">\(k\)</span>) in the array, look in
+<ul>
+<li>hash(k) + 1</li>
+<li>hash(k) + 4</li>
+<li>hash(k) + 9</li>
+<li>etc, etc</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="quadratic-probing-table-example" class="section level3" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> Quadratic probing table example</h3>
+<ul>
+<li>Check spots in this order:
+<ul>
+<li>hash(k)</li>
+<li>hash(k) + <span class="math inline">\(1^2\)</span> = hash(k) + 1</li>
+<li>hash(k) + <span class="math inline">\(2^2\)</span> = hash(k) + 4</li>
+<li>hash(k) + <span class="math inline">\(3^2\)</span> = hash(k) + 9</li>
+<li>etc, etc</li>
+</ul></li>
+<li>hash(k) = 3k+7
+<ul>
+<li>Which is then mod’ed by the table size (in this case 10)</li>
+<li>Result: hash(k) = (3k_7) % 10</li>
+</ul></li>
+<li>Insert: 4, 27, 14, 37, 22, 34
+<ul>
+<li>hash(k) values: 19, 88, 49, 118, 73, 109</li>
+</ul></li>
+<li>What is the benefit to this?
+<ul>
+<li>Linear probing creates a cluster (as previously shown) where it has to iterate through cells</li>
+<li>Quadradic probing decreases the number of cells in a cluster</li>
+</ul></li>
+</ul>
+</div>
+<div id="double-hashing" class="section level3" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> Double Hashing</h3>
+<ul>
+<li>With all open addressing schemes, we examine (probe) the cells in the order:
+<ul>
+<li><span class="math inline">\(p_0 (k), p_1 (k), p_2 (k), \dots\)</span></li>
+<li>Where <span class="math inline">\(p_i (k) =\)</span> (hash(<span class="math inline">\(k\)</span>) + <span class="math inline">\(f(i)\)</span>) % table_size</li>
+</ul></li>
+<li>With linear probing, <span class="math inline">\(f(i) = i *\)</span>hash<span class="math inline">\(_2(k)\)</span>
+<ul>
+<li>Which means we have to define a <em>secondary</em> hash function</li>
+<li>After searching spot hash(<span class="math inline">\(k\)</span>) in the array, look in
+<ul>
+<li>hash(k) + 1 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>hash(k) + 2 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>hash(k) + 3 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>etc, etc</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="double-hasing-table-example" class="section level3" number="2.5.9">
+<h3><span class="header-section-number">2.5.9</span> Double hasing table example</h3>
+<ul>
+<li>Check spots in this order:
+<ul>
+<li>hash(k)</li>
+<li>hash(k) + 1 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>hash(k) + 2 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>hash(k) + 3 * hash<span class="math inline">\(_2(k)\)</span></li>
+<li>etc, etc</li>
+</ul></li>
+<li>hash(k) = k
+<ul>
+<li>The hash function was made simpler for this example…</li>
+<li>Which is then mod’ed by the table size (10)</li>
+<li>Result: hash(k) = k % 10</li>
+</ul></li>
+<li>hash<span class="math inline">\(_2(k) = 7 - (k\%7)\)</span></li>
+<li>Insert: 89, 18, 58, 49, 69, 60</li>
+<li>The advantage to this is that two things that hash to the same spot, the secondary hash value is going to likely be different</li>
+<li>The disadvantage is that you now need two hash functions :(</li>
+</ul>
+</div>
+<div id="double-hashing-thrashing" class="section level3" number="2.5.10">
+<h3><span class="header-section-number">2.5.10</span> Double hashing thrashing</h3>
+<ul>
+<li>Half of our table is available, but let’s say we add 36 to the example from the previous lecture
+<ul>
+<li><code>hash(k) = k mod 10</code>
+<ul>
+<li>36 % 10 = 6</li>
+</ul></li>
+<li><code>hash2(k)=(k mod 5) + 1</code>
+<ul>
+<li>36 % 5 = 1 + 1 = 2</li>
+</ul></li>
+<li>If we keep adding two, we only have even spaces in the table! This means that half our table is going to be full and half is going to be empty, yet this will never be able to place into a space.</li>
+<li>Because of this…</li>
+</ul></li>
+</ul>
+</div>
+<div id="table-size-must-be-prime" class="section level3" number="2.5.11">
+<h3><span class="header-section-number">2.5.11</span> Table size must be prime!</h3>
+<ul>
+<li>The table size must always be a prime number
+<ul>
+<li>It will prevent the thrashing
+<ul>
+<li>Thrashing will only occur when the double hash value is a factor of the table size</li>
+<li>The only factors of a prime number <span class="math inline">\(p\)</span> are 1 and <span class="math inline">\(p\)</span>
+<ul>
+<li>1 is effectively linear probing, which is fine</li>
+<li><span class="math inline">\(p\)</span> will mod to zero, which is an invalid return value for a secondary hash function</li>
+</ul></li>
+</ul></li>
+<li>It will provide better distribution of the hash keys into the table
+<ul>
+<li>Less clustering, etc.</li>
+</ul></li>
+</ul></li>
+<li>A prime number table size does not remove the need for a good hash function!</li>
+</ul>
+</div>
+</div>
+<div id="miscellaneous" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Miscellaneous</h2>
+<div id="rehashing" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Rehashing</h3>
+<ul>
+<li>Problem: when the table gets too full, running time increases</li>
+<li>Solution: create a bigger table (typically the next biggest prime) and hash all the items from the original table to the new table
+<ul>
+<li>Position in a table is dependent on table size
+<ul>
+<li>We need to <em>rehash</em> each value</li>
+</ul></li>
+<li>We need to re-compute the hash value for <em>each</em> element, take it out of the old table, and insert it into the new table
+<ul>
+<li>This is <span class="math inline">\(\Theta (n^2)\)</span> running time
+<ul>
+<li>Have <span class="math inline">\(n\)</span> elements to rehash</li>
+<li>Have <span class="math inline">\(n\)</span> elements to insert</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>When to rehash?
+<ul>
+<li>When half full (<span class="math inline">\(\lambda = 0.5\)</span>)</li>
+<li>When mostly full (<span class="math inline">\(\lambda = 0.75\)</span>)
+<ul>
+<li>Java’s hashtable does this by default</li>
+</ul></li>
+<li>When an insertion fails</li>
+<li>Some other threshold</li>
+</ul></li>
+</ul>
+</div>
+<div id="removing-an-element" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Removing an element</h3>
+<ul>
+<li>How do you do this? There are a couple options…
+<ul>
+<li>Rehash upon each delete
+<ul>
+<li>Very expensive</li>
+</ul></li>
+<li>Put in a ‘placeholder’ or ‘sentinel’ value
+<ul>
+<li>How do these work?
+<ul>
+<li>It’s a character that we mark as the sentinel value</li>
+<li>If a delete happens, we replace the table value with the sentinel value</li>
+<li>Insert <em>does not</em> skip these
+<ul>
+<li>If a new value matches to sentinel value, replace sentinel value</li>
+</ul></li>
+<li>Find <em>does</em> skip these
+<ul>
+<li>Value to be found might be after sentinel value, so continue beyond sentinel value to find requested value</li>
+</ul></li>
+</ul></li>
+<li>The table gets filled with these rather fast</li>
+<li>Maybe rehash after a certain number of deletes and delete sentinel values?</li>
+</ul></li>
+<li>Don’t allow deletes</li>
+</ul></li>
+<li>Hash tables are not ideal for situations where a lot of deletes happen</li>
+</ul>
+</div>
+<div id="hashing-md5" class="section level3" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Hashing: MD5</h3>
+<ul>
+<li>MD5: Message Digest 5</li>
+<li>Given a string (or file contents, etc.) generate a 128-bit hash
+<ul>
+<li><span class="math inline">\(2^{128} = 3.4 \times 10^{38}\)</span> (coincidentally, this is also the maximum finite value of a <code>float</code>)</li>
+<li>Typically an MD5 is always written in hex: 16e28b7986fd74f65b061de89dc8b78e</li>
+</ul></li>
+<li>This could then be used as the key, after modding it by the table size</li>
+<li>(Was) good for checking if a download completed successfully</li>
+</ul>
+</div>
+<div id="can-you-reverse-an-md5-hash" class="section level3" number="2.6.4">
+<h3><span class="header-section-number">2.6.4</span> Can you reverse an MD5 hash?</h3>
+<ul>
+<li>Technically, no
+<ul>
+<li>A 129-bit file has <span class="math inline">\(2^{129}\)</span> possibilities, and if you were to hash each one, it would go into <span class="math inline">\(2^{128}\)</span> buckets</li>
+<li>By the pigeonhole principle, there would be at least one hash value (pigeonhole) with multiple keys (pigeons), and you don’t know which one
+<ul>
+<li>In reality, many (and eventually all) would have multiple keys</li>
+</ul></li>
+</ul></li>
+<li>But if a password is stored by it’s MD5 hash…
+<ul>
+<li>… then there are enough online hash libraries that you can find at least one password that hashes to that value</li>
+<li>Try Googling for 3858f62230ac3c915f300c664312c63f</li>
+</ul></li>
+<li>Plus there are lots of weaknesses in MD5…</li>
+</ul>
+</div>
+<div id="more-hashing-sha" class="section level3" number="2.6.5">
+<h3><span class="header-section-number">2.6.5</span> More hashing: SHA</h3>
+<ul>
+<li>MD5 has been “broken”
+<ul>
+<li>One can generate two files that have the same hash; this is called a collision attack</li>
+<li>So it is useless for any security-related purposes</li>
+</ul></li>
+<li>SHA (Secure Hash Algorithm) is a family of algorithms that (the more recent ones) are much more secure
+<ul>
+<li>Same overall idea: it generates a hash value up to 512 bits</li>
+<li>SHA-1 has been broken also, but more recent SHAs are secure</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ibcm-machine-language.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 IBCM (Machine Language) | Midterm 2 Lecture Notes</title>
+  <meta name="description" content="3 IBCM (Machine Language) | Midterm 2 Lecture Notes" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 IBCM (Machine Language) | Midterm 2 Lecture Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 IBCM (Machine Language) | Midterm 2 Lecture Notes" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hash-tables.html"/>
+<link rel="next" href="bit-x86.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Trees</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#binary-search-trees"><i class="fa fa-check"></i><b>1.1</b> Binary Search Trees</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#relationship-between-h-and-n"><i class="fa fa-check"></i><b>1.1.1</b> Relationship between <span class="math inline">\(H\)</span> and <span class="math inline">\(N\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#perfect-binary-tree"><i class="fa fa-check"></i><b>1.1.2</b> Perfect binary tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#expression-trees"><i class="fa fa-check"></i><b>1.2</b> Expression Trees</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#expression-tree-traversals"><i class="fa fa-check"></i><b>1.2.1</b> Expression tree traversals</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#building-an-expression-tree"><i class="fa fa-check"></i><b>1.2.2</b> Building an expression tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#avl-trees"><i class="fa fa-check"></i><b>1.3</b> AVL Trees</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.3.1</b> Basics</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#structure-property"><i class="fa fa-check"></i><b>1.3.2</b> Structure Property</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#balance-factor"><i class="fa fa-check"></i><b>1.3.3</b> Balance Factor</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#tree-balance"><i class="fa fa-check"></i><b>1.3.4</b> Tree Balance</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#find-insert"><i class="fa fa-check"></i><b>1.3.5</b> Find, insert</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#tree-operations"><i class="fa fa-check"></i><b>1.3.6</b> Tree operations</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#how-many-times-to-fix-the-tree"><i class="fa fa-check"></i><b>1.3.7</b> How many times to “fix” the tree?</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#avl-insert"><i class="fa fa-check"></i><b>1.3.8</b> AVL Insert</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#avl-single-right-rotation"><i class="fa fa-check"></i><b>1.3.9</b> AVL single right rotation</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#avl-single-left-rotation"><i class="fa fa-check"></i><b>1.3.10</b> AVL single left rotation</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#side-effect-of-tree-rotations"><i class="fa fa-check"></i><b>1.3.11</b> Side-effect of tree rotations</a></li>
+<li class="chapter" data-level="1.3.12" data-path="index.html"><a href="index.html#double-rotation"><i class="fa fa-check"></i><b>1.3.12</b> Double rotation</a></li>
+<li class="chapter" data-level="1.3.13" data-path="index.html"><a href="index.html#runtime-analysis"><i class="fa fa-check"></i><b>1.3.13</b> Runtime Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursion"><i class="fa fa-check"></i><b>1.4</b> Recursion</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#sum-the-numbers-from-1-to-n"><i class="fa fa-check"></i><b>1.4.1</b> Sum the numbers from 1 to <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#factorial-via-recursion"><i class="fa fa-check"></i><b>1.4.2</b> Factorial via recursion</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#pros-and-cons"><i class="fa fa-check"></i><b>1.4.3</b> Pros and cons</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#fibonacci-sequence"><i class="fa fa-check"></i><b>1.4.4</b> Fibonacci Sequence</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#recursion-on-trees"><i class="fa fa-check"></i><b>1.4.5</b> Recursion on trees</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#recursion-on-lists"><i class="fa fa-check"></i><b>1.4.6</b> Recursion on lists</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#tail-recursion"><i class="fa fa-check"></i><b>1.4.7</b> Tail recursion</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#why-tail-recursion"><i class="fa fa-check"></i><b>1.4.8</b> Why tail recursion?</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#factorial-via-tail-recursion"><i class="fa fa-check"></i><b>1.4.9</b> Factorial via Tail Recursion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#red-black-trees"><i class="fa fa-check"></i><b>1.5</b> Red-black trees</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#properties"><i class="fa fa-check"></i><b>1.5.1</b> Properties</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#insert"><i class="fa fa-check"></i><b>1.5.2</b> Insert</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#removal"><i class="fa fa-check"></i><b>1.5.3</b> Removal</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#why-red-black-vs-avl"><i class="fa fa-check"></i><b>1.5.4</b> Why red-black vs AVL?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#splay-trees"><i class="fa fa-check"></i><b>1.6</b> Splay Trees</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#main-operation-splaying"><i class="fa fa-check"></i><b>1.6.1</b> Main operation: splaying</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#time-complexity"><i class="fa fa-check"></i><b>1.6.2</b> Time complexity</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#amortized-analysis"><i class="fa fa-check"></i><b>1.6.3</b> Amortized analysis</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#splay-tree-conclusions"><i class="fa fa-check"></i><b>1.6.4</b> Splay tree conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#tree-applications"><i class="fa fa-check"></i><b>1.7</b> Tree applications</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#when-are-trees-not-good-to-use"><i class="fa fa-check"></i><b>1.7.1</b> When are trees not good to use?</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#programs"><i class="fa fa-check"></i><b>1.7.2</b> Programs</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#comparing-two-programs"><i class="fa fa-check"></i><b>1.7.3</b> Comparing two programs</a></li>
+<li class="chapter" data-level="1.7.4" data-path="index.html"><a href="index.html#measure-of-structural-similarity"><i class="fa fa-check"></i><b>1.7.4</b> Measure of Structural Similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hash-tables.html"><a href="hash-tables.html"><i class="fa fa-check"></i><b>2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hash-tables.html"><a href="hash-tables.html#review"><i class="fa fa-check"></i><b>2.1</b> Review</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="hash-tables.html"><a href="hash-tables.html#lists"><i class="fa fa-check"></i><b>2.1.1</b> Lists</a></li>
+<li class="chapter" data-level="2.1.2" data-path="hash-tables.html"><a href="hash-tables.html#stacks"><i class="fa fa-check"></i><b>2.1.2</b> Stacks</a></li>
+<li class="chapter" data-level="2.1.3" data-path="hash-tables.html"><a href="hash-tables.html#queues"><i class="fa fa-check"></i><b>2.1.3</b> Queues</a></li>
+<li class="chapter" data-level="2.1.4" data-path="hash-tables.html"><a href="hash-tables.html#trees-1"><i class="fa fa-check"></i><b>2.1.4</b> Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-1"><i class="fa fa-check"></i><b>2.2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="hash-tables.html"><a href="hash-tables.html#is-there-anything-faster-than-what-was-reviewed"><i class="fa fa-check"></i><b>2.2.1</b> Is there anything faster than what was reviewed?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-lookup-table"><i class="fa fa-check"></i><b>2.2.2</b> Hash tables (lookup table)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="hash-tables.html"><a href="hash-tables.html#key-value-pairs"><i class="fa fa-check"></i><b>2.2.3</b> Key-value pairs</a></li>
+<li class="chapter" data-level="2.2.4" data-path="hash-tables.html"><a href="hash-tables.html#hash-function"><i class="fa fa-check"></i><b>2.2.4</b> Hash function</a></li>
+<li class="chapter" data-level="2.2.5" data-path="hash-tables.html"><a href="hash-tables.html#keys"><i class="fa fa-check"></i><b>2.2.5</b> Keys</a></li>
+<li class="chapter" data-level="2.2.6" data-path="hash-tables.html"><a href="hash-tables.html#table-size-issues"><i class="fa fa-check"></i><b>2.2.6</b> Table size issues</a></li>
+<li class="chapter" data-level="2.2.7" data-path="hash-tables.html"><a href="hash-tables.html#hash-table-part-2"><i class="fa fa-check"></i><b>2.2.7</b> Hash table part 2</a></li>
+<li class="chapter" data-level="2.2.8" data-path="hash-tables.html"><a href="hash-tables.html#hash-functions-part-2"><i class="fa fa-check"></i><b>2.2.8</b> Hash functions part 2</a></li>
+<li class="chapter" data-level="2.2.9" data-path="hash-tables.html"><a href="hash-tables.html#sample-string-hash-functions"><i class="fa fa-check"></i><b>2.2.9</b> Sample string hash functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="hash-tables.html"><a href="hash-tables.html#hash-function-summary"><i class="fa fa-check"></i><b>2.3</b> Hash Function Summary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hash-tables.html"><a href="hash-tables.html#collision-resolution"><i class="fa fa-check"></i><b>2.3.1</b> Collision Resolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining"><i class="fa fa-check"></i><b>2.4</b> Separate Chaining</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="hash-tables.html"><a href="hash-tables.html#analysis-of-find"><i class="fa fa-check"></i><b>2.4.1</b> Analysis of find</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hash-tables.html"><a href="hash-tables.html#load-factor"><i class="fa fa-check"></i><b>2.4.2</b> Load factor</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining-find"><i class="fa fa-check"></i><b>2.4.3</b> Separate Chaining: <code>find()</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="hash-tables.html"><a href="hash-tables.html#what-data-structure-to-use-for-the-buckets"><i class="fa fa-check"></i><b>2.4.4</b> What data structure to use for the buckets?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="hash-tables.html"><a href="hash-tables.html#requirements-for-hopeful-case"><i class="fa fa-check"></i><b>2.4.5</b> Requirements for “hopeful” case</a></li>
+<li class="chapter" data-level="2.4.6" data-path="hash-tables.html"><a href="hash-tables.html#sepearete-chaining-insert-is-theta1"><i class="fa fa-check"></i><b>2.4.6</b> Sepearete Chaining insert is <span class="math inline">\(\Theta(1)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hash-tables.html"><a href="hash-tables.html#open-addressing"><i class="fa fa-check"></i><b>2.5</b> Open Addressing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="hash-tables.html"><a href="hash-tables.html#saving-memory"><i class="fa fa-check"></i><b>2.5.1</b> Saving memory</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hash-tables.html"><a href="hash-tables.html#three-types-of-probing-strategies"><i class="fa fa-check"></i><b>2.5.2</b> Three types of probing strategies</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing"><i class="fa fa-check"></i><b>2.5.3</b> Linear probing</a></li>
+<li class="chapter" data-level="2.5.4" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing-table-example"><i class="fa fa-check"></i><b>2.5.4</b> Linear probing table example</a></li>
+<li class="chapter" data-level="2.5.5" data-path="hash-tables.html"><a href="hash-tables.html#problems-with-linear-probing"><i class="fa fa-check"></i><b>2.5.5</b> Problems with linear probing</a></li>
+<li class="chapter" data-level="2.5.6" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing"><i class="fa fa-check"></i><b>2.5.6</b> Quadratic Probing</a></li>
+<li class="chapter" data-level="2.5.7" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing-table-example"><i class="fa fa-check"></i><b>2.5.7</b> Quadratic probing table example</a></li>
+<li class="chapter" data-level="2.5.8" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing"><i class="fa fa-check"></i><b>2.5.8</b> Double Hashing</a></li>
+<li class="chapter" data-level="2.5.9" data-path="hash-tables.html"><a href="hash-tables.html#double-hasing-table-example"><i class="fa fa-check"></i><b>2.5.9</b> Double hasing table example</a></li>
+<li class="chapter" data-level="2.5.10" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing-thrashing"><i class="fa fa-check"></i><b>2.5.10</b> Double hashing thrashing</a></li>
+<li class="chapter" data-level="2.5.11" data-path="hash-tables.html"><a href="hash-tables.html#table-size-must-be-prime"><i class="fa fa-check"></i><b>2.5.11</b> Table size must be prime!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hash-tables.html"><a href="hash-tables.html#miscellaneous"><i class="fa fa-check"></i><b>2.6</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="hash-tables.html"><a href="hash-tables.html#rehashing"><i class="fa fa-check"></i><b>2.6.1</b> Rehashing</a></li>
+<li class="chapter" data-level="2.6.2" data-path="hash-tables.html"><a href="hash-tables.html#removing-an-element"><i class="fa fa-check"></i><b>2.6.2</b> Removing an element</a></li>
+<li class="chapter" data-level="2.6.3" data-path="hash-tables.html"><a href="hash-tables.html#hashing-md5"><i class="fa fa-check"></i><b>2.6.3</b> Hashing: MD5</a></li>
+<li class="chapter" data-level="2.6.4" data-path="hash-tables.html"><a href="hash-tables.html#can-you-reverse-an-md5-hash"><i class="fa fa-check"></i><b>2.6.4</b> Can you reverse an MD5 hash?</a></li>
+<li class="chapter" data-level="2.6.5" data-path="hash-tables.html"><a href="hash-tables.html#more-hashing-sha"><i class="fa fa-check"></i><b>2.6.5</b> More hashing: SHA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html"><i class="fa fa-check"></i><b>3</b> IBCM (Machine Language)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language"><i class="fa fa-check"></i><b>3.1.1</b> Assembly Language</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#why-learn-assembly-language"><i class="fa fa-check"></i><b>3.1.2</b> Why learn assembly language?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-1"><i class="fa fa-check"></i><b>3.1.3</b> Memory Hierarchy, part 1</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-2"><i class="fa fa-check"></i><b>3.1.4</b> Memory Hierarchy, Part 2</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#fetch-execute-cycle"><i class="fa fa-check"></i><b>3.1.5</b> Fetch Execute Cycle</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language-instructions"><i class="fa fa-check"></i><b>3.1.6</b> Assembly Language Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-description"><i class="fa fa-check"></i><b>3.2</b> IBCM Description</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#running-ibcm-programs"><i class="fa fa-check"></i><b>3.2.1</b> Running IBCM Programs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-description-cpu"><i class="fa fa-check"></i><b>3.2.2</b> IBCM Machine Description: CPU</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-memory"><i class="fa fa-check"></i><b>3.2.3</b> IBCM Machine: Memory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-instruction-types"><i class="fa fa-check"></i><b>3.2.4</b> IBCM instruction types</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#halt"><i class="fa fa-check"></i><b>3.2.5</b> Halt</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#input-and-output"><i class="fa fa-check"></i><b>3.2.6</b> Input and output</a></li>
+<li class="chapter" data-level="3.2.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#shifts"><i class="fa fa-check"></i><b>3.2.7</b> Shifts</a></li>
+<li class="chapter" data-level="3.2.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#other-instructions"><i class="fa fa-check"></i><b>3.2.8</b> Other Instructions</a></li>
+<li class="chapter" data-level="3.2.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#labels"><i class="fa fa-check"></i><b>3.2.9</b> Labels</a></li>
+<li class="chapter" data-level="3.2.10" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#declaring-variables"><i class="fa fa-check"></i><b>3.2.10</b> Declaring variables</a></li>
+<li class="chapter" data-level="3.2.11" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#sample-program"><i class="fa fa-check"></i><b>3.2.11</b> Sample Program</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#writing-ibcm-code"><i class="fa fa-check"></i><b>3.3</b> Writing IBCM Code</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#simulator"><i class="fa fa-check"></i><b>3.3.1</b> Simulator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-compute-a-sum"><i class="fa fa-check"></i><b>3.3.2</b> IBCM code to compute a sum</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-1"><i class="fa fa-check"></i><b>3.3.3</b> IBCM summation program: part 1</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-2"><i class="fa fa-check"></i><b>3.3.4</b> IBCM summation program: part 2</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-would-we-code-this"><i class="fa fa-check"></i><b>3.3.5</b> How would we code this:</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-sum-elements-in-an-array"><i class="fa fa-check"></i><b>3.3.6</b> IBCM code to sum elements in an array</a></li>
+<li class="chapter" data-level="3.3.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-initialization-and-halting"><i class="fa fa-check"></i><b>3.3.7</b> Array Summation: initialization and halting</a></li>
+<li class="chapter" data-level="3.3.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-the-inner-loop"><i class="fa fa-check"></i><b>3.3.8</b> Array Summation: the inner loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#conclusions"><i class="fa fa-check"></i><b>3.4</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#notes"><i class="fa fa-check"></i><b>3.4.1</b> Notes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-tipsreminders"><i class="fa fa-check"></i><b>3.4.2</b> IBCM tips/reminders</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#use-the-simulators-to-debug-your-code"><i class="fa fa-check"></i><b>3.4.3</b> Use the simulators to debug your code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#whats-missing-from-ibcm"><i class="fa fa-check"></i><b>3.4.4</b> What’s missing from IBCM?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#emulating-ibcm-in-c"><i class="fa fa-check"></i><b>3.4.5</b> Emulating IBCM in C++</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-to-decode-the-parts-of-an-instruction"><i class="fa fa-check"></i><b>3.4.6</b> How to decode the parts of an instruction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#what-about-encoding"><i class="fa fa-check"></i><b>3.4.7</b> What about encoding?</a></li>
+<li class="chapter" data-level="3.4.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#a-data-structure-to-make-it-easier"><i class="fa fa-check"></i><b>3.4.8</b> A data structure to make it easier</a></li>
+<li class="chapter" data-level="3.4.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#using-that-data-structure"><i class="fa fa-check"></i><b>3.4.9</b> Using that data structure</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bit-x86.html"><a href="bit-x86.html"><i class="fa fa-check"></i><b>4</b> 64 Bit x86</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bit-x86.html"><a href="bit-x86.html#introduction-to-x86"><i class="fa fa-check"></i><b>4.1</b> Introduction to x86</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="bit-x86.html"><a href="bit-x86.html#registers"><i class="fa fa-check"></i><b>4.1.1</b> Registers</a></li>
+<li class="chapter" data-level="4.1.2" data-path="bit-x86.html"><a href="bit-x86.html#ibcm-vs-x86-fetch-execute-cycle-same"><i class="fa fa-check"></i><b>4.1.2</b> IBCM vs x86: fetch execute cycle (same)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="bit-x86.html"><a href="bit-x86.html#declaring-variables-in-x86"><i class="fa fa-check"></i><b>4.1.3</b> Declaring variables in x86</a></li>
+<li class="chapter" data-level="4.1.4" data-path="bit-x86.html"><a href="bit-x86.html#mov-command"><i class="fa fa-check"></i><b>4.1.4</b> Mov command</a></li>
+<li class="chapter" data-level="4.1.5" data-path="bit-x86.html"><a href="bit-x86.html#addressing-memory"><i class="fa fa-check"></i><b>4.1.5</b> Addressing memory</a></li>
+<li class="chapter" data-level="4.1.6" data-path="bit-x86.html"><a href="bit-x86.html#example-4"><i class="fa fa-check"></i><b>4.1.6</b> Example</a></li>
+<li class="chapter" data-level="4.1.7" data-path="bit-x86.html"><a href="bit-x86.html#valid-or-not"><i class="fa fa-check"></i><b>4.1.7</b> Valid or not?</a></li>
+<li class="chapter" data-level="4.1.8" data-path="bit-x86.html"><a href="bit-x86.html#memory-addressing-restrictions"><i class="fa fa-check"></i><b>4.1.8</b> Memory addressing restrictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="bit-x86.html"><a href="bit-x86.html#x86-instruction-set"><i class="fa fa-check"></i><b>4.2</b> x86 Instruction Set</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="bit-x86.html"><a href="bit-x86.html#data-movement-instructions"><i class="fa fa-check"></i><b>4.2.1</b> Data movement instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="bit-x86.html"><a href="bit-x86.html#arithmetic-instructions"><i class="fa fa-check"></i><b>4.2.2</b> Arithmetic instructions</a></li>
+<li class="chapter" data-level="4.2.3" data-path="bit-x86.html"><a href="bit-x86.html#logical-instructions"><i class="fa fa-check"></i><b>4.2.3</b> Logical instructions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="bit-x86.html"><a href="bit-x86.html#control-instructions"><i class="fa fa-check"></i><b>4.2.4</b> Control Instructions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="bit-x86.html"><a href="bit-x86.html#a-code-block-in-both-cc-and-assembly"><i class="fa fa-check"></i><b>4.2.5</b> A code block in both C/C++ and Assembly</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions"><i class="fa fa-check"></i><b>4.3</b> Calling Conventions</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bit-x86.html"><a href="bit-x86.html#calling-of-a-subroutine-c"><i class="fa fa-check"></i><b>4.3.1</b> Calling of a subroutine: C++</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions-1"><i class="fa fa-check"></i><b>4.3.2</b> Calling Conventions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention"><i class="fa fa-check"></i><b>4.3.3</b> C Calling Convention</a></li>
+<li class="chapter" data-level="4.3.4" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention-overview"><i class="fa fa-check"></i><b>4.3.4</b> C Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.5" data-path="bit-x86.html"><a href="bit-x86.html#calling-convention-overview"><i class="fa fa-check"></i><b>4.3.5</b> Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.6" data-path="bit-x86.html"><a href="bit-x86.html#register-usage"><i class="fa fa-check"></i><b>4.3.6</b> Register Usage</a></li>
+<li class="chapter" data-level="4.3.7" data-path="bit-x86.html"><a href="bit-x86.html#varying-number-of-parameters"><i class="fa fa-check"></i><b>4.3.7</b> Varying number of parameters</a></li>
+<li class="chapter" data-level="4.3.8" data-path="bit-x86.html"><a href="bit-x86.html#variable-number-of-arguments-in-cc"><i class="fa fa-check"></i><b>4.3.8</b> Variable number of arguments in C/C++</a></li>
+<li class="chapter" data-level="4.3.9" data-path="bit-x86.html"><a href="bit-x86.html#example-output-in-c"><i class="fa fa-check"></i><b>4.3.9</b> Example: output in C</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules"><i class="fa fa-check"></i><b>4.4</b> Caller Rules</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="bit-x86.html"><a href="bit-x86.html#caller-summary"><i class="fa fa-check"></i><b>4.4.1</b> Caller Summary</a></li>
+<li class="chapter" data-level="4.4.2" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary"><i class="fa fa-check"></i><b>4.4.2</b> Callee Summary</a></li>
+<li class="chapter" data-level="4.4.3" data-path="bit-x86.html"><a href="bit-x86.html#caller-rulesresponsibilities"><i class="fa fa-check"></i><b>4.4.3</b> Caller Rules/Responsibilities</a></li>
+<li class="chapter" data-level="4.4.4" data-path="bit-x86.html"><a href="bit-x86.html#prologue"><i class="fa fa-check"></i><b>4.4.4</b> Prologue</a></li>
+<li class="chapter" data-level="4.4.5" data-path="bit-x86.html"><a href="bit-x86.html#epilogue"><i class="fa fa-check"></i><b>4.4.5</b> Epilogue</a></li>
+<li class="chapter" data-level="4.4.6" data-path="bit-x86.html"><a href="bit-x86.html#example-5"><i class="fa fa-check"></i><b>4.4.6</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules"><i class="fa fa-check"></i><b>4.5</b> Callee Rules</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary-again"><i class="fa fa-check"></i><b>4.5.1</b> Callee Summary (again)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules-example"><i class="fa fa-check"></i><b>4.5.2</b> Caller Rules Example</a></li>
+<li class="chapter" data-level="4.5.3" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-prologue"><i class="fa fa-check"></i><b>4.5.3</b> Callee Rules (prologue)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="bit-x86.html"><a href="bit-x86.html#public-service-announcement"><i class="fa fa-check"></i><b>4.5.4</b> Public Service Announcement!</a></li>
+<li class="chapter" data-level="4.5.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-epilogue"><i class="fa fa-check"></i><b>4.5.5</b> Callee Rules (epilogue)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-with-some-more-code"><i class="fa fa-check"></i><b>4.5.6</b> Callee Rules Example (with some more code)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-making-myfunc"><i class="fa fa-check"></i><b>4.5.7</b> Callee Rules Example: Making myFunc</a></li>
+<li class="chapter" data-level="4.5.8" data-path="bit-x86.html"><a href="bit-x86.html#callee-program-step-by-step"><i class="fa fa-check"></i><b>4.5.8</b> Callee Program: Step by Step</a></li>
+<li class="chapter" data-level="4.5.9" data-path="bit-x86.html"><a href="bit-x86.html#that-subroutine-again"><i class="fa fa-check"></i><b>4.5.9</b> That subroutine, again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bit-x86.html"><a href="bit-x86.html#activation-records"><i class="fa fa-check"></i><b>4.6</b> Activation Records</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="bit-x86.html"><a href="bit-x86.html#memory-management"><i class="fa fa-check"></i><b>4.6.1</b> Memory Management</a></li>
+<li class="chapter" data-level="4.6.2" data-path="bit-x86.html"><a href="bit-x86.html#consider-this-subroutine"><i class="fa fa-check"></i><b>4.6.2</b> Consider this subroutine…</a></li>
+<li class="chapter" data-level="4.6.3" data-path="bit-x86.html"><a href="bit-x86.html#buffer-overflow-attack"><i class="fa fa-check"></i><b>4.6.3</b> Buffer Overflow Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="bit-x86.html"><a href="bit-x86.html#x86-examples"><i class="fa fa-check"></i><b>4.7</b> x86 Examples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="bit-x86.html"><a href="bit-x86.html#a-note-about-x86-compatibility"><i class="fa fa-check"></i><b>4.7.1</b> A note about x86 compatibility</a></li>
+<li class="chapter" data-level="4.7.2" data-path="bit-x86.html"><a href="bit-x86.html#test_abs.cpp"><i class="fa fa-check"></i><b>4.7.2</b> test_abs.cpp</a></li>
+<li class="chapter" data-level="4.7.3" data-path="bit-x86.html"><a href="bit-x86.html#generating-assembly-with-clang"><i class="fa fa-check"></i><b>4.7.3</b> Generating assembly with clang++</a></li>
+<li class="chapter" data-level="4.7.4" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value"><i class="fa fa-check"></i><b>4.7.4</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.5" data-path="bit-x86.html"><a href="bit-x86.html#assembly-diffeerences"><i class="fa fa-check"></i><b>4.7.5</b> Assembly diffeerences</a></li>
+<li class="chapter" data-level="4.7.6" data-path="bit-x86.html"><a href="bit-x86.html#assembly-syntax-flavors"><i class="fa fa-check"></i><b>4.7.6</b> Assembly syntax “flavors”</a></li>
+<li class="chapter" data-level="4.7.7" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value-1"><i class="fa fa-check"></i><b>4.7.7</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.8" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_int.cpp"><i class="fa fa-check"></i><b>4.7.8</b> test_abs_int.cpp</a></li>
+<li class="chapter" data-level="4.7.9" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_c.c"><i class="fa fa-check"></i><b>4.7.9</b> test_abs_c.c</a></li>
+<li class="chapter" data-level="4.7.10" data-path="bit-x86.html"><a href="bit-x86.html#int-maxint-x-int-y"><i class="fa fa-check"></i><b>4.7.10</b> int max(int x, int y)</a></li>
+<li class="chapter" data-level="4.7.11" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max"><i class="fa fa-check"></i><b>4.7.11</b> x86 code for max()</a></li>
+<li class="chapter" data-level="4.7.12" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max-using--o2"><i class="fa fa-check"></i><b>4.7.12</b> x86 code for max() using -O2</a></li>
+<li class="chapter" data-level="4.7.13" data-path="bit-x86.html"><a href="bit-x86.html#c-string-comparison-compare_string"><i class="fa fa-check"></i><b>4.7.13</b> C-string comparison compare_string()</a></li>
+<li class="chapter" data-level="4.7.14" data-path="bit-x86.html"><a href="bit-x86.html#x86-for-compare_string"><i class="fa fa-check"></i><b>4.7.14</b> x86 for compare_string()</a></li>
+<li class="chapter" data-level="4.7.15" data-path="bit-x86.html"><a href="bit-x86.html#int-fact-factorial"><i class="fa fa-check"></i><b>4.7.15</b> int fact() factorial</a></li>
+<li class="chapter" data-level="4.7.16" data-path="bit-x86.html"><a href="bit-x86.html#x86-assembly-for-fact"><i class="fa fa-check"></i><b>4.7.16</b> x86 assembly for fact()</a></li>
+<li class="chapter" data-level="4.7.17" data-path="bit-x86.html"><a href="bit-x86.html#an-advantage-of-little-endian"><i class="fa fa-check"></i><b>4.7.17</b> An advantage of little-endian</a></li>
+<li class="chapter" data-level="4.7.18" data-path="bit-x86.html"><a href="bit-x86.html#risc-versus-cisc"><i class="fa fa-check"></i><b>4.7.18</b> RISC versus CISC</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Midterm 2 Lecture Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ibcm-machine-language" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> IBCM (Machine Language)</h1>
+<div id="introduction" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
+<div id="assembly-language" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Assembly Language</h3>
+<ul>
+<li>Machine language
+<ul>
+<li>Instructions represented as patterns of bits (0s and 1s) that can be understood and processed by a central processing unit (CPU)</li>
+<li>Program stored in main memoryf</li>
+</ul></li>
+<li>Assembly language
+<ul>
+<li>Human-readable notation for the machine language used to control a specific computer architecture</li>
+</ul></li>
+<li>Assembler translates to bits</li>
+</ul>
+</div>
+<div id="why-learn-assembly-language" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Why learn assembly language?</h3>
+<ul>
+<li>Machine designers</li>
+<li>Compiler writers</li>
+<li>Programmers (especially for OSes)</li>
+<li>Assembly language programmers</li>
+<li>Most importantly: helps you understand how computers compute</li>
+</ul>
+</div>
+<div id="memory-hierarchy-part-1" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Memory Hierarchy, part 1</h3>
+<div class="figure">
+<img src="memory-hierarchy.png" alt="" />
+<p class="caption">Memory Hierarchy</p>
+</div>
+<ul>
+<li>CPU registers
+<ul>
+<li>1 access per CPU cycle</li>
+<li><span class="math inline">\(3 \times 10^9\)</span> accesses per second</li>
+<li>1 Kb total storage</li>
+</ul></li>
+<li>Cache
+<ul>
+<li>SDRAM: 10 nanoseconds</li>
+<li><span class="math inline">\(10^8\)</span> accesses per second</li>
+<li>Multiple levels possible</li>
+<li>Higher levels are bigger and slower</li>
+<li>1 Mb total storage</li>
+</ul></li>
+</ul>
+</div>
+<div id="memory-hierarchy-part-2" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Memory Hierarchy, Part 2</h3>
+<ul>
+<li>Main memory
+<ul>
+<li>DRAM: 60 nanoseconds</li>
+<li><span class="math inline">\(2 \times 10^7\)</span> accesses per second</li>
+<li>Limited by bus speeds</li>
+<li>1 gigabyte total storage</li>
+</ul></li>
+<li>Disk
+<ul>
+<li>HDD speeds: 5 milliseconds</li>
+<li>200 accesses per second</li>
+<li>1 terabyte total storage</li>
+</ul></li>
+</ul>
+</div>
+<div id="fetch-execute-cycle" class="section level3" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Fetch Execute Cycle</h3>
+<pre class="x86asm"><code>while(power is on) {
+    IR := memory[PC]
+    Increment PC by length of instruction
+    execute instruction in IR
+}</code></pre>
+<ul>
+<li>PC = program counter</li>
+<li>IR = instruction register</li>
+</ul>
+</div>
+<div id="assembly-language-instructions" class="section level3" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> Assembly Language Instructions</h3>
+<ul>
+<li>x86
+<ul>
+<li>Explicit use of registers</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>add eax, ebx
+add ecx, 1</code></pre>
+<ul>
+<li>IBCM
+<ul>
+<li>Implied use of accumulator</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>load 100
+add 200
+store 300</code></pre>
+</div>
+</div>
+<div id="ibcm-description" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> IBCM Description</h2>
+<div id="running-ibcm-programs" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Running IBCM Programs</h3>
+<ul>
+<li>Online IBCM simulator
+<ul>
+<li><a href="https://pegasus.cs.virginia.edu/ibcm/" class="uri">https://pegasus.cs.virginia.edu/ibcm/</a></li>
+<li><a href="https://libra.cs.virginia.edu/ibcm/" class="uri">https://libra.cs.virginia.edu/ibcm/</a></li>
+</ul></li>
+<li>Write program as text file, load into website</li>
+<li>This program will hang your browser if it gets stuck in an infinite loop, due to how web browsers (don’t) handle Javascript threads and polling of web pages</li>
+</ul>
+</div>
+<div id="ibcm-machine-description-cpu" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> IBCM Machine Description: CPU</h3>
+<ul>
+<li>Single accumulator
+<ul>
+<li>16 bits</li>
+</ul></li>
+<li>Special purpose registers
+<ul>
+<li>IR: instruction register
+<ul>
+<li>Stores bits which encode instruction</li>
+</ul></li>
+<li>PC: program counter
+<ul>
+<li>Stores an address of an instruction</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="ibcm-machine-memory" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> IBCM Machine: Memory</h3>
+<ul>
+<li>4096 16-bit words
+<ul>
+<li>Word
+<ul>
+<li>“chunk size” or addressable unit</li>
+</ul></li>
+<li>All initialized to zero initially
+<ul>
+<li>Unlike C/C++</li>
+</ul></li>
+<li>All spots go from 0 to fff, as 4096 = <span class="math inline">\(2^{12}\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="ibcm-instruction-types" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> IBCM instruction types</h3>
+<ul>
+<li>Halt
+<ul>
+<li>Opcode is 0</li>
+</ul></li>
+<li>I/O
+<ul>
+<li>Opcode is 1</li>
+<li>next 2 bits specify I/O type</li>
+</ul></li>
+<li>Shifts
+<ul>
+<li>Opcode is 2</li>
+<li>next 2 bits specify shift type</li>
+<li>last 4 bits specify shift amount</li>
+</ul></li>
+<li>Others
+<ul>
+<li>Opcode is 3 to F (15)</li>
+<li>Last 12 bits specify the address for the instruction</li>
+<li>The arithmetic, memory, and control instructions</li>
+</ul></li>
+</ul>
+</div>
+<div id="halt" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Halt</h3>
+<ul>
+<li>The opcode (bits 15 down to 12) is zero</li>
+<li>It doesn’t matter what the next 12 bits are</li>
+<li>It halts the IBCM!</li>
+</ul>
+</div>
+<div id="input-and-output" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Input and output</h3>
+<ul>
+<li>The opcode (bits 15 down to 12) is 1</li>
+<li>Next two bits specify I/O type:
+<ul>
+<li>Bit 11 specifies input (0) or output (1)</li>
+<li>Bit 10 specifies hex word (0) or ascii (1)</li>
+<li>Combinations:
+<ul>
+<li>00: read hex word from keyboard</li>
+<li>01: read ascii character (into acc bits 7-0)</li>
+<li>10: write hex word to screen</li>
+<li>11: write ascii character (from acc bits 7-0)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="shifts" class="section level3" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Shifts</h3>
+<ul>
+<li>The opcode (bits 15 down to 12) is 2</li>
+<li>Next two bits specify shift type:
+<ul>
+<li>Bit 11 specifies shift (0) or rotate (1)
+<ul>
+<li>Shift: add new digits, shift everything to a direction</li>
+<li>Rotate: wrap the digits around to the end</li>
+</ul></li>
+<li>Bit 10 specifies direction: left (0) or right (1)</li>
+</ul></li>
+<li>Consider the bits [0000] [1111] [0000] [1111] and a 3-bit shift/rotation (bold is new digits added):
+<ul>
+<li>00: shift left: 0][111 1][000 0][111 1]<strong>000</strong></li>
+<li>01: shift right: <strong>000</strong>[0 000][1 111][0 000][1</li>
+<li>10: rotate left: 0][111 1][000 0][111 1][000</li>
+<li>11: rotate right: 111][0 000][1 111][0 000][1</li>
+</ul></li>
+</ul>
+</div>
+<div id="other-instructions" class="section level3" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Other Instructions</h3>
+<ul>
+<li>Opcode (bits 15 down to 12) varies from 3 to F (15)</li>
+<li>Next 12 bits specifies the address
+<img src="IBCM_other_instruc.png" alt="IBCM Other Instructions" /></li>
+</ul>
+</div>
+<div id="labels" class="section level3" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Labels</h3>
+<ul>
+<li>We often need to jump around our code</li>
+<li>For this we use labels in assembly language
+<ul>
+<li>These are translated into absolute memory addresses later by assembler</li>
+<li>We don’t have an assembler in IBCM, so we will have to translate them ourselves</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>start   readH
+loop    load    n
+xit     load    s</code></pre>
+</div>
+<div id="declaring-variables" class="section level3" number="3.2.10">
+<h3><span class="header-section-number">3.2.10</span> Declaring variables</h3>
+<ul>
+<li>You use the <code>dw</code> opcode
+<ul>
+<li>It stands for Declare Word, perhaps</li>
+</ul></li>
+<li>And you need to give it a label, so you can reference it in assembly language program</li>
+<li>Example:
+<ul>
+<li><code>n dw 0</code> declares a spot with label ‘n’ to have value 0</li>
+<li><code>load n</code> will load the value stored in that spot in memory</li>
+</ul></li>
+</ul>
+</div>
+<div id="sample-program" class="section level3" number="3.2.11">
+<h3><span class="header-section-number">3.2.11</span> Sample Program</h3>
+<ul>
+<li>Address 000
+<ul>
+<li>Contents: <code>3000</code></li>
+<li>Command: <code>load mem[0]</code></li>
+<li>Load the number in memory 0: <code>3000</code></li>
+</ul></li>
+<li>Address 001
+<ul>
+<li>Contents: <code>5000</code></li>
+<li>Command: <code>add mem[0]</code></li>
+<li>Add number in memory 0 to the number we are working with (accumulator)
+<ul>
+<li>3000 + 3000 = <code>6000</code></li>
+</ul></li>
+</ul></li>
+<li>Address 002
+<ul>
+<li>Contents: <code>6001</code></li>
+<li>Command: <code>sub mem[1]</code></li>
+<li>Subtract accumulator with what is in memory 1
+<ul>
+<li>6000 - 5000 = <code>1000</code></li>
+</ul></li>
+</ul></li>
+<li>Address 003
+<ul>
+<li>Contents: <code>8003</code></li>
+<li>Command: <code>or mem[3]</code></li>
+<li>OR accumulator and the contents of this memory address
+<ul>
+<li><code>0x1000 = 0001 0000 0000 0000</code></li>
+<li><code>0x8003 = 1000 0000 0000 0011</code></li>
+<li>OR these two values:
+<ul>
+<li><code>1001 0000 0000 0011 = 0x9003</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Address 004
+<ul>
+<li>Contents: <code>a000</code></li>
+<li>Command: <code>not</code></li>
+<li>Change all 1s to 0s, and all 0s to 1s
+<ul>
+<li><code>0110 1111 1111 1100 = 0x6ffc</code></li>
+</ul></li>
+</ul></li>
+<li>Address 005
+<ul>
+<li>Contents: <code>4000</code></li>
+<li>Command: <code>store mem[0]</code></li>
+<li>Write <code>0x6ffc</code> into memory</li>
+</ul></li>
+<li>Address 006
+<ul>
+<li>Contents: <code>f000</code></li>
+<li>Command: <code>brl mem[0]</code></li>
+<li>Store the address of the next instruction in the accumulator (007) and jump to address 000</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="writing-ibcm-code" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Writing IBCM Code</h2>
+<ul>
+<li>Write high level pseudo-code</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb16-1"><a href="ibcm-machine-language.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i = <span class="dv">1</span>; i &lt; max; i++ ) ...</span></code></pre></div>
+<ul>
+<li>Translate into IBCM assembly instructions</li>
+</ul>
+<pre class="x86asm"><code>load one
+store i</code></pre>
+<ul>
+<li>Test code by hand
+<ul>
+<li>Step through the code</li>
+</ul></li>
+<li>Encode into machine code</li>
+</ul>
+<pre class="x86asm"><code>3016
+4005</code></pre>
+<ul>
+<li>Load machine code into simulator and run</li>
+</ul>
+<div id="simulator" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Simulator</h3>
+<ul>
+<li>Leave “load all of memory” unchecked as no programs in this class will be large enough to fill</li>
+<li>Buttons
+<ul>
+<li>Run
+<ul>
+<li>Run to finish</li>
+</ul></li>
+<li>Step
+<ul>
+<li>Run next step</li>
+</ul></li>
+<li>Reset
+<ul>
+<li>Go back to start, but do not modify any values in memory</li>
+</ul></li>
+<li>Revert
+<ul>
+<li>Revert values to back when we first loaded file</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="ibcm-code-to-compute-a-sum" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> IBCM code to compute a sum</h3>
+<ul>
+<li>Compute the sum of integers 1 through <span class="math inline">\(n\)</span>, where <span class="math inline">\(n\)</span> is to be read from the keyboard
+<ul>
+<li>Resulting sum is to be printed to the screen</li>
+<li>Half after printing the sum</li>
+</ul></li>
+<li>Source code: <a href="https://uva-cs.github.io/pdr/ibcm/summation.ibcm">summation.ibcm</a></li>
+<li>Pseudocode:</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="ibcm-machine-language.html#cb19-1" aria-hidden="true" tabindex="-1"></a>read n;</span>
+<span id="cb19-2"><a href="ibcm-machine-language.html#cb19-2" aria-hidden="true" tabindex="-1"></a>i = <span class="dv">1</span>;       <span class="co">// index in the array</span></span>
+<span id="cb19-3"><a href="ibcm-machine-language.html#cb19-3" aria-hidden="true" tabindex="-1"></a>s = <span class="dv">0</span>;       <span class="co">// ongoing sum</span></span>
+<span id="cb19-4"><a href="ibcm-machine-language.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i &lt;= n) {</span>
+<span id="cb19-5"><a href="ibcm-machine-language.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  s += i;</span>
+<span id="cb19-6"><a href="ibcm-machine-language.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  i += <span class="dv">1</span>;</span>
+<span id="cb19-7"><a href="ibcm-machine-language.html#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-8"><a href="ibcm-machine-language.html#cb19-8" aria-hidden="true" tabindex="-1"></a>print s;</span></code></pre></div>
+<ul>
+<li>Given a number n, finding <span class="math inline">\(\sum_{i=1}^n x_i\)</span></li>
+</ul>
+</div>
+<div id="ibcm-summation-program-part-1" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> IBCM summation program: part 1</h3>
+<pre class="x86asm"><code>mem  locn label op      addr      comments
+
+C00A 000         jmp     start     skip around the vars
+0000 001   i     dw      0         int i
+0000 002   s     dw      0         int s
+0000 003   n     dw      0         int n
+0001 004   one   dw      1
+0000 005   zero  dw      0
+...
+1000 00A   start readH             read n
+4003 00B         store   n
+3004 00C         load    one       i = 1
+4001 00D         store   i
+3005 00E         load    zero      s = 0
+4002 00F         store   s</code></pre>
+<ul>
+<li>Note that the top line isn’t in the actual program: there cannot be any blank lines</li>
+<li>We have 5 variables
+<ul>
+<li><code>i</code></li>
+<li><code>s</code></li>
+<li><code>n</code></li>
+<li><code>one</code></li>
+<li><code>zero</code></li>
+</ul></li>
+<li>No way to add a constant to a value, so we created the variables <code>one</code> and <code>zero</code> to be able to add</li>
+<li><code>dw</code> = declare word</li>
+<li><code>C00A</code>
+<ul>
+<li>Unconditional jump</li>
+<li><code>C</code> means jump</li>
+<li>Jump to location <code>00A</code></li>
+</ul></li>
+<li><code>1000</code>
+<ul>
+<li><code>readH</code> = read hex (read n)</li>
+</ul></li>
+<li><code>4003</code>
+<ul>
+<li>Store what is in 3: <code>n</code></li>
+</ul></li>
+<li><code>3004</code>
+<ul>
+<li>Load what is on location 4: <code>one</code></li>
+</ul></li>
+<li><code>4001</code>
+<ul>
+<li>Store what is loaded (<code>one</code>) into <code>i</code></li>
+<li><code>i = 1</code></li>
+</ul></li>
+<li>Same thing for <code>3005</code> and <code>4002</code>
+<ul>
+<li>Load value of <code>zero</code></li>
+<li>Store <code>zero</code> into <code>s</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="ibcm-summation-program-part-2" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> IBCM summation program: part 2</h3>
+<pre class="x86asm"><code>mem  locn label op      addr      comments
+
+3003 010   loop  load    n         if (i &gt; n) goto xit
+6001 011         sub     i
+E01A 012         jmpl    xit
+3002 013         load    s         s += i
+5001 014         add     i
+4002 015         store   s
+3001 016         load    i         i += 1
+5004 017         add     one
+4001 018         store   i
+C010 019         jmp     loop      goto loop
+3002 01A   xit   load    s         print s
+1800 01B         printH
+0000 01C         halt              halt</code></pre>
+<ul>
+<li>We cannot compare <code>i</code> and <code>n</code> directly
+<ul>
+<li>We can instead subtract <code>i</code> from <code>n</code>
+<ul>
+<li>If negative, jump to <code>xit</code></li>
+</ul></li>
+<li><code>jmpl</code>
+<ul>
+<li>Jump if less than 0</li>
+</ul></li>
+</ul></li>
+<li><code>s</code> is the sum
+<ul>
+<li>Add <code>i</code> to <code>s</code></li>
+<li>Add <code>one</code> to <code>i</code></li>
+<li><code>jmp</code> back into the loop line</li>
+</ul></li>
+</ul>
+</div>
+<div id="how-would-we-code-this" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> How would we code this:</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="ibcm-machine-language.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (B == <span class="dv">0</span>)</span>
+<span id="cb22-2"><a href="ibcm-machine-language.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    S1;</span>
+<span id="cb22-3"><a href="ibcm-machine-language.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb22-4"><a href="ibcm-machine-language.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    S2;</span></code></pre></div>
+<pre class="x86asm"><code>load B
+jmpe S1
+jmp S2
+
+S1: ... (if)
+jmp done
+
+S2: ... (else)
+
+done</code></pre>
+</div>
+<div id="ibcm-code-to-sum-elements-in-an-array" class="section level3" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> IBCM code to sum elements in an array</h3>
+<ul>
+<li>Compute the sum of the elements of an array, print the sum, then halt
+<ul>
+<li>Address of the first element of the array and the size of the array are to be read in from the keyboard</li>
+</ul></li>
+<li>Source code: <a href="https://uva-cs.github.io/pdr/ibcm/array-summation.ibcm">array-summation.ibcm</a></li>
+<li>Pseudocode:</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="ibcm-machine-language.html#cb24-1" aria-hidden="true" tabindex="-1"></a>read a;      <span class="co">// array base address</span></span>
+<span id="cb24-2"><a href="ibcm-machine-language.html#cb24-2" aria-hidden="true" tabindex="-1"></a>read n;      <span class="co">// array size</span></span>
+<span id="cb24-3"><a href="ibcm-machine-language.html#cb24-3" aria-hidden="true" tabindex="-1"></a>i = <span class="dv">0</span>;       <span class="co">// index in the array</span></span>
+<span id="cb24-4"><a href="ibcm-machine-language.html#cb24-4" aria-hidden="true" tabindex="-1"></a>s = <span class="dv">0</span>;       <span class="co">// ongoing sum</span></span>
+<span id="cb24-5"><a href="ibcm-machine-language.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i &lt; n) {</span>
+<span id="cb24-6"><a href="ibcm-machine-language.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  s += a[i];</span>
+<span id="cb24-7"><a href="ibcm-machine-language.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  i += <span class="dv">1</span>;</span>
+<span id="cb24-8"><a href="ibcm-machine-language.html#cb24-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-9"><a href="ibcm-machine-language.html#cb24-9" aria-hidden="true" tabindex="-1"></a>print s;</span></code></pre></div>
+</div>
+<div id="array-summation-initialization-and-halting" class="section level3" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Array Summation: initialization and halting</h3>
+<pre class="x86asm"><code>mem  locn label op       addr   comments
+C00A 000         jmp      start  skip around the vars
+0000 001   i     dw       0      int i
+0000 002   s     dw       0      int s
+0000 003   a     dw       0      int a[]
+0000 004   n     dw       0
+0000 005   zero  dw       0
+0001 006   one   dw       1
+5000 007   adit  dw       5000
+...                             leave space for changes
+1000 00A   start readH           read array address
+4003 00B         store    a
+1000 00C         readH           read array size
+4004 00D         store    n
+3005 00E         load     zero   i = 0; s = 0;
+4001 00F         store    i
+4002 010         store    s
+...
+3002 020   xit   load     s      print s
+1800 021         printH
+0000 022         halt</code></pre>
+</div>
+<div id="array-summation-the-inner-loop" class="section level3" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Array Summation: the inner loop</h3>
+<pre class="x86asm"><code>mem  locn label op      addr    comments
+...
+3004 011   loop  load     n      if (i &gt;= N) goto xit
+6001 012         sub      i
+E020 013         jmpl     xit
+D020 014         jmpe     xit
+3007 015         load     adit   form inst to add a[i]
+5003 016         add      a
+5001 017         add      i      i = 2
+401A 018         store    doit   plant inst into code
+3002 019         load     s      s += a[i]
+0000 01A   doit  dw       0      executes from locn 018
+4002 01B         store    s
+3001 01C         load     i      i += 1
+5006 01D         add      one
+4001 01E         store    i
+C011 01F         jmp      loop   goto loop
+...</code></pre>
+<ul>
+<li>jmpl = jump if less than</li>
+<li>jmpe = jump if equal to</li>
+</ul>
+</div>
+</div>
+<div id="conclusions" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Conclusions</h2>
+<div id="notes" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Notes</h3>
+<ul>
+<li>IBCM’s memory
+<ul>
+<li>Array of “words” / chunks of data</li>
+<li>Data can be the program</li>
+<li>Program can be the data</li>
+</ul></li>
+<li>IBCM is Turing-complete
+<ul>
+<li>Any program expressible in any programming language can be expressed in IBCM
+<ul>
+<li>(with the standard exception about the whole limited-memory thing)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="ibcm-tipsreminders" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> IBCM tips/reminders</h3>
+<ul>
+<li>Use the programming steps
+<ol style="list-style-type: decimal">
+<li>Pseudocode</li>
+<li>Assembly code</li>
+</ol>
+<ul>
+<li>Comment your code clearly!</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Trace the assembly</li>
+<li>Translate to machine code <em>last</em></li>
+</ol></li>
+<li>Cannot have blank lines or comment lines</li>
+</ul>
+</div>
+<div id="use-the-simulators-to-debug-your-code" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Use the simulators to debug your code</h3>
+<ul>
+<li>Online simulator
+<ul>
+<li>Cannot terminate an infinite loop easily</li>
+</ul></li>
+<li>Unusual behavior?
+<ul>
+<li>Is the program logic correct?
+<ul>
+<li>Condition specified incorrectly/inaccurately?</li>
+</ul></li>
+<li>Is the machine code correct?
+<ul>
+<li>Opcode? Address?</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="whats-missing-from-ibcm" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> What’s missing from IBCM?</h3>
+<ul>
+<li>Integer multiply and divide</li>
+<li>Floating point support</li>
+<li>A bigger address space</li>
+<li>More than 1 user register</li>
+<li>What else?</li>
+</ul>
+</div>
+<div id="emulating-ibcm-in-c" class="section level3" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Emulating IBCM in C++</h3>
+<ul>
+<li>How might one write software to emulate an IBCM machine in C++?
+<ul>
+<li>A switch statement with 16 cases, perhaps</li>
+</ul></li>
+<li>But how to decode the instructions?</li>
+</ul>
+</div>
+<div id="how-to-decode-the-parts-of-an-instruction" class="section level3" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> How to decode the parts of an instruction</h3>
+<ul>
+<li>Let’s assume we had to write a C++ program that could extract the parts of an IBCM instruction</li>
+<li>How to do it?
+<ul>
+<li>Assume the instruction is in an unsigned int x</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="ibcm-machine-language.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> opcode = (x &gt;&gt; <span class="dv">12</span>) &amp; <span class="bn">0x000f</span></span>
+<span id="cb27-2"><a href="ibcm-machine-language.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> ioshiftop = (x &gt;&gt; <span class="dv">10</span>) &amp; <span class="bn">0x0003</span></span>
+<span id="cb27-3"><a href="ibcm-machine-language.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> address = x &amp; <span class="bn">0x0fff</span></span>
+<span id="cb27-4"><a href="ibcm-machine-language.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> shiftcount = x &amp; <span class="bn">0x000f</span></span></code></pre></div></li>
+</ul>
+</div>
+<div id="what-about-encoding" class="section level3" number="3.4.7">
+<h3><span class="header-section-number">3.4.7</span> What about encoding?</h3>
+<ul>
+<li>Assume we have (unsigned ints) opcode, ioshiftop and shiftcount</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb28-1"><a href="ibcm-machine-language.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> instruction = (opcode &lt;&lt; <span class="dv">12</span>) |</span>
+<span id="cb28-2"><a href="ibcm-machine-language.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                           (ioshiftop &lt;&lt; <span class="dv">10</span>) | shiftcount</span></code></pre></div>
+<ul>
+<li>What a pain this all is!</li>
+</ul>
+</div>
+<div id="a-data-structure-to-make-it-easier" class="section level3" number="3.4.8">
+<h3><span class="header-section-number">3.4.8</span> A data structure to make it easier</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="ibcm-machine-language.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">union</span> ibcm_instruction {</span>
+<span id="cb29-2"><a href="ibcm-machine-language.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef BIG_ENDIAN </span><span class="co">// the IBCM is big endian</span></span>
+<span id="cb29-3"><a href="ibcm-machine-language.html#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">char</span> high, low; } bytes;</span>
+<span id="cb29-4"><a href="ibcm-machine-language.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb29-5"><a href="ibcm-machine-language.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef LITTLE_ENDIAN</span></span>
+<span id="cb29-6"><a href="ibcm-machine-language.html#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">char</span> low, high; } bytes;</span>
+<span id="cb29-7"><a href="ibcm-machine-language.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb29-8"><a href="ibcm-machine-language.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#error Must define BIG_ENDIAN or LITTLE_ENDIAN</span></span>
+<span id="cb29-9"><a href="ibcm-machine-language.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif </span><span class="co">// LITTLE_ENDIAN</span></span>
+<span id="cb29-10"><a href="ibcm-machine-language.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif </span><span class="co">// BIG_ENDIAN</span></span>
+<span id="cb29-11"><a href="ibcm-machine-language.html#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">int</span> op:<span class="dv">4</span>, unused:<span class="dv">12</span>; } halt;</span>
+<span id="cb29-12"><a href="ibcm-machine-language.html#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">int</span> op:<span class="dv">4</span>, ioopt:<span class="dv">2</span>, unused:<span class="dv">10</span> } io;</span>
+<span id="cb29-13"><a href="ibcm-machine-language.html#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">int</span> op:<span class="dv">4</span>, shiftop: <span class="dv">2</span>,</span>
+<span id="cb29-14"><a href="ibcm-machine-language.html#cb29-14" aria-hidden="true" tabindex="-1"></a>             unused:<span class="dv">5</span>, shiftcount:<span class="dv">5</span>; } shifts;</span>
+<span id="cb29-15"><a href="ibcm-machine-language.html#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> { <span class="dt">unsigned</span> <span class="dt">int</span> op:<span class="dv">4</span>, address:<span class="dv">12</span>; } others;</span>
+<span id="cb29-16"><a href="ibcm-machine-language.html#cb29-16" aria-hidden="true" tabindex="-1"></a>};</span></code></pre></div>
+</div>
+<div id="using-that-data-structure" class="section level3" number="3.4.9">
+<h3><span class="header-section-number">3.4.9</span> Using that data structure</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="ibcm-machine-language.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// read in instruction into unsigned chars a and b</span></span>
+<span id="cb30-2"><a href="ibcm-machine-language.html#cb30-2" aria-hidden="true" tabindex="-1"></a>ibcm_instruction inst;</span>
+<span id="cb30-3"><a href="ibcm-machine-language.html#cb30-3" aria-hidden="true" tabindex="-1"></a>inst.high = a;</span>
+<span id="cb30-4"><a href="ibcm-machine-language.html#cb30-4" aria-hidden="true" tabindex="-1"></a>inst.low = b;</span>
+<span id="cb30-5"><a href="ibcm-machine-language.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( inst.halt.op == <span class="dv">0</span> ) { <span class="co">// halt</span></span>
+<span id="cb30-6"><a href="ibcm-machine-language.html#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb30-7"><a href="ibcm-machine-language.html#cb30-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ( inst.io.op == <span class="dv">1</span> ) { <span class="co">// io</span></span>
+<span id="cb30-8"><a href="ibcm-machine-language.html#cb30-8" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; inst.io.ioopt &lt;&lt; endl;</span>
+<span id="cb30-9"><a href="ibcm-machine-language.html#cb30-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ( inst.shifts.op == <span class="dv">2</span> ) { <span class="co">// shifts</span></span>
+<span id="cb30-10"><a href="ibcm-machine-language.html#cb30-10" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; inst.shifts.shiftop &lt;&lt; endl;</span>
+<span id="cb30-11"><a href="ibcm-machine-language.html#cb30-11" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; inst.shifts.shiftcount &lt;&lt; endl;</span>
+<span id="cb30-12"><a href="ibcm-machine-language.html#cb30-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { <span class="co">// all others</span></span>
+<span id="cb30-13"><a href="ibcm-machine-language.html#cb30-13" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; inst.others.address &lt;&lt; endl;</span>
+<span id="cb30-14"><a href="ibcm-machine-language.html#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hash-tables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bit-x86.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

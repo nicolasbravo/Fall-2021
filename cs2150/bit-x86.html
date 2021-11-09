@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 64 Bit x86 | Midterm 2 Lecture Notes</title>
+  <meta name="description" content="4 64 Bit x86 | Midterm 2 Lecture Notes" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 64 Bit x86 | Midterm 2 Lecture Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 64 Bit x86 | Midterm 2 Lecture Notes" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ibcm-machine-language.html"/>
+
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Trees</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#binary-search-trees"><i class="fa fa-check"></i><b>1.1</b> Binary Search Trees</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#relationship-between-h-and-n"><i class="fa fa-check"></i><b>1.1.1</b> Relationship between <span class="math inline">\(H\)</span> and <span class="math inline">\(N\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#perfect-binary-tree"><i class="fa fa-check"></i><b>1.1.2</b> Perfect binary tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#expression-trees"><i class="fa fa-check"></i><b>1.2</b> Expression Trees</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#expression-tree-traversals"><i class="fa fa-check"></i><b>1.2.1</b> Expression tree traversals</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#building-an-expression-tree"><i class="fa fa-check"></i><b>1.2.2</b> Building an expression tree</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#avl-trees"><i class="fa fa-check"></i><b>1.3</b> AVL Trees</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.3.1</b> Basics</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#structure-property"><i class="fa fa-check"></i><b>1.3.2</b> Structure Property</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#balance-factor"><i class="fa fa-check"></i><b>1.3.3</b> Balance Factor</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#tree-balance"><i class="fa fa-check"></i><b>1.3.4</b> Tree Balance</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#find-insert"><i class="fa fa-check"></i><b>1.3.5</b> Find, insert</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#tree-operations"><i class="fa fa-check"></i><b>1.3.6</b> Tree operations</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#how-many-times-to-fix-the-tree"><i class="fa fa-check"></i><b>1.3.7</b> How many times to “fix” the tree?</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#avl-insert"><i class="fa fa-check"></i><b>1.3.8</b> AVL Insert</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#avl-single-right-rotation"><i class="fa fa-check"></i><b>1.3.9</b> AVL single right rotation</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#avl-single-left-rotation"><i class="fa fa-check"></i><b>1.3.10</b> AVL single left rotation</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#side-effect-of-tree-rotations"><i class="fa fa-check"></i><b>1.3.11</b> Side-effect of tree rotations</a></li>
+<li class="chapter" data-level="1.3.12" data-path="index.html"><a href="index.html#double-rotation"><i class="fa fa-check"></i><b>1.3.12</b> Double rotation</a></li>
+<li class="chapter" data-level="1.3.13" data-path="index.html"><a href="index.html#runtime-analysis"><i class="fa fa-check"></i><b>1.3.13</b> Runtime Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursion"><i class="fa fa-check"></i><b>1.4</b> Recursion</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#sum-the-numbers-from-1-to-n"><i class="fa fa-check"></i><b>1.4.1</b> Sum the numbers from 1 to <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#factorial-via-recursion"><i class="fa fa-check"></i><b>1.4.2</b> Factorial via recursion</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#pros-and-cons"><i class="fa fa-check"></i><b>1.4.3</b> Pros and cons</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#fibonacci-sequence"><i class="fa fa-check"></i><b>1.4.4</b> Fibonacci Sequence</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#recursion-on-trees"><i class="fa fa-check"></i><b>1.4.5</b> Recursion on trees</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#recursion-on-lists"><i class="fa fa-check"></i><b>1.4.6</b> Recursion on lists</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#tail-recursion"><i class="fa fa-check"></i><b>1.4.7</b> Tail recursion</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#why-tail-recursion"><i class="fa fa-check"></i><b>1.4.8</b> Why tail recursion?</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#factorial-via-tail-recursion"><i class="fa fa-check"></i><b>1.4.9</b> Factorial via Tail Recursion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#red-black-trees"><i class="fa fa-check"></i><b>1.5</b> Red-black trees</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#properties"><i class="fa fa-check"></i><b>1.5.1</b> Properties</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#insert"><i class="fa fa-check"></i><b>1.5.2</b> Insert</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#removal"><i class="fa fa-check"></i><b>1.5.3</b> Removal</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#why-red-black-vs-avl"><i class="fa fa-check"></i><b>1.5.4</b> Why red-black vs AVL?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#splay-trees"><i class="fa fa-check"></i><b>1.6</b> Splay Trees</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#main-operation-splaying"><i class="fa fa-check"></i><b>1.6.1</b> Main operation: splaying</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#time-complexity"><i class="fa fa-check"></i><b>1.6.2</b> Time complexity</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#amortized-analysis"><i class="fa fa-check"></i><b>1.6.3</b> Amortized analysis</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#splay-tree-conclusions"><i class="fa fa-check"></i><b>1.6.4</b> Splay tree conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#tree-applications"><i class="fa fa-check"></i><b>1.7</b> Tree applications</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#when-are-trees-not-good-to-use"><i class="fa fa-check"></i><b>1.7.1</b> When are trees not good to use?</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#programs"><i class="fa fa-check"></i><b>1.7.2</b> Programs</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#comparing-two-programs"><i class="fa fa-check"></i><b>1.7.3</b> Comparing two programs</a></li>
+<li class="chapter" data-level="1.7.4" data-path="index.html"><a href="index.html#measure-of-structural-similarity"><i class="fa fa-check"></i><b>1.7.4</b> Measure of Structural Similarity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hash-tables.html"><a href="hash-tables.html"><i class="fa fa-check"></i><b>2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hash-tables.html"><a href="hash-tables.html#review"><i class="fa fa-check"></i><b>2.1</b> Review</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="hash-tables.html"><a href="hash-tables.html#lists"><i class="fa fa-check"></i><b>2.1.1</b> Lists</a></li>
+<li class="chapter" data-level="2.1.2" data-path="hash-tables.html"><a href="hash-tables.html#stacks"><i class="fa fa-check"></i><b>2.1.2</b> Stacks</a></li>
+<li class="chapter" data-level="2.1.3" data-path="hash-tables.html"><a href="hash-tables.html#queues"><i class="fa fa-check"></i><b>2.1.3</b> Queues</a></li>
+<li class="chapter" data-level="2.1.4" data-path="hash-tables.html"><a href="hash-tables.html#trees-1"><i class="fa fa-check"></i><b>2.1.4</b> Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-1"><i class="fa fa-check"></i><b>2.2</b> Hash Tables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="hash-tables.html"><a href="hash-tables.html#is-there-anything-faster-than-what-was-reviewed"><i class="fa fa-check"></i><b>2.2.1</b> Is there anything faster than what was reviewed?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="hash-tables.html"><a href="hash-tables.html#hash-tables-lookup-table"><i class="fa fa-check"></i><b>2.2.2</b> Hash tables (lookup table)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="hash-tables.html"><a href="hash-tables.html#key-value-pairs"><i class="fa fa-check"></i><b>2.2.3</b> Key-value pairs</a></li>
+<li class="chapter" data-level="2.2.4" data-path="hash-tables.html"><a href="hash-tables.html#hash-function"><i class="fa fa-check"></i><b>2.2.4</b> Hash function</a></li>
+<li class="chapter" data-level="2.2.5" data-path="hash-tables.html"><a href="hash-tables.html#keys"><i class="fa fa-check"></i><b>2.2.5</b> Keys</a></li>
+<li class="chapter" data-level="2.2.6" data-path="hash-tables.html"><a href="hash-tables.html#table-size-issues"><i class="fa fa-check"></i><b>2.2.6</b> Table size issues</a></li>
+<li class="chapter" data-level="2.2.7" data-path="hash-tables.html"><a href="hash-tables.html#hash-table-part-2"><i class="fa fa-check"></i><b>2.2.7</b> Hash table part 2</a></li>
+<li class="chapter" data-level="2.2.8" data-path="hash-tables.html"><a href="hash-tables.html#hash-functions-part-2"><i class="fa fa-check"></i><b>2.2.8</b> Hash functions part 2</a></li>
+<li class="chapter" data-level="2.2.9" data-path="hash-tables.html"><a href="hash-tables.html#sample-string-hash-functions"><i class="fa fa-check"></i><b>2.2.9</b> Sample string hash functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="hash-tables.html"><a href="hash-tables.html#hash-function-summary"><i class="fa fa-check"></i><b>2.3</b> Hash Function Summary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hash-tables.html"><a href="hash-tables.html#collision-resolution"><i class="fa fa-check"></i><b>2.3.1</b> Collision Resolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining"><i class="fa fa-check"></i><b>2.4</b> Separate Chaining</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="hash-tables.html"><a href="hash-tables.html#analysis-of-find"><i class="fa fa-check"></i><b>2.4.1</b> Analysis of find</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hash-tables.html"><a href="hash-tables.html#load-factor"><i class="fa fa-check"></i><b>2.4.2</b> Load factor</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hash-tables.html"><a href="hash-tables.html#separate-chaining-find"><i class="fa fa-check"></i><b>2.4.3</b> Separate Chaining: <code>find()</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="hash-tables.html"><a href="hash-tables.html#what-data-structure-to-use-for-the-buckets"><i class="fa fa-check"></i><b>2.4.4</b> What data structure to use for the buckets?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="hash-tables.html"><a href="hash-tables.html#requirements-for-hopeful-case"><i class="fa fa-check"></i><b>2.4.5</b> Requirements for “hopeful” case</a></li>
+<li class="chapter" data-level="2.4.6" data-path="hash-tables.html"><a href="hash-tables.html#sepearete-chaining-insert-is-theta1"><i class="fa fa-check"></i><b>2.4.6</b> Sepearete Chaining insert is <span class="math inline">\(\Theta(1)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hash-tables.html"><a href="hash-tables.html#open-addressing"><i class="fa fa-check"></i><b>2.5</b> Open Addressing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="hash-tables.html"><a href="hash-tables.html#saving-memory"><i class="fa fa-check"></i><b>2.5.1</b> Saving memory</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hash-tables.html"><a href="hash-tables.html#three-types-of-probing-strategies"><i class="fa fa-check"></i><b>2.5.2</b> Three types of probing strategies</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing"><i class="fa fa-check"></i><b>2.5.3</b> Linear probing</a></li>
+<li class="chapter" data-level="2.5.4" data-path="hash-tables.html"><a href="hash-tables.html#linear-probing-table-example"><i class="fa fa-check"></i><b>2.5.4</b> Linear probing table example</a></li>
+<li class="chapter" data-level="2.5.5" data-path="hash-tables.html"><a href="hash-tables.html#problems-with-linear-probing"><i class="fa fa-check"></i><b>2.5.5</b> Problems with linear probing</a></li>
+<li class="chapter" data-level="2.5.6" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing"><i class="fa fa-check"></i><b>2.5.6</b> Quadratic Probing</a></li>
+<li class="chapter" data-level="2.5.7" data-path="hash-tables.html"><a href="hash-tables.html#quadratic-probing-table-example"><i class="fa fa-check"></i><b>2.5.7</b> Quadratic probing table example</a></li>
+<li class="chapter" data-level="2.5.8" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing"><i class="fa fa-check"></i><b>2.5.8</b> Double Hashing</a></li>
+<li class="chapter" data-level="2.5.9" data-path="hash-tables.html"><a href="hash-tables.html#double-hasing-table-example"><i class="fa fa-check"></i><b>2.5.9</b> Double hasing table example</a></li>
+<li class="chapter" data-level="2.5.10" data-path="hash-tables.html"><a href="hash-tables.html#double-hashing-thrashing"><i class="fa fa-check"></i><b>2.5.10</b> Double hashing thrashing</a></li>
+<li class="chapter" data-level="2.5.11" data-path="hash-tables.html"><a href="hash-tables.html#table-size-must-be-prime"><i class="fa fa-check"></i><b>2.5.11</b> Table size must be prime!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hash-tables.html"><a href="hash-tables.html#miscellaneous"><i class="fa fa-check"></i><b>2.6</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="hash-tables.html"><a href="hash-tables.html#rehashing"><i class="fa fa-check"></i><b>2.6.1</b> Rehashing</a></li>
+<li class="chapter" data-level="2.6.2" data-path="hash-tables.html"><a href="hash-tables.html#removing-an-element"><i class="fa fa-check"></i><b>2.6.2</b> Removing an element</a></li>
+<li class="chapter" data-level="2.6.3" data-path="hash-tables.html"><a href="hash-tables.html#hashing-md5"><i class="fa fa-check"></i><b>2.6.3</b> Hashing: MD5</a></li>
+<li class="chapter" data-level="2.6.4" data-path="hash-tables.html"><a href="hash-tables.html#can-you-reverse-an-md5-hash"><i class="fa fa-check"></i><b>2.6.4</b> Can you reverse an MD5 hash?</a></li>
+<li class="chapter" data-level="2.6.5" data-path="hash-tables.html"><a href="hash-tables.html#more-hashing-sha"><i class="fa fa-check"></i><b>2.6.5</b> More hashing: SHA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html"><i class="fa fa-check"></i><b>3</b> IBCM (Machine Language)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language"><i class="fa fa-check"></i><b>3.1.1</b> Assembly Language</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#why-learn-assembly-language"><i class="fa fa-check"></i><b>3.1.2</b> Why learn assembly language?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-1"><i class="fa fa-check"></i><b>3.1.3</b> Memory Hierarchy, part 1</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#memory-hierarchy-part-2"><i class="fa fa-check"></i><b>3.1.4</b> Memory Hierarchy, Part 2</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#fetch-execute-cycle"><i class="fa fa-check"></i><b>3.1.5</b> Fetch Execute Cycle</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#assembly-language-instructions"><i class="fa fa-check"></i><b>3.1.6</b> Assembly Language Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-description"><i class="fa fa-check"></i><b>3.2</b> IBCM Description</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#running-ibcm-programs"><i class="fa fa-check"></i><b>3.2.1</b> Running IBCM Programs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-description-cpu"><i class="fa fa-check"></i><b>3.2.2</b> IBCM Machine Description: CPU</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-machine-memory"><i class="fa fa-check"></i><b>3.2.3</b> IBCM Machine: Memory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-instruction-types"><i class="fa fa-check"></i><b>3.2.4</b> IBCM instruction types</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#halt"><i class="fa fa-check"></i><b>3.2.5</b> Halt</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#input-and-output"><i class="fa fa-check"></i><b>3.2.6</b> Input and output</a></li>
+<li class="chapter" data-level="3.2.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#shifts"><i class="fa fa-check"></i><b>3.2.7</b> Shifts</a></li>
+<li class="chapter" data-level="3.2.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#other-instructions"><i class="fa fa-check"></i><b>3.2.8</b> Other Instructions</a></li>
+<li class="chapter" data-level="3.2.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#labels"><i class="fa fa-check"></i><b>3.2.9</b> Labels</a></li>
+<li class="chapter" data-level="3.2.10" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#declaring-variables"><i class="fa fa-check"></i><b>3.2.10</b> Declaring variables</a></li>
+<li class="chapter" data-level="3.2.11" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#sample-program"><i class="fa fa-check"></i><b>3.2.11</b> Sample Program</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#writing-ibcm-code"><i class="fa fa-check"></i><b>3.3</b> Writing IBCM Code</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#simulator"><i class="fa fa-check"></i><b>3.3.1</b> Simulator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-compute-a-sum"><i class="fa fa-check"></i><b>3.3.2</b> IBCM code to compute a sum</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-1"><i class="fa fa-check"></i><b>3.3.3</b> IBCM summation program: part 1</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-summation-program-part-2"><i class="fa fa-check"></i><b>3.3.4</b> IBCM summation program: part 2</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-would-we-code-this"><i class="fa fa-check"></i><b>3.3.5</b> How would we code this:</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-code-to-sum-elements-in-an-array"><i class="fa fa-check"></i><b>3.3.6</b> IBCM code to sum elements in an array</a></li>
+<li class="chapter" data-level="3.3.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-initialization-and-halting"><i class="fa fa-check"></i><b>3.3.7</b> Array Summation: initialization and halting</a></li>
+<li class="chapter" data-level="3.3.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#array-summation-the-inner-loop"><i class="fa fa-check"></i><b>3.3.8</b> Array Summation: the inner loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#conclusions"><i class="fa fa-check"></i><b>3.4</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#notes"><i class="fa fa-check"></i><b>3.4.1</b> Notes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#ibcm-tipsreminders"><i class="fa fa-check"></i><b>3.4.2</b> IBCM tips/reminders</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#use-the-simulators-to-debug-your-code"><i class="fa fa-check"></i><b>3.4.3</b> Use the simulators to debug your code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#whats-missing-from-ibcm"><i class="fa fa-check"></i><b>3.4.4</b> What’s missing from IBCM?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#emulating-ibcm-in-c"><i class="fa fa-check"></i><b>3.4.5</b> Emulating IBCM in C++</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#how-to-decode-the-parts-of-an-instruction"><i class="fa fa-check"></i><b>3.4.6</b> How to decode the parts of an instruction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#what-about-encoding"><i class="fa fa-check"></i><b>3.4.7</b> What about encoding?</a></li>
+<li class="chapter" data-level="3.4.8" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#a-data-structure-to-make-it-easier"><i class="fa fa-check"></i><b>3.4.8</b> A data structure to make it easier</a></li>
+<li class="chapter" data-level="3.4.9" data-path="ibcm-machine-language.html"><a href="ibcm-machine-language.html#using-that-data-structure"><i class="fa fa-check"></i><b>3.4.9</b> Using that data structure</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bit-x86.html"><a href="bit-x86.html"><i class="fa fa-check"></i><b>4</b> 64 Bit x86</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bit-x86.html"><a href="bit-x86.html#introduction-to-x86"><i class="fa fa-check"></i><b>4.1</b> Introduction to x86</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="bit-x86.html"><a href="bit-x86.html#registers"><i class="fa fa-check"></i><b>4.1.1</b> Registers</a></li>
+<li class="chapter" data-level="4.1.2" data-path="bit-x86.html"><a href="bit-x86.html#ibcm-vs-x86-fetch-execute-cycle-same"><i class="fa fa-check"></i><b>4.1.2</b> IBCM vs x86: fetch execute cycle (same)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="bit-x86.html"><a href="bit-x86.html#declaring-variables-in-x86"><i class="fa fa-check"></i><b>4.1.3</b> Declaring variables in x86</a></li>
+<li class="chapter" data-level="4.1.4" data-path="bit-x86.html"><a href="bit-x86.html#mov-command"><i class="fa fa-check"></i><b>4.1.4</b> Mov command</a></li>
+<li class="chapter" data-level="4.1.5" data-path="bit-x86.html"><a href="bit-x86.html#addressing-memory"><i class="fa fa-check"></i><b>4.1.5</b> Addressing memory</a></li>
+<li class="chapter" data-level="4.1.6" data-path="bit-x86.html"><a href="bit-x86.html#example-4"><i class="fa fa-check"></i><b>4.1.6</b> Example</a></li>
+<li class="chapter" data-level="4.1.7" data-path="bit-x86.html"><a href="bit-x86.html#valid-or-not"><i class="fa fa-check"></i><b>4.1.7</b> Valid or not?</a></li>
+<li class="chapter" data-level="4.1.8" data-path="bit-x86.html"><a href="bit-x86.html#memory-addressing-restrictions"><i class="fa fa-check"></i><b>4.1.8</b> Memory addressing restrictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="bit-x86.html"><a href="bit-x86.html#x86-instruction-set"><i class="fa fa-check"></i><b>4.2</b> x86 Instruction Set</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="bit-x86.html"><a href="bit-x86.html#data-movement-instructions"><i class="fa fa-check"></i><b>4.2.1</b> Data movement instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="bit-x86.html"><a href="bit-x86.html#arithmetic-instructions"><i class="fa fa-check"></i><b>4.2.2</b> Arithmetic instructions</a></li>
+<li class="chapter" data-level="4.2.3" data-path="bit-x86.html"><a href="bit-x86.html#logical-instructions"><i class="fa fa-check"></i><b>4.2.3</b> Logical instructions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="bit-x86.html"><a href="bit-x86.html#control-instructions"><i class="fa fa-check"></i><b>4.2.4</b> Control Instructions</a></li>
+<li class="chapter" data-level="4.2.5" data-path="bit-x86.html"><a href="bit-x86.html#a-code-block-in-both-cc-and-assembly"><i class="fa fa-check"></i><b>4.2.5</b> A code block in both C/C++ and Assembly</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions"><i class="fa fa-check"></i><b>4.3</b> Calling Conventions</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bit-x86.html"><a href="bit-x86.html#calling-of-a-subroutine-c"><i class="fa fa-check"></i><b>4.3.1</b> Calling of a subroutine: C++</a></li>
+<li class="chapter" data-level="4.3.2" data-path="bit-x86.html"><a href="bit-x86.html#calling-conventions-1"><i class="fa fa-check"></i><b>4.3.2</b> Calling Conventions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention"><i class="fa fa-check"></i><b>4.3.3</b> C Calling Convention</a></li>
+<li class="chapter" data-level="4.3.4" data-path="bit-x86.html"><a href="bit-x86.html#c-calling-convention-overview"><i class="fa fa-check"></i><b>4.3.4</b> C Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.5" data-path="bit-x86.html"><a href="bit-x86.html#calling-convention-overview"><i class="fa fa-check"></i><b>4.3.5</b> Calling Convention Overview</a></li>
+<li class="chapter" data-level="4.3.6" data-path="bit-x86.html"><a href="bit-x86.html#register-usage"><i class="fa fa-check"></i><b>4.3.6</b> Register Usage</a></li>
+<li class="chapter" data-level="4.3.7" data-path="bit-x86.html"><a href="bit-x86.html#varying-number-of-parameters"><i class="fa fa-check"></i><b>4.3.7</b> Varying number of parameters</a></li>
+<li class="chapter" data-level="4.3.8" data-path="bit-x86.html"><a href="bit-x86.html#variable-number-of-arguments-in-cc"><i class="fa fa-check"></i><b>4.3.8</b> Variable number of arguments in C/C++</a></li>
+<li class="chapter" data-level="4.3.9" data-path="bit-x86.html"><a href="bit-x86.html#example-output-in-c"><i class="fa fa-check"></i><b>4.3.9</b> Example: output in C</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules"><i class="fa fa-check"></i><b>4.4</b> Caller Rules</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="bit-x86.html"><a href="bit-x86.html#caller-summary"><i class="fa fa-check"></i><b>4.4.1</b> Caller Summary</a></li>
+<li class="chapter" data-level="4.4.2" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary"><i class="fa fa-check"></i><b>4.4.2</b> Callee Summary</a></li>
+<li class="chapter" data-level="4.4.3" data-path="bit-x86.html"><a href="bit-x86.html#caller-rulesresponsibilities"><i class="fa fa-check"></i><b>4.4.3</b> Caller Rules/Responsibilities</a></li>
+<li class="chapter" data-level="4.4.4" data-path="bit-x86.html"><a href="bit-x86.html#prologue"><i class="fa fa-check"></i><b>4.4.4</b> Prologue</a></li>
+<li class="chapter" data-level="4.4.5" data-path="bit-x86.html"><a href="bit-x86.html#epilogue"><i class="fa fa-check"></i><b>4.4.5</b> Epilogue</a></li>
+<li class="chapter" data-level="4.4.6" data-path="bit-x86.html"><a href="bit-x86.html#example-5"><i class="fa fa-check"></i><b>4.4.6</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules"><i class="fa fa-check"></i><b>4.5</b> Callee Rules</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="bit-x86.html"><a href="bit-x86.html#callee-summary-again"><i class="fa fa-check"></i><b>4.5.1</b> Callee Summary (again)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="bit-x86.html"><a href="bit-x86.html#caller-rules-example"><i class="fa fa-check"></i><b>4.5.2</b> Caller Rules Example</a></li>
+<li class="chapter" data-level="4.5.3" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-prologue"><i class="fa fa-check"></i><b>4.5.3</b> Callee Rules (prologue)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="bit-x86.html"><a href="bit-x86.html#public-service-announcement"><i class="fa fa-check"></i><b>4.5.4</b> Public Service Announcement!</a></li>
+<li class="chapter" data-level="4.5.5" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-epilogue"><i class="fa fa-check"></i><b>4.5.5</b> Callee Rules (epilogue)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-with-some-more-code"><i class="fa fa-check"></i><b>4.5.6</b> Callee Rules Example (with some more code)</a></li>
+<li class="chapter" data-level="4.5.7" data-path="bit-x86.html"><a href="bit-x86.html#callee-rules-example-making-myfunc"><i class="fa fa-check"></i><b>4.5.7</b> Callee Rules Example: Making myFunc</a></li>
+<li class="chapter" data-level="4.5.8" data-path="bit-x86.html"><a href="bit-x86.html#callee-program-step-by-step"><i class="fa fa-check"></i><b>4.5.8</b> Callee Program: Step by Step</a></li>
+<li class="chapter" data-level="4.5.9" data-path="bit-x86.html"><a href="bit-x86.html#that-subroutine-again"><i class="fa fa-check"></i><b>4.5.9</b> That subroutine, again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="bit-x86.html"><a href="bit-x86.html#activation-records"><i class="fa fa-check"></i><b>4.6</b> Activation Records</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="bit-x86.html"><a href="bit-x86.html#memory-management"><i class="fa fa-check"></i><b>4.6.1</b> Memory Management</a></li>
+<li class="chapter" data-level="4.6.2" data-path="bit-x86.html"><a href="bit-x86.html#consider-this-subroutine"><i class="fa fa-check"></i><b>4.6.2</b> Consider this subroutine…</a></li>
+<li class="chapter" data-level="4.6.3" data-path="bit-x86.html"><a href="bit-x86.html#buffer-overflow-attack"><i class="fa fa-check"></i><b>4.6.3</b> Buffer Overflow Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="bit-x86.html"><a href="bit-x86.html#x86-examples"><i class="fa fa-check"></i><b>4.7</b> x86 Examples</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="bit-x86.html"><a href="bit-x86.html#a-note-about-x86-compatibility"><i class="fa fa-check"></i><b>4.7.1</b> A note about x86 compatibility</a></li>
+<li class="chapter" data-level="4.7.2" data-path="bit-x86.html"><a href="bit-x86.html#test_abs.cpp"><i class="fa fa-check"></i><b>4.7.2</b> test_abs.cpp</a></li>
+<li class="chapter" data-level="4.7.3" data-path="bit-x86.html"><a href="bit-x86.html#generating-assembly-with-clang"><i class="fa fa-check"></i><b>4.7.3</b> Generating assembly with clang++</a></li>
+<li class="chapter" data-level="4.7.4" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value"><i class="fa fa-check"></i><b>4.7.4</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.5" data-path="bit-x86.html"><a href="bit-x86.html#assembly-diffeerences"><i class="fa fa-check"></i><b>4.7.5</b> Assembly diffeerences</a></li>
+<li class="chapter" data-level="4.7.6" data-path="bit-x86.html"><a href="bit-x86.html#assembly-syntax-flavors"><i class="fa fa-check"></i><b>4.7.6</b> Assembly syntax “flavors”</a></li>
+<li class="chapter" data-level="4.7.7" data-path="bit-x86.html"><a href="bit-x86.html#clangs-assembly-for-absolute_value-1"><i class="fa fa-check"></i><b>4.7.7</b> clang++’s assembly for absolute_value</a></li>
+<li class="chapter" data-level="4.7.8" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_int.cpp"><i class="fa fa-check"></i><b>4.7.8</b> test_abs_int.cpp</a></li>
+<li class="chapter" data-level="4.7.9" data-path="bit-x86.html"><a href="bit-x86.html#test_abs_c.c"><i class="fa fa-check"></i><b>4.7.9</b> test_abs_c.c</a></li>
+<li class="chapter" data-level="4.7.10" data-path="bit-x86.html"><a href="bit-x86.html#int-maxint-x-int-y"><i class="fa fa-check"></i><b>4.7.10</b> int max(int x, int y)</a></li>
+<li class="chapter" data-level="4.7.11" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max"><i class="fa fa-check"></i><b>4.7.11</b> x86 code for max()</a></li>
+<li class="chapter" data-level="4.7.12" data-path="bit-x86.html"><a href="bit-x86.html#x86-code-for-max-using--o2"><i class="fa fa-check"></i><b>4.7.12</b> x86 code for max() using -O2</a></li>
+<li class="chapter" data-level="4.7.13" data-path="bit-x86.html"><a href="bit-x86.html#c-string-comparison-compare_string"><i class="fa fa-check"></i><b>4.7.13</b> C-string comparison compare_string()</a></li>
+<li class="chapter" data-level="4.7.14" data-path="bit-x86.html"><a href="bit-x86.html#x86-for-compare_string"><i class="fa fa-check"></i><b>4.7.14</b> x86 for compare_string()</a></li>
+<li class="chapter" data-level="4.7.15" data-path="bit-x86.html"><a href="bit-x86.html#int-fact-factorial"><i class="fa fa-check"></i><b>4.7.15</b> int fact() factorial</a></li>
+<li class="chapter" data-level="4.7.16" data-path="bit-x86.html"><a href="bit-x86.html#x86-assembly-for-fact"><i class="fa fa-check"></i><b>4.7.16</b> x86 assembly for fact()</a></li>
+<li class="chapter" data-level="4.7.17" data-path="bit-x86.html"><a href="bit-x86.html#an-advantage-of-little-endian"><i class="fa fa-check"></i><b>4.7.17</b> An advantage of little-endian</a></li>
+<li class="chapter" data-level="4.7.18" data-path="bit-x86.html"><a href="bit-x86.html#risc-versus-cisc"><i class="fa fa-check"></i><b>4.7.18</b> RISC versus CISC</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Midterm 2 Lecture Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bit-x86" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 64 Bit x86</h1>
+<div id="introduction-to-x86" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction to x86</h2>
+<div id="registers" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Registers</h3>
+<ul>
+<li>rax = 64 bits</li>
+<li>eax = right 32 bits</li>
+<li>ax = right 16 bits</li>
+<li>al = right 8 bits</li>
+<li>ah = next 8 bits</li>
+</ul>
+</div>
+<div id="ibcm-vs-x86-fetch-execute-cycle-same" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> IBCM vs x86: fetch execute cycle (same)</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="bit-x86.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(power is on) {</span>
+<span id="cb31-2"><a href="bit-x86.html#cb31-2" aria-hidden="true" tabindex="-1"></a>    IR := mem[PC]</span>
+<span id="cb31-3"><a href="bit-x86.html#cb31-3" aria-hidden="true" tabindex="-1"></a>    PC := PC + <span class="dv">1</span> (word) <span class="co">// 64-bits in x86</span></span>
+<span id="cb31-4"><a href="bit-x86.html#cb31-4" aria-hidden="true" tabindex="-1"></a>    execute instruction in IR</span>
+<span id="cb31-5"><a href="bit-x86.html#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>PC = program counter</li>
+<li>IR = instruction register</li>
+</ul>
+</div>
+<div id="declaring-variables-in-x86" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Declaring variables in x86</h3>
+<ul>
+<li>Directives
+<ul>
+<li>byte: 1 byte (DB) declare byte</li>
+<li>word: 2 bytes (DW)</li>
+<li>double: 4 bytes (DD)</li>
+<li>quadword: 8 bytes (DQ)</li>
+</ul></li>
+<li><code>TIMES x DB 0</code> directive means create x bytes of value zero</li>
+</ul>
+<pre class="x86asm"><code>section .data
+a   DB      23
+b   DW      ?
+c   DD      3000
+d   DQ      -800
+x   DD      1, 2, 3
+y   TIMES 8 DB  0
+str DB      &#39;hello&#39;, 0
+z   TIMES 50 DD ?</code></pre>
+<ul>
+<li>When writing assembly, will write data section and text section</li>
+</ul>
+</div>
+<div id="mov-command" class="section level3" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Mov command</h3>
+<ul>
+<li><code>mov &lt;dest&gt;, &lt;src&gt;</code></li>
+<li>Where <code>dest</code> and <code>src</code> can be:
+<ul>
+<li>A register</li>
+<li>A constant</li>
+<li>Variable name</li>
+<li>Pointer: [rbx]</li>
+<li>*You will often see movq (move quad word) or movl (move double word), etc.
+<ul>
+<li>This is more precise as you are declaring how many bytes will be moved, but depends on the assembly syntax used (more on this later)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="addressing-memory" class="section level3" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Addressing memory</h3>
+<ul>
+<li>Up to 2 registers and one 64-bit signed constant can be added together to compute a memory address</li>
+<li>Furthermore, one register can be pre-multiplied by 2, 4, or 8
+<ul>
+<li>word-align</li>
+<li>double-align</li>
+<li>quadword-align</li>
+</ul></li>
+<li>Examples:</li>
+</ul>
+<pre class="x86asm"><code>mov rax, rbx
+mov rax, [rbx]
+mov [var], rbx
+mov rax, [r13 - 4]
+mov [rsi + rax], cl
+mov rdx, [rsi + 4*rbx]</code></pre>
+<ul>
+<li><strong>INCORRECT</strong> examples:</li>
+</ul>
+<pre class="x86asm"><code>mov rax, [r11 - rcx]
+mov [rax + r5 + rdi], rbx
+mov [4*rax + 2*rbx], rcx</code></pre>
+</div>
+<div id="example-4" class="section level3" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> Example</h3>
+<pre class="x86asm"><code>mov rcx, rax
+mov rdx, [rbx]
+mov rsi, [rdx+rax+16]
+mov [rsi], 45
+mov [a], 15
+lea rdi, [a]</code></pre>
+<ul>
+<li><code>mov rcx, rax</code>
+<ul>
+<li>Move value of <code>rax</code> into <code>rcx</code>
+<ul>
+<li>For example, <code>rax = 100</code></li>
+<li>Now <code>rcx = 100</code></li>
+</ul></li>
+</ul></li>
+<li><code>mov rdx, [rbx]</code>
+<ul>
+<li>Move the value in the memory address of <code>rbx</code> (this is what the square brackets are for) and move it into <code>rdx</code>
+<ul>
+<li>For example, <code>rbx = 108</code></li>
+<li>Memory address 108 is 8</li>
+<li><code>rdx = 8</code></li>
+</ul></li>
+</ul></li>
+<li><code>mov rsi, [rdx+rax+16]</code>
+<ul>
+<li>Move value in the memory address of <code>rdx+rax+16</code> and move it into <code>rsi</code>
+<ul>
+<li><code>rdx = 8</code>, <code>rax = 100</code>, <code>rdx+rax+16</code> = 124</li>
+<li>Move value of 124 = 200 into rsi</li>
+<li><code>rsi = 200</code></li>
+</ul></li>
+</ul></li>
+<li><code>mov [rsi], 45</code>
+<ul>
+<li>Move the value <code>45</code> into the memory address that matches the value of <code>rsi</code>
+<ul>
+<li>Value of <code>rsi = 200</code></li>
+<li>Move 45 into address 200</li>
+</ul></li>
+</ul></li>
+<li><code>mov [a], 15</code>
+<ul>
+<li>Move the value <code>15</code> into the memory address of the value of <code>a</code>
+<ul>
+<li>For example, <code>a</code> is at memory address 300, so address 300 = 15</li>
+</ul></li>
+</ul></li>
+<li><code>lea rdi, [a]</code>
+<ul>
+<li>Sets <code>rdi</code> to the memory address <code>a</code>
+<ul>
+<li><code>rdi</code> would equal <code>300</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="valid-or-not" class="section level3" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> Valid or not?</h3>
+<ul>
+<li><code>mov rax, [4*rsi-rdx]</code>
+<ul>
+<li>Not valid!</li>
+<li>Cannot subtract</li>
+</ul></li>
+<li><code>mov rax, [4*rsi+4]</code>
+<ul>
+<li>Yes</li>
+</ul></li>
+<li><code>mov rax, [4*rsi+rdx+8]</code>
+<ul>
+<li>Not valid</li>
+<li>Cannot do more than one multiplication and one addition because of clock speed</li>
+</ul></li>
+<li><code>mov rax, [rsi+4*rdx]</code>
+<ul>
+<li>Yes</li>
+</ul></li>
+<li><code>mov rax+8, [rsi]</code>
+<ul>
+<li>You can do this, but needs to be in square brackets</li>
+<li>No, this is not valid</li>
+</ul></li>
+</ul>
+</div>
+<div id="memory-addressing-restrictions" class="section level3" number="4.1.8">
+<h3><span class="header-section-number">4.1.8</span> Memory addressing restrictions</h3>
+<ul>
+<li>The destination cannot be a constant (duh!)</li>
+<li>You cannot access memory twice in one instruction
+<ul>
+<li>Instead, would need to make another variable temp</li>
+<li>As the CPU does not have enough time to do so at that clock speed</li>
+<li>So the following instructions are invalid:</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>mov [rax], [var]
+mov [rax+8], [rbx]
+mov 20, [rax]</code></pre>
+<ul>
+<li>Also, cannot put values into constants
+<ul>
+<li>Destination cannot be a constant</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="x86-instruction-set" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> x86 Instruction Set</h2>
+<ul>
+<li>Data movement instructions</li>
+<li>Arithmetic instructions</li>
+<li>Logical instructions</li>
+<li>Control instructions</li>
+</ul>
+<div id="data-movement-instructions" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Data movement instructions</h3>
+<ul>
+<li><code>mov</code> (or <code>movq</code> if you are moving 8 bytes)
+<ul>
+<li>We’ve seen this in detail already</li>
+</ul></li>
+<li><code>push</code>
+<ul>
+<li>First decrements register RSP (stack pointer) by 8 (stack grows <strong><em>down</em></strong>)</li>
+<li>push (mov) operand onto stack (8 bytes)</li>
+<li>sometimes you will see this as <code>pushq</code> (push quad word onto stack)</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>push rax
+push [var]</code></pre>
+<ul>
+<li><code>pop</code>
+<ul>
+<li>Pop top element of stack to memory or register, then increment stack pointer (RSP) by 8</li>
+<li>Value is written to the parameter</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>pop rax
+pop [var]</code></pre>
+<ul>
+<li><code>lea</code>
+<ul>
+<li>Load effective address</li>
+<li>Place address of second parameter into the first parameter</li>
+<li>Every time you have square brackets around a register, it’s the memory address
+<ul>
+<li>You can use this to do math (like the second example below)</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>lea rax, [var]
+lea rdi, [rbx+4*rsi]</code></pre>
+</div>
+<div id="arithmetic-instructions" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Arithmetic instructions</h3>
+<ul>
+<li><code>add</code>, <code>sub</code>
+<ul>
+<li>Adds (or subtracts), storing result in first operand</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>add &lt;reg&gt;, &lt;reg&gt;
+add &lt;reg&gt;, &lt;mem&gt;
+add &lt;mem&gt;, &lt;reg&gt;
+add &lt;reg&gt;, &lt;constant&gt;
+add &lt;mem&gt;, &lt;constant&gt;</code></pre>
+<ul>
+<li>Similar restrictions as with data movement instructions:
+<ul>
+<li>Destination cannot be a constant</li>
+<li>Memory cannot be accessed twice</li>
+</ul></li>
+<li><code>inc</code>, <code>dec</code> (increment and decrement by one)</li>
+</ul>
+<pre class="x86asm"><code>inc &lt;reg&gt;
+inc &lt;mem&gt;
+
+//Specific examples
+dec rax
+inc [var]</code></pre>
+<ul>
+<li><code>imul</code></li>
+</ul>
+<pre class="x86asm"><code>imul &lt;reg64&gt;, &lt;reg64&gt; (or &lt;mem&gt;)
+imul &lt;reg64&gt;, &lt;reg64&gt; (or &lt;mem&gt;), &lt;con&gt;</code></pre>
+<ul>
+<li><code>idiv</code>
+<ul>
+<li>Divide 128-bit integer in RDX:RAX by operand</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>idiv rbx</code></pre>
+</div>
+<div id="logical-instructions" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Logical instructions</h3>
+<ul>
+<li><code>and</code>, <code>or</code>, <code>xor</code>
+<ul>
+<li>The second example is a quick way to zero out a register</li>
+</ul></li>
+</ul>
+<pre class="x86asm"><code>and &lt;reg&gt;, &lt;reg&gt;
+and &lt;reg&gt;, &lt;mem&gt;
+and &lt;mem&gt;, &lt;reg&gt;
+
+//Specific examples:
+and rax, 0fH
+xor rcx, rcx</code></pre>
+</div>
+<div id="control-instructions" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Control Instructions</h3>
+<ul>
+<li><code>jmp &lt;label&gt;</code>
+<ul>
+<li>go to instruction address specified by label</li>
+</ul></li>
+<li><code>cmp</code>
+<ul>
+<li>This must be done prior to a <em>conditional</em> jump</li>
+<li><code>cmp operand1, operand2</code>
+<ul>
+<li>Operand1 can be a register or memory (variable)</li>
+<li>Operand2 can be a register, memory (variable), or a constant</li>
+<li>Recall that you can’t access memory twice!</li>
+</ul></li>
+<li>Sets the <em>machine status word</em></li>
+</ul></li>
+<li>Conditional jumps: j<em>condition</em>
+<ul>
+<li>Uses the machine status word, which was set via <code>cmp</code>
+<ul>
+<li>Which holds info about the results of the last instruction</li>
+</ul></li>
+<li>There are many ’condition’s to determine whether to jump</li>
+<li>Example: <code>je &lt;label&gt;</code>
+<ul>
+<li>Jump when condition code equal is set</li>
+</ul></li>
+<li>Others: <code>jne</code>, <code>jz</code>, <code>jg</code>, <code>jge</code>, <code>jl</code>, <code>jle</code>, <code>js</code>, etc.</li>
+</ul></li>
+<li><code>call &lt;label&gt;</code>
+<ul>
+<li>Subroutine call</li>
+<li>Pushes address of the <em>next</em> instruction onto the stack, then unconditionally jumps to the label</li>
+</ul></li>
+<li><code>ret</code>
+<ul>
+<li>Subroutine return</li>
+<li>Pops the return address from the stack, then jumps to that address</li>
+</ul></li>
+</ul>
+</div>
+<div id="a-code-block-in-both-cc-and-assembly" class="section level3" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> A code block in both C/C++ and Assembly</h3>
+<p>C/C++ code:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb45-1"><a href="bit-x86.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n = <span class="dv">5</span>;</span>
+<span id="cb45-2"><a href="bit-x86.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i = <span class="dv">1</span>;</span>
+<span id="cb45-3"><a href="bit-x86.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sum = <span class="dv">0</span>;</span>
+<span id="cb45-4"><a href="bit-x86.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i &lt;= n) {</span>
+<span id="cb45-5"><a href="bit-x86.html#cb45-5" aria-hidden="true" tabindex="-1"></a>    sum += i;</span>
+<span id="cb45-6"><a href="bit-x86.html#cb45-6" aria-hidden="true" tabindex="-1"></a>    i++;</span>
+<span id="cb45-7"><a href="bit-x86.html#cb45-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Assembly code:</p>
+<pre class="x86asm"><code>section .data
+n   DQ 5
+i   DQ 1
+sum DQ 0
+
+section .text
+loop:   mov rcx, [i]
+    cmp rcx, [n]
+    jg endOfLoop
+    add [sum], rcx
+    inc qword [i]
+    jmp loop
+endOfLoop:</code></pre>
+</div>
+</div>
+<div id="calling-conventions" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Calling Conventions</h2>
+<div id="calling-of-a-subroutine-c" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Calling of a subroutine: C++</h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb47-1"><a href="bit-x86.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> max(<span class="dt">int</span> x, <span class="dt">int</span> y) {</span>
+<span id="cb47-2"><a href="bit-x86.html#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> theMax = (x &gt; y) ? x : y;</span>
+<span id="cb47-3"><a href="bit-x86.html#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theMax;</span>
+<span id="cb47-4"><a href="bit-x86.html#cb47-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-5"><a href="bit-x86.html#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="bit-x86.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb47-7"><a href="bit-x86.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a = <span class="dv">5</span>, b = <span class="dv">6</span>;</span>
+<span id="cb47-8"><a href="bit-x86.html#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> maxVal = max(a,b);</span>
+<span id="cb47-9"><a href="bit-x86.html#cb47-9" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;Max value: &quot;</span> &lt;&lt; maxVal &lt;&lt; endl;</span>
+<span id="cb47-10"><a href="bit-x86.html#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb47-11"><a href="bit-x86.html#cb47-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="calling-conventions-1" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Calling Conventions</h3>
+<ul>
+<li>What is a calling convention?
+<ul>
+<li>A set of rules/expectations between functions
+<ul>
+<li>How (and where) are <em>parameters</em> passed?</li>
+<li>Which <em>registers</em> does the calling function expect to be preserved?</li>
+<li>Where should <em>local variables</em> be stored?</li>
+<li>How/where should results be <em>returned</em> from functions?</li>
+</ul></li>
+</ul></li>
+<li>Why?
+<ul>
+<li>Separate programmers can:
+<ul>
+<li>Share code more easily</li>
+<li>Develop libraries</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="c-calling-convention" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> C Calling Convention</h3>
+<ul>
+<li>Why C’s calling convention?
+<ul>
+<li>It’s important</li>
+<li>Is used with both C and C++ code</li>
+<li>Can enable calling C library functions from assembly code
+<ul>
+<li>Or other languages, too</li>
+</ul></li>
+</ul></li>
+<li>Uses hardware stack (memory)
+<ul>
+<li>Stack <em>grows down</em>, toward the lower memory addresses</li>
+<li>x86 instructions used for calling convention
+<ul>
+<li><code>pop</code></li>
+<li><code>push</code></li>
+<li><code>call</code></li>
+<li><code>ret</code></li>
+</ul></li>
+<li>Using a stack for calling convention is implemented on most processors. Why?
+<ul>
+<li>Recursion</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="c-calling-convention-overview" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> C Calling Convention Overview</h3>
+<ul>
+<li>Answers to questions
+<ul>
+<li>Parameters: passed in registers
+<ul>
+<li>If more than 6, then params <span class="math inline">\(7-n\)</span> placed on stack</li>
+<li>If passing a large object, then placed on stack (doesn’t fit in 64-bit register)</li>
+</ul></li>
+<li>Registers: saved on the stack</li>
+<li>Local variables: placed in memory on the stack
+<ul>
+<li>Or in registers if room available</li>
+</ul></li>
+<li>Return value: rax register</li>
+</ul></li>
+</ul>
+</div>
+<div id="calling-convention-overview" class="section level3" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Calling Convention Overview</h3>
+<ul>
+<li>Two sets of rules
+<ul>
+<li>Caller: the function which calls another function
+<ul>
+<li>From example a few slides back, <code>main</code></li>
+</ul></li>
+<li>Callee: the function which is called by another function
+<ul>
+<li>From example a few slides back, <code>max</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="register-usage" class="section level3" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Register Usage</h3>
+<ul>
+<li>One register is used for the return value: rax</li>
+<li>Six registers are used for parameter passing:
+<ul>
+<li>rdi, rsi, rdx, rcx, r8, r9</li>
+</ul></li>
+<li>Two registers may be modified by the callee: r10 and r11
+<ul>
+<li>If the caller wants to keep those values, they need to be saved by pushing them onto the stack</li>
+<li>Actually, these two have specific uses depending on the language, so are often not used for this reason.</li>
+</ul></li>
+<li>Six registers may not be modified by a subroutine callee:
+<ul>
+<li>rbx, rbp, r12-r15
+<ul>
+<li>If it wants to use them, the subroutine must back them up (onto the stack) and restore them later</li>
+</ul></li>
+</ul></li>
+<li>rsp should almost never be modified directly, as it points to the top of the stack</li>
+</ul>
+</div>
+<div id="varying-number-of-parameters" class="section level3" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Varying number of parameters</h3>
+<ul>
+<li>Three ways to have a variable number of parameters
+<ul>
+<li>Method overloading
+<ul>
+<li><code>Foo::bar(int)</code> and <code>Foo::bar(int,float)</code></li>
+</ul></li>
+<li>Default parameters
+<ul>
+<li><code>Foo::bar(int x = 3)</code></li>
+</ul></li>
+<li>Variable arguments</li>
+</ul></li>
+</ul>
+</div>
+<div id="variable-number-of-arguments-in-cc" class="section level3" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> Variable number of arguments in C/C++</h3>
+<ul>
+<li>Following code takes in an arbirary number of parameters</li>
+<li>Subroutine figures out how many parameters there are</li>
+<li>You can have a variable number of parameters!</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb48-1"><a href="bit-x86.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cstdarg&gt;</span></span>
+<span id="cb48-2"><a href="bit-x86.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb48-3"><a href="bit-x86.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb48-4"><a href="bit-x86.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="bit-x86.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> average (<span class="dt">int</span> num, ...) {</span>
+<span id="cb48-6"><a href="bit-x86.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">va_list</span> arguments;</span>
+<span id="cb48-7"><a href="bit-x86.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">double</span> sum = <span class="dv">0</span>;</span>
+<span id="cb48-8"><a href="bit-x86.html#cb48-8" aria-hidden="true" tabindex="-1"></a>  va_start (arguments, num);</span>
+<span id="cb48-9"><a href="bit-x86.html#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> ( <span class="dt">int</span> x = <span class="dv">0</span>; x &lt; num; x++ )</span>
+<span id="cb48-10"><a href="bit-x86.html#cb48-10" aria-hidden="true" tabindex="-1"></a>    sum += va_arg (arguments, <span class="dt">double</span>);</span>
+<span id="cb48-11"><a href="bit-x86.html#cb48-11" aria-hidden="true" tabindex="-1"></a>  va_end (arguments);</span>
+<span id="cb48-12"><a href="bit-x86.html#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sum / num;</span>
+<span id="cb48-13"><a href="bit-x86.html#cb48-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-14"><a href="bit-x86.html#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="bit-x86.html#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb48-16"><a href="bit-x86.html#cb48-16" aria-hidden="true" tabindex="-1"></a>  cout &lt;&lt; average(<span class="dv">3</span>, <span class="fl">12.2</span>, <span class="fl">22.3</span>, <span class="fl">4.5</span>) &lt;&lt; endl;</span>
+<span id="cb48-17"><a href="bit-x86.html#cb48-17" aria-hidden="true" tabindex="-1"></a>  cout &lt;&lt; average(<span class="dv">5</span>, <span class="fl">3.3</span>, <span class="fl">2.2</span>, <span class="fl">1.1</span>, <span class="fl">5.5</span>, <span class="fl">3.3</span>) &lt;&lt; endl;</span>
+<span id="cb48-18"><a href="bit-x86.html#cb48-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="example-output-in-c" class="section level3" number="4.3.9">
+<h3><span class="header-section-number">4.3.9</span> Example: output in C</h3>
+<ul>
+<li>C uses <code>printf</code> in place out <code>cout</code></li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb49-1"><a href="bit-x86.html#cb49-1" aria-hidden="true" tabindex="-1"></a>printf (<span class="st">&quot;A %s, a %s, a %s: %s!</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;man&quot;</span>, </span>
+<span id="cb49-2"><a href="bit-x86.html#cb49-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;plan&quot;</span>, <span class="st">&quot;canal&quot;</span>, <span class="st">&quot;Panama&quot;</span>);</span>
+<span id="cb49-3"><a href="bit-x86.html#cb49-3" aria-hidden="true" tabindex="-1"></a>printf (<span class="st">&quot;A percent sign: %%</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb49-4"><a href="bit-x86.html#cb49-4" aria-hidden="true" tabindex="-1"></a>printf (<span class="st">&quot;An int: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, i);</span>
+<span id="cb49-5"><a href="bit-x86.html#cb49-5" aria-hidden="true" tabindex="-1"></a>printf (<span class="st">&quot;A float with 2 decimal digits: %.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb49-6"><a href="bit-x86.html#cb49-6" aria-hidden="true" tabindex="-1"></a>        float_value);</span></code></pre></div>
+<ul>
+<li>The percents with a character are a variable value
+<ul>
+<li>The variable(s) are after the comma(s)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb50-1"><a href="bit-x86.html#cb50-1" aria-hidden="true" tabindex="-1"></a>A man, a plan, a canal: Panama!</span>
+<span id="cb50-2"><a href="bit-x86.html#cb50-2" aria-hidden="true" tabindex="-1"></a>A percent sign: %</span>
+<span id="cb50-3"><a href="bit-x86.html#cb50-3" aria-hidden="true" tabindex="-1"></a>An <span class="dt">int</span>: <span class="dv">3</span></span>
+<span id="cb50-4"><a href="bit-x86.html#cb50-4" aria-hidden="true" tabindex="-1"></a>A <span class="dt">float</span> with <span class="dv">2</span> decimal digits: <span class="fl">3.14</span></span></code></pre></div>
+</div>
+</div>
+<div id="caller-rules" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Caller Rules</h2>
+<div id="caller-summary" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Caller Summary</h3>
+<ul>
+<li>Prologue
+<ul>
+<li>Tasks to take care of BEFORE calling a subroutine</li>
+<li>Get ready to call subroutine</li>
+</ul></li>
+<li>Call the subroutine with the <code>call</code> opcode</li>
+<li>Epilogue
+<ul>
+<li>Tasks to complete AFTER subroutine call returns</li>
+</ul></li>
+<li>(It is not really called this, but I use this to parallel the equivalent components in the callee convention)</li>
+</ul>
+</div>
+<div id="callee-summary" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Callee Summary</h3>
+<ul>
+<li>Prologue
+<ul>
+<li>Tasks to perform BEFORE executing the function body</li>
+</ul></li>
+<li>Function body</li>
+<li>Epilogue
+<ul>
+<li>Tasks to perform AFTER executing function body, but BEFORE leaving function</li>
+</ul></li>
+</ul>
+</div>
+<div id="caller-rulesresponsibilities" class="section level3" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Caller Rules/Responsibilities</h3>
+<ul>
+<li><em>Before</em> calling the function (the prologue)
+<ul>
+<li>Save registers that might be needed after the call (r10, r11, or param registers if applicable)</li>
+<li>Place parameters in registers / on stack
+<ul>
+<li>rdi, rsi, rdx, rcx, r8, r9</li>
+<li>Then push extra params onto stack (in reverse order?)</li>
+</ul></li>
+</ul></li>
+<li>Call the function
+<ul>
+<li><code>call</code> instruction places return address on stack</li>
+</ul></li>
+<li><em>After</em> the called function returns (the epilogue)
+<ul>
+<li>Remove parameters from stack (if applicable)</li>
+<li>Restore saved registers (if applicable)</li>
+</ul></li>
+</ul>
+</div>
+<div id="prologue" class="section level3" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Prologue</h3>
+<ol style="list-style-type: decimal">
+<li>Caller-saved registers</li>
+</ol>
+<ul>
+<li>Registers which the caller must save (push onto the stack) ONLY if it wants the values preserved.</li>
+<li>r10, r11, and registers used for parameters if need value saved</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Parameters</li>
+</ol>
+<ul>
+<li>First six are passed in through registers (see previous slide)</li>
+<li>params 7-n pushed in reverse order (last parameter first) onto stack</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Call the subroutine</li>
+</ol>
+<ul>
+<li>Use the <code>call</code> instruction
+<ul>
+<li>pushes the return address onto the stack and branches to the subroutine</li>
+</ul></li>
+</ul>
+</div>
+<div id="epilogue" class="section level3" number="4.4.5">
+<h3><span class="header-section-number">4.4.5</span> Epilogue</h3>
+<ol style="list-style-type: decimal">
+<li>Remove parameters</li>
+</ol>
+<ul>
+<li>Parameters pushed onto stack must be removed
+<ul>
+<li>Restore stack to the state before the call</li>
+</ul></li>
+<li>What is done with the parameters?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Return value</li>
+</ol>
+<ul>
+<li>If any, held in rax</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Restore caller-saved registers</li>
+</ol>
+<ul>
+<li><code>pop</code> them off the stack (Caller can assume no other registers were modified)</li>
+</ul>
+</div>
+<div id="example-5" class="section level3" number="4.4.6">
+<h3><span class="header-section-number">4.4.6</span> Example</h3>
+<ul>
+<li>This is the code that we will be referencing:</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb51-1"><a href="bit-x86.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> myFunc(<span class="dt">long</span> a, <span class="dt">long</span> b, <span class="dt">long</span> c) {</span>
+<span id="cb51-2"><a href="bit-x86.html#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> result;</span>
+<span id="cb51-3"><a href="bit-x86.html#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// some code</span></span>
+<span id="cb51-4"><a href="bit-x86.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result;</span>
+<span id="cb51-5"><a href="bit-x86.html#cb51-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-6"><a href="bit-x86.html#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="bit-x86.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb51-8"><a href="bit-x86.html#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> x = <span class="dv">1</span>, z = <span class="dv">3</span>;</span>
+<span id="cb51-9"><a href="bit-x86.html#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> retVal = myFunc(x, <span class="dv">123</span>, z);</span>
+<span id="cb51-10"><a href="bit-x86.html#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb51-11"><a href="bit-x86.html#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb51-12"><a href="bit-x86.html#cb51-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>This is the assembly:</li>
+</ul>
+<pre class="x86asm"><code>; Want to call a function &quot;myFunc&quot; that takes three
+; integer parameters. First parameter is in rax.
+; Second parameter is the constant 123. Third
+; parameter is in memory location &quot;var&quot;
+
+push rdi         ; rdi will be a param, so saving it
+
+                 ; long retVal = myFunc(x, 123, z);
+mov rdi, rax     ; put first param in rdi
+mov rsi, 123     ; put second param in rsi
+mov rdx, [var]   ; put third param in rdx
+
+call myFunc      ; call the function
+
+pop rdi          ; restore saved rdi value
+
+; return value of myFunc is now available in rax 
+; (if there is any return value)</code></pre>
+</div>
+</div>
+<div id="callee-rules" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Callee Rules</h2>
+<div id="callee-summary-again" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Callee Summary (again)</h3>
+<ul>
+<li>Prologue
+<ul>
+<li>Before executing the function body</li>
+</ul></li>
+<li>Function body</li>
+<li>Epilogue
+<ul>
+<li>After function body</li>
+</ul></li>
+</ul>
+</div>
+<div id="caller-rules-example" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Caller Rules Example</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb53-1"><a href="bit-x86.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> myFunc(<span class="dt">long</span> a, <span class="dt">long</span> b, <span class="dt">long</span> c) {</span>
+<span id="cb53-2"><a href="bit-x86.html#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> result;</span>
+<span id="cb53-3"><a href="bit-x86.html#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">//some code</span></span>
+<span id="cb53-4"><a href="bit-x86.html#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result;</span>
+<span id="cb53-5"><a href="bit-x86.html#cb53-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb53-6"><a href="bit-x86.html#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="bit-x86.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb53-8"><a href="bit-x86.html#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> x = <span class="dv">1</span>, z = <span class="dv">3</span>;</span>
+<span id="cb53-9"><a href="bit-x86.html#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> retVal = myFunc(x, <span class="dv">123</span>, z);</span>
+<span id="cb53-10"><a href="bit-x86.html#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb53-11"><a href="bit-x86.html#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb53-12"><a href="bit-x86.html#cb53-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="callee-rules-prologue" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Callee Rules (prologue)</h3>
+<p>Before the body of the function:
+1. Allocate local variables
+- Make space on stack (decrement stack pointer)</p>
+<pre class="x86asm"><code>sub rsp, 8</code></pre>
+<ul>
+<li>One of the only times we will do arithmetic directly on <code>rsp</code> (subtract 8 from rsp)</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Save callee-save registers
+<ul>
+<li>rbx, rbp, r12-r15</li>
+<li>Only need to do this if calee intends to use them, otherwise, no need to save their contents</li>
+</ul></li>
+</ol>
+<p>THEN perform body of the function.</p>
+</div>
+<div id="public-service-announcement" class="section level3" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Public Service Announcement!</h3>
+<ul>
+<li>Note that you might see code like this:</li>
+</ul>
+<pre class="x86asm"><code>push rbp        ; at the start of the callee
+mov rbp, rsp
+...
+pop rbp         ; just before the ending &#39;ret&#39;</code></pre>
+<ul>
+<li>This is a 32-bit x86 convention that is no longer officially used, but is sometimes seen anyways</li>
+<li>To omit it, add the <code>-fomit-frame-pointer</code> flag to the compilation line</li>
+</ul>
+</div>
+<div id="callee-rules-epilogue" class="section level3" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Callee Rules (epilogue)</h3>
+<ol style="list-style-type: decimal">
+<li>Return value saved to rax</li>
+<li>Restore callee-saved registers
+<ul>
+<li><code>pop</code> from stack (in reverse order from which pushed)</li>
+</ul></li>
+<li>Deallocate local variables</li>
+</ol>
+<pre class="x86asm"><code>add rsp, 8 ; constant here depends on size of locals</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Return</li>
+</ol>
+<pre class="x86asm"><code>ret</code></pre>
+</div>
+<div id="callee-rules-example-with-some-more-code" class="section level3" number="4.5.6">
+<h3><span class="header-section-number">4.5.6</span> Callee Rules Example (with some more code)</h3>
+<div class="sourceCode" id="cb58"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb58-1"><a href="bit-x86.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> myFunc(<span class="dt">long</span> a, <span class="dt">long</span> b, <span class="dt">long</span> c) {</span>
+<span id="cb58-2"><a href="bit-x86.html#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> result;</span>
+<span id="cb58-3"><a href="bit-x86.html#cb58-3" aria-hidden="true" tabindex="-1"></a>    result = c;</span>
+<span id="cb58-4"><a href="bit-x86.html#cb58-4" aria-hidden="true" tabindex="-1"></a>    result += b;</span>
+<span id="cb58-5"><a href="bit-x86.html#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result;</span>
+<span id="cb58-6"><a href="bit-x86.html#cb58-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb58-7"><a href="bit-x86.html#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="bit-x86.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb58-9"><a href="bit-x86.html#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> x = <span class="dv">1</span>, z = <span class="dv">3</span>;</span>
+<span id="cb58-10"><a href="bit-x86.html#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> retVal = myFunc(x, <span class="dv">123</span>, z);</span>
+<span id="cb58-11"><a href="bit-x86.html#cb58-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb58-12"><a href="bit-x86.html#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb58-13"><a href="bit-x86.html#cb58-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="callee-rules-example-making-myfunc" class="section level3" number="4.5.7">
+<h3><span class="header-section-number">4.5.7</span> Callee Rules Example: Making myFunc</h3>
+<pre class="x86asm"><code>section .text
+myFunc:
+                    ; prologue
+sub rsp, 8          ; room for a 64-bit local var (result)
+push rbx            ; save callee-save registers
+push rbp            ; both will be used by myFunc
+                    ; subroutine body
+mov rax, rdi        ; param 1 to rax
+mov rbp, rsi        ; param 2 to rbp
+mov rbx, rdx        ; param 3 to rbx
+mov [rsp+16], rbx   ; put rbx into local var
+add [rsp+16], rbp   ; add rbp into local var
+mov rax, [rsp+16]   ; mov contents of local var to rax
+                    ; (return value/final result)
+                    ; subroutine epilogue
+pop rbp             ; recover callee save registers
+pop rbx             ; REVERSE of when pushed
+add rsp, 8          ; deallocate local var(s)
+ret                 ; pop top value from stack, jump there</code></pre>
+</div>
+<div id="callee-program-step-by-step" class="section level3" number="4.5.8">
+<h3><span class="header-section-number">4.5.8</span> Callee Program: Step by Step</h3>
+<ul>
+<li><code>sub rsp, 8</code>
+<ul>
+<li>rsp moves down by 8 bytes in size for local variable</li>
+</ul></li>
+<li><code>push rbx</code>
+<ul>
+<li>Whatever is in rbx is going to be pushed onto the stack</li>
+<li>rsp moves down again by 8 bytes</li>
+</ul></li>
+<li><code>push rbp</code>
+<ul>
+<li>Whatever is in rbp is pushed onto stack</li>
+<li>rsp lowers by 8 bytes</li>
+</ul></li>
+<li><code>mov rax, rdi</code>
+<ul>
+<li>rdi was already assigned to 1</li>
+<li>Takes this value and copies it into rax</li>
+<li>rax is now value 1</li>
+</ul></li>
+<li><code>mov rbp, rsi</code>
+<ul>
+<li>rsi was also already assigned as 123</li>
+<li>This gets copied into rbp</li>
+<li>rbp is now 123</li>
+</ul></li>
+<li><code>mov rbx, rdx</code>
+<ul>
+<li>rdx was already assigned to 3</li>
+<li>This gets copied into rbx</li>
+<li>rbx is now 3</li>
+</ul></li>
+<li><code>mov [rsp+16], rbx</code>
+<ul>
+<li>rbx gets moved to rsp+16 (lower on the stack)</li>
+</ul></li>
+<li><code>add [rsp+16], rbp</code>
+<ul>
+<li>Add rbp (123) to this local variable (3) = 126</li>
+</ul></li>
+<li><code>mov rax, [rsp+16]</code>
+<ul>
+<li>Copy local value (126) into rax</li>
+<li>rax is now 126</li>
+</ul></li>
+<li><code>pop rbp</code>
+<ul>
+<li>Whatever value was in rbp is restored</li>
+</ul></li>
+<li><code>pop rbx</code>
+<ul>
+<li>Whatever value was in rbx is restored</li>
+</ul></li>
+<li><code>add rsp, 8</code>
+<ul>
+<li>Restore</li>
+</ul></li>
+<li><code>ret</code>
+<ul>
+<li>Return value</li>
+</ul></li>
+</ul>
+</div>
+<div id="that-subroutine-again" class="section level3" number="4.5.9">
+<h3><span class="header-section-number">4.5.9</span> That subroutine, again</h3>
+<ul>
+<li>The previous assembly method could be written as</li>
+</ul>
+<pre class="x86asm"><code>mov rax, rdx
+add rax, rsi
+ret</code></pre>
+<ul>
+<li>It was moreso to show how the calling convention works</li>
+</ul>
+</div>
+</div>
+<div id="activation-records" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Activation Records</h2>
+<ul>
+<li>Every time a subroutine is called, a number of things are pushed onto the stack
+<ul>
+<li>Registers</li>
+<li>Parameters</li>
+<li>Local variables</li>
+<li>Return address</li>
+</ul></li>
+<li>All of this is called the <em>activation record</em></li>
+</ul>
+<div id="memory-management" class="section level3" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Memory Management</h3>
+<ul>
+<li>The binary program takes up a fixed amount of space
+<ul>
+<li>The size of the file</li>
+</ul></li>
+<li>There are two types of memory that need to be handled
+<ul>
+<li>Dynamic memory (via <code>new</code>, <code>malloc()</code>, etc)
+<ul>
+<li>This is stored on the <em>heap</em></li>
+</ul></li>
+<li>Static memory (on the stack)
+<ul>
+<li>This is where the activation records are kept</li>
+</ul></li>
+</ul></li>
+<li>The binary program starts at the beginning of the <span class="math inline">\(2^{32} = 4\)</span> Gb of memory</li>
+<li>The heap starts right after this
+<ul>
+<li>Ex. Address 10,000 if a 10 kb binary file</li>
+</ul></li>
+<li>The stack starts at the end of this 4 Gb of memory, and grows backward</li>
+<li>As a program progresses, they both grow toward the middle</li>
+</ul>
+</div>
+<div id="consider-this-subroutine" class="section level3" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Consider this subroutine…</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb61-1"><a href="bit-x86.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> security_hole() {</span>
+<span id="cb61-2"><a href="bit-x86.html#cb61-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> buffer[<span class="dv">12</span>];</span>
+<span id="cb61-3"><a href="bit-x86.html#cb61-3" aria-hidden="true" tabindex="-1"></a>    scanf (<span class="st">&quot;</span><span class="sc">%s</span><span class="st">&quot;</span>, buffer); <span class="co">// how C handles input</span></span>
+<span id="cb61-4"><a href="bit-x86.html#cb61-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The stack would look like this (sizes in parenthesis, addresses increase towards the top, stack grows downward):
+- ret addr (8)
+- buffer (12)
+- rdi (8)
+- rsi (8)</p>
+<p>Now, what if we get something that is bigger than 12 characters to put into the buffer?
+- Ex. 20 bytes
+- Fill 12 bytes to buffer
+- Fill 8 remaining bytes to return address (ret addr)
+- This is called a <em>buffer overflow</em>
+- Overflowing the buffer
+- “Smashing the stack”
+- Overwriting things on the stack
+- Now the return address is overwritten with some characters
+- Leads to:
+- At best? a segfault
+- At worst? a security hole…</p>
+</div>
+<div id="buffer-overflow-attack" class="section level3" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Buffer Overflow Attack</h3>
+<ul>
+<li>When you read in a string/etc that goes beyond the size of the buffer
+<ul>
+<li>“Buffer overflow”</li>
+<li>Make this string the malicious code</li>
+</ul></li>
+<li>You overwrite the return address
+<ul>
+<li>And set it to the buffer address</li>
+<li>Now, it returns into the buffer and runs the buffer code when closing the subroutine</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="x86-examples" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> x86 Examples</h2>
+<div id="a-note-about-x86-compatibility" class="section level3" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> A note about x86 compatibility</h3>
+<ul>
+<li>nasm is the assembler we are using</li>
+<li>x86 code in slides are either
+<ul>
+<li>“Generic” x86 examples that could work in nasm if put into a full program
+<ul>
+<li>Like the C++ snippets</li>
+</ul></li>
+<li>Or output from <code>clang++ -S</code>
+<ul>
+<li>Doesn’t work with nasm but works with clang++</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="test_abs.cpp" class="section level3" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> test_abs.cpp</h3>
+<p>C++ code:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb62-1"><a href="bit-x86.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb62-2"><a href="bit-x86.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb62-3"><a href="bit-x86.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="at">extern</span> <span class="st">&quot;C&quot;</span> <span class="dt">int</span> absolute_value(<span class="dt">int</span> x);</span>
+<span id="cb62-4"><a href="bit-x86.html#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="bit-x86.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> absolute_value(<span class="dt">long</span> x) {</span>
+<span id="cb62-6"><a href="bit-x86.html#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x&lt;<span class="dv">0</span>)    <span class="co">// if x is negative</span></span>
+<span id="cb62-7"><a href="bit-x86.html#cb62-7" aria-hidden="true" tabindex="-1"></a>        x = -x;    <span class="co">// negate x</span></span>
+<span id="cb62-8"><a href="bit-x86.html#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x;    <span class="co">// return x</span></span>
+<span id="cb62-9"><a href="bit-x86.html#cb62-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb62-10"><a href="bit-x86.html#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="bit-x86.html#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb62-12"><a href="bit-x86.html#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> theValue=<span class="dv">0</span>;</span>
+<span id="cb62-13"><a href="bit-x86.html#cb62-13" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;Enter a value: &quot;</span> &lt;&lt; endl;</span>
+<span id="cb62-14"><a href="bit-x86.html#cb62-14" aria-hidden="true" tabindex="-1"></a>    cin &gt;&gt; theValue;</span>
+<span id="cb62-15"><a href="bit-x86.html#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> theResult = absolute_value(theValue);</span>
+<span id="cb62-16"><a href="bit-x86.html#cb62-16" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;The result is: &quot;</span> &lt;&lt; theResult &lt;&lt; endl;</span>
+<span id="cb62-17"><a href="bit-x86.html#cb62-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb62-18"><a href="bit-x86.html#cb62-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>x86 Assembly code for <code>absolute_value</code>:</p>
+<pre class="x86asm"><code>; prologue, nothing here because no saved
+; registers and no local vars
+
+; procedure body
+mov rax, rdi          ; rax &lt;- x
+cmp rax, 0            ; x == 0 ?
+jge end_of_proc       ; if pos goto end
+neg rax               ; negate x
+
+end_of_proc:
+                   
+; Standard epilogue, no local vars and no saved regs
+ret</code></pre>
+</div>
+<div id="generating-assembly-with-clang" class="section level3" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> Generating assembly with clang++</h3>
+<ul>
+<li>Using the -S flag, we can generate assembly from C/C++ code</li>
+<li>Note that the format is a bit different
+<ul>
+<li>Register specification, dest/source order, etc.</li>
+</ul></li>
+<li>So we need to use the following command:
+<ul>
+<li><code>clang++ -m64 -S test_abs.cpp -o test_abs-non-intel.s</code></li>
+<li>You’ll see why it has ‘non-intel’ in the name shortly…</li>
+</ul></li>
+<li>Actually, we use even more flags…</li>
+</ul>
+</div>
+<div id="clangs-assembly-for-absolute_value" class="section level3" number="4.7.4">
+<h3><span class="header-section-number">4.7.4</span> clang++’s assembly for absolute_value</h3>
+<p>Note that the source/destination order is reversed (moving the first into the second, instead of second into the first like we are used to), and a lot of other differences. This is the AT&amp;T syntax. We aren’t using this, we are using the Intel syntax.</p>
+<pre class="x86asm"><code>absolute_value:
+    movq    %rdi, -8(%rsp)
+    cmpq    $0, -8(%rsp)
+    jge    .LBB1_2
+    xorl    %eax, %eax
+    movl    %eax, %ecx
+    subq    -8(%rsp), %rcx
+    movq    %rcx, -8(%rsp)
+.LBB1_2:
+    movq    -8(%rsp), %rax
+    retq</code></pre>
+</div>
+<div id="assembly-diffeerences" class="section level3" number="4.7.5">
+<h3><span class="header-section-number">4.7.5</span> Assembly diffeerences</h3>
+<ul>
+<li>There are a lot of differences between the assembly we’ve seen and what clang++ -O2 -S -fomit-frame-pointer produces
+<ul>
+<li>The source / destination order is reversed</li>
+<li><code>movq</code>, <code>sarq</code>, <code>xorq</code> etc.
+<ul>
+<li>the ‘q’ part means ‘quadword’ (i.e. 64 bits, so the assembler doesn’t have to guess)</li>
+</ul></li>
+<li>$0 is the constant 0</li>
+<li>Register names begin with a percent sign</li>
+<li><code>-8(%rsp)</code> is [rsp-8]</li>
+</ul></li>
+</ul>
+</div>
+<div id="assembly-syntax-flavors" class="section level3" number="4.7.6">
+<h3><span class="header-section-number">4.7.6</span> Assembly syntax “flavors”</h3>
+<ul>
+<li>There are two primary syntax “flavors” of x86 assembly
+<ul>
+<li>The difference is solely in the formatting; all assembly commands can be written in either format</li>
+<li>You can see more details about the differences here</li>
+</ul></li>
+<li>Flavors:
+<ul>
+<li>Intel syntax: what we will use, and what nasm uses</li>
+<li>AT&amp;T syntax: what clang++ -S uses by default</li>
+</ul></li>
+<li>To make clang++ use the Intel syntax, you need to add the <code>-mllvm --x86-asm-syntax=intel</code> flags
+<ul>
+<li><code>clang++ -m64 -mllvm --x86-asm-syntax=intel -S -fomit-frame-pointer test_abs.cpp -o test_abs.s</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="clangs-assembly-for-absolute_value-1" class="section level3" number="4.7.7">
+<h3><span class="header-section-number">4.7.7</span> clang++’s assembly for absolute_value</h3>
+<p>This is with the <code>-mllvm --x86-asm-syntax=intel</code> flags. Note that this looks longer than what we made but is a lot similar to what we are programming like than the last output (since this is Intel vs the last being AT&amp;T).</p>
+<pre class="x86asm"><code>absolute_value:
+    mov    qword ptr [rsp - 8], rdi
+    cmp    qword ptr [rsp - 8], 0
+    jge    .LBB1_2
+    xor    eax, eax
+    mov    ecx, eax
+    sub    rcx, qword ptr [rsp - 8]
+    mov    qword ptr [rsp - 8], rcx
+.LBB1_2:
+    mov    rax, qword ptr [rsp - 8]
+    ret</code></pre>
+</div>
+<div id="test_abs_int.cpp" class="section level3" number="4.7.8">
+<h3><span class="header-section-number">4.7.8</span> test_abs_int.cpp</h3>
+<p>This is the same as before, but instead of <code>long</code> it uses <code>int</code>. Refer to the code above in the <code>test_abs.cpp</code> part. In assembly, it would look like this when compiled with clang++:</p>
+<pre class="x86asm"><code>absolute_value:
+    mov    dword ptr [rsp - 4], edi
+    cmp    dword ptr [rsp - 4], 0
+    jge    .LBB1_2
+    xor    eax, eax
+    sub    eax, dword ptr [rsp - 4]
+    mov    dword ptr [rsp - 4], eax
+.LBB1_2:
+    mov    eax, dword ptr [rsp - 4]
+    ret</code></pre>
+<p>Because ints are smaller than longs, note that it ofsets <code>[rsp-4]</code> rather than <code>[rsp-8]</code>. Also, it uses <code>eax</code> rather than <code>rax</code>.</p>
+</div>
+<div id="test_abs_c.c" class="section level3" number="4.7.9">
+<h3><span class="header-section-number">4.7.9</span> test_abs_c.c</h3>
+<p>This is a C program. We are also back to using longs.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb67-1"><a href="bit-x86.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb67-2"><a href="bit-x86.html#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="bit-x86.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> absolute_value(<span class="dt">long</span> x) {</span>
+<span id="cb67-4"><a href="bit-x86.html#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x&lt;<span class="dv">0</span>)    <span class="co">// if x is negative</span></span>
+<span id="cb67-5"><a href="bit-x86.html#cb67-5" aria-hidden="true" tabindex="-1"></a>        x = -x;    <span class="co">// negate x</span></span>
+<span id="cb67-6"><a href="bit-x86.html#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x;    <span class="co">// return x</span></span>
+<span id="cb67-7"><a href="bit-x86.html#cb67-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb67-8"><a href="bit-x86.html#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-9"><a href="bit-x86.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb67-10"><a href="bit-x86.html#cb67-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> theValue=<span class="dv">0</span>;</span>
+<span id="cb67-11"><a href="bit-x86.html#cb67-11" aria-hidden="true" tabindex="-1"></a>    printf (<span class="st">&quot;Enter a value: </span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb67-12"><a href="bit-x86.html#cb67-12" aria-hidden="true" tabindex="-1"></a>    scanf (<span class="st">&quot;</span><span class="sc">%ld</span><span class="st">&quot;</span>, &amp;theValue);</span>
+<span id="cb67-13"><a href="bit-x86.html#cb67-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> theResult = absolute_value(theValue);</span>
+<span id="cb67-14"><a href="bit-x86.html#cb67-14" aria-hidden="true" tabindex="-1"></a>    printf (<span class="st">&quot;The result is: </span><span class="sc">%ld\n</span><span class="st">&quot;</span>, theResult);</span>
+<span id="cb67-15"><a href="bit-x86.html#cb67-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb67-16"><a href="bit-x86.html#cb67-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The reason that we are using C for this example is because <code>cout</code> and <code>cin</code> are very ugly in assembly. They don’t exist in C, so it is less ugly! We can look at the compiled versions of the two code snippets to see the differences:
+- C++: <a href="https://uva-cs.github.io/pdr/slides/code/08-assembly-64bit/test_abs.s.html">test_abs.s</a>
+- C: <a href="https://uva-cs.github.io/pdr/slides/code/08-assembly-64bit/test_abs_c.s.html">test_abs_c.s</a></p>
+</div>
+<div id="int-maxint-x-int-y" class="section level3" number="4.7.10">
+<h3><span class="header-section-number">4.7.10</span> int max(int x, int y)</h3>
+<p>Very inefficient, intentionally so. We don’t want to make it efficient yet for the sake of <strong><em><sub>learning</sub></em></strong></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb68-1"><a href="bit-x86.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> max(<span class="dt">int</span> x, <span class="dt">int</span> y) {</span>
+<span id="cb68-2"><a href="bit-x86.html#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> theMax;</span>
+<span id="cb68-3"><a href="bit-x86.html#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x &gt; y)        <span class="co">// if x &gt; y then x is max</span></span>
+<span id="cb68-4"><a href="bit-x86.html#cb68-4" aria-hidden="true" tabindex="-1"></a>        theMax = x;</span>
+<span id="cb68-5"><a href="bit-x86.html#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>              <span class="co">// else y is the max</span></span>
+<span id="cb68-6"><a href="bit-x86.html#cb68-6" aria-hidden="true" tabindex="-1"></a>        theMax = y;</span>
+<span id="cb68-7"><a href="bit-x86.html#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theMax;    <span class="co">// return the max</span></span>
+<span id="cb68-8"><a href="bit-x86.html#cb68-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="x86-code-for-max" class="section level3" number="4.7.11">
+<h3><span class="header-section-number">4.7.11</span> x86 code for max()</h3>
+<p>This is moving <code>edi</code> and <code>esi</code> into local variables. Whichever one is greater is moved to a local variable <code>[rsp-12]</code>, then returned using <code>eax</code>.</p>
+<pre class="x86asm"><code>max:
+    mov    dword ptr [rsp - 4], edi
+    mov    dword ptr [rsp - 8], esi
+    mov    esi, dword ptr [rsp - 4]
+    cmp    esi, dword ptr [rsp - 8]
+    jle    .LBB1_2
+    mov    eax, dword ptr [rsp - 4]
+    mov    dword ptr [rsp - 12], eax
+    jmp    .LBB1_3
+.LBB1_2:
+    mov    eax, dword ptr [rsp - 8]
+    mov    dword ptr [rsp - 12], eax
+.LBB1_3:
+    mov    eax, dword ptr [rsp - 12]
+    ret</code></pre>
+</div>
+<div id="x86-code-for-max-using--o2" class="section level3" number="4.7.12">
+<h3><span class="header-section-number">4.7.12</span> x86 code for max() using -O2</h3>
+<p>Now, we can compile with -O2 to make the program more efficient by condensing it as much as possible.</p>
+<pre class="x86asm"><code>max:
+    cmp     edi, esi
+    cmovge  esi, edi
+    mov     eax, esi
+    ret</code></pre>
+<ul>
+<li><code>cmovg</code> (conditional move if greater than) will move the greater value into the first parameter</li>
+<li><code>cmovge</code> does the move greater than or equal to value</li>
+<li>This removes the needs for jumps because jumps are very inefficient</li>
+</ul>
+<p>You still need to write good code, but this makes things faster.</p>
+</div>
+<div id="c-string-comparison-compare_string" class="section level3" number="4.7.13">
+<h3><span class="header-section-number">4.7.13</span> C-string comparison compare_string()</h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb71-1"><a href="bit-x86.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> compare_string (<span class="at">const</span> <span class="dt">char</span> *theStr1, </span>
+<span id="cb71-2"><a href="bit-x86.html#cb71-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">const</span> <span class="dt">char</span> *theStr2) {</span>
+<span id="cb71-3"><a href="bit-x86.html#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// while *theStr1 is not NULL terminator</span></span>
+<span id="cb71-4"><a href="bit-x86.html#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// and the current corresponding bytes are equal</span></span>
+<span id="cb71-5"><a href="bit-x86.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>( (*theStr1 != NULL) </span>
+<span id="cb71-6"><a href="bit-x86.html#cb71-6" aria-hidden="true" tabindex="-1"></a>            &amp;&amp; (*theStr1 == *theStr2) ) {</span>
+<span id="cb71-7"><a href="bit-x86.html#cb71-7" aria-hidden="true" tabindex="-1"></a>        theStr1++;        <span class="co">// increment the pointers to </span></span>
+<span id="cb71-8"><a href="bit-x86.html#cb71-8" aria-hidden="true" tabindex="-1"></a>        theStr2++;        <span class="co">// the next char / byte</span></span>
+<span id="cb71-9"><a href="bit-x86.html#cb71-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb71-10"><a href="bit-x86.html#cb71-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (*theStr1==*theStr2);</span>
+<span id="cb71-11"><a href="bit-x86.html#cb71-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb72-1"><a href="bit-x86.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb72-2"><a href="bit-x86.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb72-3"><a href="bit-x86.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb72-4"><a href="bit-x86.html#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="bit-x86.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="at">extern</span> <span class="st">&quot;C&quot;</span> <span class="dt">bool</span> compare_string(<span class="at">const</span> <span class="dt">char</span>* theStr1, </span>
+<span id="cb72-6"><a href="bit-x86.html#cb72-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">const</span> <span class="dt">char</span>* theStr2);</span>
+<span id="cb72-7"><a href="bit-x86.html#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="bit-x86.html#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="co">// code for compare_string here</span></span>
+<span id="cb72-9"><a href="bit-x86.html#cb72-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-10"><a href="bit-x86.html#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb72-11"><a href="bit-x86.html#cb72-11" aria-hidden="true" tabindex="-1"></a>    string theValue1, theValue2;</span>
+<span id="cb72-12"><a href="bit-x86.html#cb72-12" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;Enter string 1: &quot;</span> &lt;&lt; endl;</span>
+<span id="cb72-13"><a href="bit-x86.html#cb72-13" aria-hidden="true" tabindex="-1"></a>    cin &gt;&gt; theValue1;</span>
+<span id="cb72-14"><a href="bit-x86.html#cb72-14" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;Enter string 2: &quot;</span> &lt;&lt; endl;</span>
+<span id="cb72-15"><a href="bit-x86.html#cb72-15" aria-hidden="true" tabindex="-1"></a>    cin &gt;&gt; theValue2;</span>
+<span id="cb72-16"><a href="bit-x86.html#cb72-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> theResult = compare_string(theValue1.c_str(),</span>
+<span id="cb72-17"><a href="bit-x86.html#cb72-17" aria-hidden="true" tabindex="-1"></a>                                    theValue2.c_str());</span>
+<span id="cb72-18"><a href="bit-x86.html#cb72-18" aria-hidden="true" tabindex="-1"></a>    cout &lt;&lt; <span class="st">&quot;The result is: &quot;</span> &lt;&lt; theResult &lt;&lt; endl;</span>
+<span id="cb72-19"><a href="bit-x86.html#cb72-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb72-20"><a href="bit-x86.html#cb72-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>We use <code>extern...</code> because we want to be able to call the method its defined name in the assembly</li>
+</ul>
+</div>
+<div id="x86-for-compare_string" class="section level3" number="4.7.14">
+<h3><span class="header-section-number">4.7.14</span> x86 for compare_string()</h3>
+<pre class="x86asm"><code>compare_string:
+    mov      al, byte ptr [rdi]
+    test     al, al
+    je       .LBB0_4
+    inc      rdi
+.LBB0_2:
+    movzx    ecx, byte ptr [rsi]
+    movzx    edx, al
+    cmp      edx, ecx
+    jne      .LBB0_5
+    inc      rsi
+    mov      al, byte ptr [rdi]
+    inc      rdi
+    test     al, al
+    jne      .LBB0_2
+    ...</code></pre>
+<ul>
+<li><code>zx</code> stands for “zero extend”
+<ul>
+<li>Loads a value in and fills everything else as 0s</li>
+</ul></li>
+</ul>
+</div>
+<div id="int-fact-factorial" class="section level3" number="4.7.15">
+<h3><span class="header-section-number">4.7.15</span> int fact() factorial</h3>
+<div class="sourceCode" id="cb74"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb74-1"><a href="bit-x86.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> fact(<span class="dt">unsigned</span> <span class="dt">int</span> n) {</span>
+<span id="cb74-2"><a href="bit-x86.html#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( n==<span class="dv">0</span> )</span>
+<span id="cb74-3"><a href="bit-x86.html#cb74-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb74-4"><a href="bit-x86.html#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n * fact(n-<span class="dv">1</span>);</span>
+<span id="cb74-5"><a href="bit-x86.html#cb74-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Note the parameter is <code>unsigned int</code> (32 bit), but the return type is <code>long</code> (64 bit)</p>
+</div>
+<div id="x86-assembly-for-fact" class="section level3" number="4.7.16">
+<h3><span class="header-section-number">4.7.16</span> x86 assembly for fact()</h3>
+<pre class="x86asm"><code>fact:
+    sub    rsp, 24
+    mov    dword ptr [rsp + 12], edi
+    cmp    dword ptr [rsp + 12], 0
+    jne    .LBB1_2
+    mov    qword ptr [rsp + 16], 1
+    jmp    .LBB1_3
+.LBB1_2:
+    mov    eax, dword ptr [rsp + 12]
+    mov    ecx, eax
+    mov    eax, dword ptr [rsp + 12]
+    sub    eax, 1
+    mov    edi, eax
+    mov    qword ptr [rsp], rcx
+    call   fact
+    mov    rcx, qword ptr [rsp]
+    imul   rcx, rax
+    mov    qword ptr [rsp + 16], rcx
+.LBB1_3:
+    mov    rax, qword ptr [rsp + 16]
+    add    rsp, 24
+    ret</code></pre>
+<ul>
+<li>We are going to be using push and pop
+<ul>
+<li>They move a lot of values because they’re all already assigned from free space</li>
+<li>This is faster but more complicated</li>
+<li>Make sure to push whatever much you pop.
+<ul>
+<li>Modifications to the stack need to equal each other</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="an-advantage-of-little-endian" class="section level3" number="4.7.17">
+<h3><span class="header-section-number">4.7.17</span> An advantage of little-endian</h3>
+<ul>
+<li>In little-endian, the order of the bytes are flipped from big-endian
+<ul>
+<li>The four byte value and the one byte value of a word (ex. 0x680abcde) have the same value. In big-endian, they don’t and you need to shift over a lot to get the same value.</li>
+</ul></li>
+</ul>
+</div>
+<div id="risc-versus-cisc" class="section level3" number="4.7.18">
+<h3><span class="header-section-number">4.7.18</span> RISC versus CISC</h3>
+<ul>
+<li>RISC
+<ul>
+<li>Reduced instruction set computer</li>
+<li>Fewer and simpler instructions (maybe 50 or so)</li>
+<li>Less chip complexity means they can run fast</li>
+</ul></li>
+<li>CISC
+<ul>
+<li>Complex instruction set computer</li>
+<li>More and more complex instructions (300-400 or so)</li>
+<li>More chip complexity means harder to make run fast
+<ul>
+<li>Hotter chips</li>
+</ul></li>
+<li>Intel is CISC</li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ibcm-machine-language.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
