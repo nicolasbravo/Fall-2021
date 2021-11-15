@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Satisfiability | Week 12</title>
+  <meta name="description" content="4 Satisfiability | Week 12" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Satisfiability | Week 12" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Satisfiability | Week 12" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="shortest-and-longest-paths.html"/>
+<link rel="next" href="tractable-and-intractable-problems.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="difficulty-of-functions.html"><a href="difficulty-of-functions.html"><i class="fa fa-check"></i><b>1</b> “Difficulty” of Functions</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="difficulty-of-functions.html"><a href="difficulty-of-functions.html#notions-of-function-difficulty"><i class="fa fa-check"></i><b>1.1</b> Notions of function “difficulty”</a></li>
+<li class="chapter" data-level="1.2" data-path="difficulty-of-functions.html"><a href="difficulty-of-functions.html#larger-inputs-more-time"><i class="fa fa-check"></i><b>1.2</b> Larger inputs = more time</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ram-model.html"><a href="ram-model.html"><i class="fa fa-check"></i><b>2</b> RAM Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ram-model.html"><a href="ram-model.html#different-computing-models-may-have-different-running-times"><i class="fa fa-check"></i><b>2.1</b> Different computing Models may have Different Running Times</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="ram-model.html"><a href="ram-model.html#tm-ruins-our-concept-of-how-computers-really-work."><i class="fa fa-check"></i><b>2.1.1</b> TM ruins our concept of how computers really work.</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ram-model.html"><a href="ram-model.html#ram-machine"><i class="fa fa-check"></i><b>2.1.2</b> RAM Machine</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html"><i class="fa fa-check"></i><b>3</b> Shortest and Longest Paths</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#finding-running-times"><i class="fa fa-check"></i><b>3.1</b> Finding Running Times</a></li>
+<li class="chapter" data-level="3.2" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#review-of-graphs"><i class="fa fa-check"></i><b>3.2</b> Review of Graphs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#adjacency-list-representation"><i class="fa fa-check"></i><b>3.2.1</b> Adjacency List Representation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#adjacency-matrix-representation"><i class="fa fa-check"></i><b>3.2.2</b> Adjacency Matrix Representation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#paths"><i class="fa fa-check"></i><b>3.2.3</b> Paths</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#shortest-path-in-a-graph"><i class="fa fa-check"></i><b>3.3</b> Shortest Path in a graph</a></li>
+<li class="chapter" data-level="3.4" data-path="shortest-and-longest-paths.html"><a href="shortest-and-longest-paths.html#longest-path-in-a-graph"><i class="fa fa-check"></i><b>3.4</b> Longest Path in a graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="satisfiability.html"><a href="satisfiability.html"><i class="fa fa-check"></i><b>4</b> Satisfiability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="satisfiability.html"><a href="satisfiability.html#cnf"><i class="fa fa-check"></i><b>4.1</b> 3-CNF</a></li>
+<li class="chapter" data-level="4.2" data-path="satisfiability.html"><a href="satisfiability.html#sat"><i class="fa fa-check"></i><b>4.2</b> 3-SAT</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="satisfiability.html"><a href="satisfiability.html#sat-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> 3-SAT Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="satisfiability.html"><a href="satisfiability.html#sat-1"><i class="fa fa-check"></i><b>4.3</b> 2-SAT</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="satisfiability.html"><a href="satisfiability.html#sat-algorithm-1"><i class="fa fa-check"></i><b>4.3.1</b> 2-SAT Algorithm</a></li>
+<li class="chapter" data-level="4.3.2" data-path="satisfiability.html"><a href="satisfiability.html#unsatisfyable-example"><i class="fa fa-check"></i><b>4.3.2</b> Unsatisfyable Example</a></li>
+<li class="chapter" data-level="4.3.3" data-path="satisfiability.html"><a href="satisfiability.html#polynomial-time-vs-exponential-time"><i class="fa fa-check"></i><b>4.3.3</b> Polynomial Time vs Exponential Time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tractable-and-intractable-problems.html"><a href="tractable-and-intractable-problems.html"><i class="fa fa-check"></i><b>5</b> Tractable and Intractable Problems</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tractable-and-intractable-problems.html"><a href="tractable-and-intractable-problems.html#tractability"><i class="fa fa-check"></i><b>5.1</b> Tractability</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="polynomial-time-reductions.html"><a href="polynomial-time-reductions.html"><i class="fa fa-check"></i><b>6</b> Polynomial Time Reductions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="polynomial-time-reductions.html"><a href="polynomial-time-reductions.html#using-reductions-for-efficiency"><i class="fa fa-check"></i><b>6.1</b> Using Reductions for Efficiency</a></li>
+<li class="chapter" data-level="6.2" data-path="polynomial-time-reductions.html"><a href="polynomial-time-reductions.html#polynomial-time-reductions-1"><i class="fa fa-check"></i><b>6.2</b> Polynomial Time Reductions</a></li>
+<li class="chapter" data-level="6.3" data-path="polynomial-time-reductions.html"><a href="polynomial-time-reductions.html#transitivity-of-polynomial-time-reductions"><i class="fa fa-check"></i><b>6.3</b> Transitivity of Polynomial Time Reductions</a></li>
+<li class="chapter" data-level="6.4" data-path="polynomial-time-reductions.html"><a href="polynomial-time-reductions.html#procedure-for-showing-a-leq_p-b"><i class="fa fa-check"></i><b>6.4</b> Procedure for showing <span class="math inline">\(A \leq_p B\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reducing-3-sat-to-longest-path.html"><a href="reducing-3-sat-to-longest-path.html"><i class="fa fa-check"></i><b>7</b> Reducing 3-SAT to Longest Path</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reducing-3-sat-to-longest-path.html"><a href="reducing-3-sat-to-longest-path.html#sat-leq_p-longest-path"><i class="fa fa-check"></i><b>7.1</b> 3-SAT <span class="math inline">\(\leq_p\)</span> Longest Path</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reducing-3-sat-to-longest-path.html"><a href="reducing-3-sat-to-longest-path.html#procedure"><i class="fa fa-check"></i><b>7.1.1</b> Procedure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reducing-3-sat-to-longest-path.html"><a href="reducing-3-sat-to-longest-path.html#conclusion"><i class="fa fa-check"></i><b>7.1.2</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="longest-path-decision-problem.html"><a href="longest-path-decision-problem.html"><i class="fa fa-check"></i><b>8</b> Longest Path Decision Problem</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="longest-path-decision-problem.html"><a href="longest-path-decision-problem.html#decision-problems"><i class="fa fa-check"></i><b>8.1</b> Decision Problems</a></li>
+<li class="chapter" data-level="8.2" data-path="longest-path-decision-problem.html"><a href="longest-path-decision-problem.html#longest-path-decision-version"><i class="fa fa-check"></i><b>8.2</b> Longest Path: Decision Version</a></li>
+<li class="chapter" data-level="8.3" data-path="longest-path-decision-problem.html"><a href="longest-path-decision-problem.html#using-decision-version-to-solve-original"><i class="fa fa-check"></i><b>8.3</b> Using Decision Version to Solve Original</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="nondeterministic-turing-machines-and-the-class-np.html"><a href="nondeterministic-turing-machines-and-the-class-np.html"><i class="fa fa-check"></i><b>9</b> Nondeterministic Turing Machines and the Class NP</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="nondeterministic-turing-machines-and-the-class-np.html"><a href="nondeterministic-turing-machines-and-the-class-np.html#np"><i class="fa fa-check"></i><b>9.1</b> NP</a></li>
+<li class="chapter" data-level="9.2" data-path="nondeterministic-turing-machines-and-the-class-np.html"><a href="nondeterministic-turing-machines-and-the-class-np.html#review-nfas"><i class="fa fa-check"></i><b>9.2</b> Review: NFAs</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="nondeterministic-turing-machines-and-the-class-np.html"><a href="nondeterministic-turing-machines-and-the-class-np.html#how-to-think-about-non-determinism"><i class="fa fa-check"></i><b>9.2.1</b> How to think about non-determinism</a></li>
+<li class="chapter" data-level="9.2.2" data-path="nondeterministic-turing-machines-and-the-class-np.html"><a href="nondeterministic-turing-machines-and-the-class-np.html#non-deterministic-turing-machines"><i class="fa fa-check"></i><b>9.2.2</b> Non-Deterministic Turing Machines</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="why-do-we-care-whether-p-np.html"><a href="why-do-we-care-whether-p-np.html"><i class="fa fa-check"></i><b>10</b> Why do we care whether <span class="math inline">\(P = NP\)</span>?</a></li>
+<li class="chapter" data-level="11" data-path="np-completeness.html"><a href="np-completeness.html"><i class="fa fa-check"></i><b>11</b> NP Completeness</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="np-completeness.html"><a href="np-completeness.html#np-hard"><i class="fa fa-check"></i><b>11.1</b> NP-Hard</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Week 12</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="satisfiability" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Satisfiability</h1>
+<p>Before we can talk about the other two problems, we need to define something.</p>
+<div id="cnf" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 3-CNF</h2>
+<ul>
+<li>Conjunctive Normal Form (CNF, format for writing down expression) formula:
+<ul>
+<li>Logical AND (<span class="math inline">\(\wedge\)</span>) of clauses
+<ul>
+<li>That’s what Conjunctive means</li>
+<li>Each group/clause is separated by ands</li>
+</ul></li>
+<li>Each clause being an OR (<span class="math inline">\(\vee\)</span>) of variables
+<ul>
+<li>In each group/clause, can only have ors</li>
+</ul></li>
+</ul></li>
+<li>3-CNF: Each clause has 3 variables
+<ul>
+<li>Example of a clause: <span class="math inline">\((x \vee y \vee z)\)</span></li>
+<li>Example of variables: <span class="math inline">\(x, y, z\)</span></li>
+<li>Example of CNF: <span class="math inline">\((x \vee y \vee z) \wedge (x \vee \overline{y} \vee y) \wedge (u \vee y \vee \overline{z})\)</span></li>
+</ul></li>
+</ul>
+<p>We want to know whether if we assigned true or false to any of these variables, there is a possible combination where we can make the whole formula return true.</p>
+<ul>
+<li>Because each clause is composed of 3 variables, we only need to check if one of the three variables in each clause is true
+<ul>
+<li>If so, the entire statement comes out as true</li>
+<li>If any clause is false, the entire formula is false</li>
+</ul></li>
+</ul>
+</div>
+<div id="sat" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 3-SAT</h2>
+<p>The 3 means that we are receiving a formula in 3-CNF format.</p>
+<ul>
+<li>Given a 3-CNF formula (logical AND of clauses, each an OR of 3 variables), is there an assignment of true or false to each variable to make the entire formula true?</li>
+</ul>
+<p>An example of a formula and assignment that return true are as follows. Since every one of the clauses in this formula have at least one true variable, the entire formula returns as true:</p>
+<ul>
+<li>Formula:
+<ul>
+<li><span class="math inline">\((x \vee y \vee z) \wedge (x \vee \overline{y} \vee y) \wedge (u \vee y \vee \overline{z}) \wedge (z \vee \overline{x} \vee u) \wedge (\overline{x} \vee \overline{y} \vee \overline{z})\)</span></li>
+</ul></li>
+<li>Assignment:
+<ul>
+<li><span class="math inline">\(x = true\)</span></li>
+<li><span class="math inline">\(y = false\)</span></li>
+<li><span class="math inline">\(z = false\)</span></li>
+<li><span class="math inline">\(u = true\)</span></li>
+</ul></li>
+</ul>
+<div id="sat-algorithm" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 3-SAT Algorithm</h3>
+<p>Given a 3-CNF formula with <span class="math inline">\(n\)</span> variables and <span class="math inline">\(m\)</span> clauses,</p>
+<ol style="list-style-type: decimal">
+<li>Try all combinations of true/false</li>
+<li>Check to see if any combinations evaluate to true</li>
+</ol>
+<p>This running time is <span class="math inline">\(2^n\)</span> because there are this many combinations.</p>
+</div>
+</div>
+<div id="sat-1" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 2-SAT</h2>
+<ul>
+<li>Given a 2-CNF formula (logical AND of clauses, each an OR of 3 variables), is there an assignment of true or false to each variable to make the entire formula true?</li>
+</ul>
+<p>An example of a formula and assignment that return true are as follows. Since every one of the clauses in this formula have at least one true variable, the entire formula returns as true:</p>
+<ul>
+<li>Formula:
+<ul>
+<li><span class="math inline">\((x \vee y) \wedge (x \vee \overline{y}) \wedge (y \vee \overline{z}) \wedge (z \vee u) \wedge (\overline{y} \vee \overline{z})\)</span></li>
+</ul></li>
+<li>Assignment:
+<ul>
+<li><span class="math inline">\(x = true\)</span></li>
+<li><span class="math inline">\(y = false\)</span></li>
+<li><span class="math inline">\(z = false\)</span></li>
+<li><span class="math inline">\(u = true\)</span></li>
+</ul></li>
+</ul>
+<div id="sat-algorithm-1" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> 2-SAT Algorithm</h3>
+<ul>
+<li>We can use the algorithm used for 3-SAT, which has a runtime of <span class="math inline">\(2^n\)</span></li>
+<li>Or, we can use another algorithm, which has a runtime of <span class="math inline">\(n^3\)</span>…</li>
+</ul>
+<p>We can convert the formula into an “implication graph” where if one variable of two in a clause is false, the other must be true. This causes us to be able to make a graph where we can list variables that require others to be true and link them together (<span class="math inline">\(\overline{z}\)</span> requires <span class="math inline">\(u\)</span>, <span class="math inline">\(z\)</span> requires <span class="math inline">\(\overline{y}\)</span> which requires <span class="math inline">\(x\)</span>, etc). This allows us to create a cycle of what each variable needs to be for the entire formula to work. This cycle can then show us that, if a variable requires <span class="math inline">\(y\)</span> to be true and also <span class="math inline">\(y\)</span> to be false to work, for example, that assignment will never be satisfiable.</p>
+</div>
+<div id="unsatisfyable-example" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Unsatisfyable Example</h3>
+<ul>
+<li>Formula:
+<ul>
+<li><span class="math inline">\((x \vee y) \wedge (\overline{x} \vee y) \wedge (x \vee \overline{y}) \wedge (\overline{x} \vee \overline{y})\)</span></li>
+</ul></li>
+<li>Implications:
+<ul>
+<li><span class="math inline">\((x \vee y)\)</span>
+<ul>
+<li>If <span class="math inline">\(x\)</span> is false, <span class="math inline">\(y\)</span> must be true</li>
+</ul></li>
+<li><span class="math inline">\((x \vee \overline{y})\)</span>
+<ul>
+<li>If <span class="math inline">\(y\)</span> is true, <span class="math inline">\(x\)</span> must be true</li>
+</ul></li>
+<li><span class="math inline">\((\overline{x} \vee \overline{y})\)</span>
+<ul>
+<li>If <span class="math inline">\(x\)</span> is true, <span class="math inline">\(y\)</span> must be false</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Now we created a cycle that has both <span class="math inline">\(x\)</span> and <span class="math inline">\(\overline{x}\)</span>, so we are not going to be able to come up with an assignment that will satisfy this formula.</p>
+<p>Now we have a trick where we can make a graph with <span class="math inline">\(n\)</span> nodes and <span class="math inline">\(2m\)</span> edges (2 edges per clause, <span class="math inline">\(m\)</span> clauses). Then, we can just do a breadth-first search to find whether there will be a variable and its negation, and this will take <span class="math inline">\(n + 2m\)</span>, so this is efficient.</p>
+</div>
+<div id="polynomial-time-vs-exponential-time" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Polynomial Time vs Exponential Time</h3>
+<ul>
+<li>Polynomial Time: <span class="math inline">\(P = \bigcup_{c \in \{1,2,3,\dots\}} n^c\)</span>
+<ul>
+<li>Faster</li>
+</ul></li>
+<li>Exponential Time: <span class="math inline">\(EXP = \bigcup_{c \in \{1,2,3\dots\}} 2^{n^c}\)</span>
+<ul>
+<li>Slower</li>
+</ul></li>
+<li>Weird pattern
+<ul>
+<li>Most “natural” problems are either done in small degree polynomial (<span class="math inline">\(n^2,n^3\)</span>) or exponential time (<span class="math inline">\(2^n,n!\)</span>)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="shortest-and-longest-paths.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tractable-and-intractable-problems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
