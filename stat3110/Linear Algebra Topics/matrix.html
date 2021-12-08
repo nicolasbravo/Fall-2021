@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Matrix | Linear Algebra Topics</title>
+  <meta name="description" content="2 Matrix | Linear Algebra Topics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Matrix | Linear Algebra Topics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Matrix | Linear Algebra Topics" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+<meta name="date" content="2021-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linear-algebra-introduction.html"/>
+
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#scalar"><i class="fa fa-check"></i><b>1.1</b> Scalar</a></li>
+<li class="chapter" data-level="1.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector"><i class="fa fa-check"></i><b>1.2</b> Vector</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#zero-vector"><i class="fa fa-check"></i><b>1.2.1</b> Zero Vector</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#one-vector"><i class="fa fa-check"></i><b>1.2.2</b> One Vector</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#unit-vector"><i class="fa fa-check"></i><b>1.2.3</b> Unit Vector</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#row-and-column-vectors"><i class="fa fa-check"></i><b>1.2.4</b> Row and Column Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#basic-functions"><i class="fa fa-check"></i><b>1.3</b> Basic Functions</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#transpose"><i class="fa fa-check"></i><b>1.3.1</b> Transpose</a></li>
+<li class="chapter" data-level="1.3.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#addition-or-subtraction"><i class="fa fa-check"></i><b>1.3.2</b> Addition or Subtraction</a></li>
+<li class="chapter" data-level="1.3.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-scalar-multiplication"><i class="fa fa-check"></i><b>1.3.3</b> Vector-Scalar Multiplication</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-multiplication"><i class="fa fa-check"></i><b>1.4</b> Vector Multiplication</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-dot-product"><i class="fa fa-check"></i><b>1.4.1</b> Vector Dot Product</a></li>
+<li class="chapter" data-level="1.4.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#angle-between-vectors"><i class="fa fa-check"></i><b>1.4.2</b> Angle Between Vectors</a></li>
+<li class="chapter" data-level="1.4.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-weighted-combination"><i class="fa fa-check"></i><b>1.4.3</b> Linear Weighted Combination</a></li>
+<li class="chapter" data-level="1.4.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#outer-product"><i class="fa fa-check"></i><b>1.4.4</b> Outer Product</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-space"><i class="fa fa-check"></i><b>1.5</b> Vector Space</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#definition-of-a-field"><i class="fa fa-check"></i><b>1.5.1</b> Definition of a Field</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-space-1"><i class="fa fa-check"></i><b>1.5.2</b> Vector Space</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subspace"><i class="fa fa-check"></i><b>1.5.3</b> Subspace</a></li>
+<li class="chapter" data-level="1.5.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#ambient-space"><i class="fa fa-check"></i><b>1.5.4</b> Ambient space</a></li>
+<li class="chapter" data-level="1.5.5" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-independence"><i class="fa fa-check"></i><b>1.5.5</b> Linear Independence</a></li>
+<li class="chapter" data-level="1.5.6" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subset"><i class="fa fa-check"></i><b>1.5.6</b> Subset</a></li>
+<li class="chapter" data-level="1.5.7" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#span"><i class="fa fa-check"></i><b>1.5.7</b> Span</a></li>
+<li class="chapter" data-level="1.5.8" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subspace-example"><i class="fa fa-check"></i><b>1.5.8</b> Subspace Example</a></li>
+<li class="chapter" data-level="1.5.9" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#ambient-space-example"><i class="fa fa-check"></i><b>1.5.9</b> Ambient Space Example</a></li>
+<li class="chapter" data-level="1.5.10" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-dependence"><i class="fa fa-check"></i><b>1.5.10</b> Linear Dependence</a></li>
+<li class="chapter" data-level="1.5.11" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#determining-dependence"><i class="fa fa-check"></i><b>1.5.11</b> Determining Dependence</a></li>
+<li class="chapter" data-level="1.5.12" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#basis"><i class="fa fa-check"></i><b>1.5.12</b> Basis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>2</b> Matrix</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="matrix.html"><a href="matrix.html#shifting"><i class="fa fa-check"></i><b>2.1</b> Shifting</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="matrix.html"><a href="matrix.html#diagonal-matrix"><i class="fa fa-check"></i><b>2.1.1</b> Diagonal Matrix</a></li>
+<li class="chapter" data-level="2.1.2" data-path="matrix.html"><a href="matrix.html#shifting-definition-and-example"><i class="fa fa-check"></i><b>2.1.2</b> Shifting Definition and Example</a></li>
+<li class="chapter" data-level="2.1.3" data-path="matrix.html"><a href="matrix.html#applying-diagonal"><i class="fa fa-check"></i><b>2.1.3</b> Applying Diagonal</a></li>
+<li class="chapter" data-level="2.1.4" data-path="matrix.html"><a href="matrix.html#trace"><i class="fa fa-check"></i><b>2.1.4</b> Trace</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrix.html"><a href="matrix.html#addition"><i class="fa fa-check"></i><b>2.2</b> Addition</a></li>
+<li class="chapter" data-level="2.3" data-path="matrix.html"><a href="matrix.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.3</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.4" data-path="matrix.html"><a href="matrix.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.4</b> Matrix Multiplication</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="matrix.html"><a href="matrix.html#how-do-we-multiply-them"><i class="fa fa-check"></i><b>2.4.1</b> How do we multiply them?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="matrix.html"><a href="matrix.html#matrix-multiplication-example-2x2"><i class="fa fa-check"></i><b>2.4.2</b> Matrix Multiplication Example, (2x2)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="matrix.html"><a href="matrix.html#how-does-this-relate-to-the-dot-product"><i class="fa fa-check"></i><b>2.4.3</b> How does this relate to the dot product?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="matrix.html"><a href="matrix.html#identify-matrix"><i class="fa fa-check"></i><b>2.5</b> Identify Matrix</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="matrix.html"><a href="matrix.html#what-does-this-mean-for-diagonal-matrix-multiplication"><i class="fa fa-check"></i><b>2.5.1</b> What does this mean for diagonal matrix multiplication?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="matrix.html"><a href="matrix.html#multiplying-two-diagonal-matrices"><i class="fa fa-check"></i><b>2.5.2</b> Multiplying two diagonal matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="matrix.html"><a href="matrix.html#inverse-matrix"><i class="fa fa-check"></i><b>2.6</b> Inverse Matrix</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="matrix.html"><a href="matrix.html#expanding"><i class="fa fa-check"></i><b>2.6.1</b> Expanding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="matrix.html"><a href="matrix.html#matrix-transposing"><i class="fa fa-check"></i><b>2.7</b> Matrix Transposing</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="matrix.html"><a href="matrix.html#expanding-1"><i class="fa fa-check"></i><b>2.7.1</b> Expanding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="matrix.html"><a href="matrix.html#symmetric-matrix"><i class="fa fa-check"></i><b>2.8</b> Symmetric Matrix</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="matrix.html"><a href="matrix.html#creating-with-addition"><i class="fa fa-check"></i><b>2.8.1</b> Creating with addition</a></li>
+<li class="chapter" data-level="2.8.2" data-path="matrix.html"><a href="matrix.html#creating-with-multiplication"><i class="fa fa-check"></i><b>2.8.2</b> Creating with multiplication</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="matrix.html"><a href="matrix.html#matrix-norm"><i class="fa fa-check"></i><b>2.9</b> Matrix Norm</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="matrix.html"><a href="matrix.html#frobenius-norm"><i class="fa fa-check"></i><b>2.9.1</b> Frobenius Norm</a></li>
+<li class="chapter" data-level="2.9.2" data-path="matrix.html"><a href="matrix.html#ell_1-norm"><i class="fa fa-check"></i><b>2.9.2</b> <span class="math inline">\(\ell_1\)</span>-norm</a></li>
+<li class="chapter" data-level="2.9.3" data-path="matrix.html"><a href="matrix.html#ell_p-norm"><i class="fa fa-check"></i><b>2.9.3</b> <span class="math inline">\(\ell_p\)</span>-norm</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="matrix.html"><a href="matrix.html#matrix-rank"><i class="fa fa-check"></i><b>2.10</b> Matrix Rank</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="matrix.html"><a href="matrix.html#rank-of-added-matrices"><i class="fa fa-check"></i><b>2.10.1</b> Rank of added matrices</a></li>
+<li class="chapter" data-level="2.10.2" data-path="matrix.html"><a href="matrix.html#rank-of-multiplied-matrices"><i class="fa fa-check"></i><b>2.10.2</b> Rank of multiplied matrices</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Algebra Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrix" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Matrix</h1>
+<p>Say we have a matrix <span class="math inline">\(A\)</span>, with rows <span class="math inline">\(m\)</span> and columns <span class="math inline">\(n\)</span> <span class="math inline">\((m \times n)\)</span>. THat would look something like:</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\
+a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+a_{m1}&amp;a_{m2}&amp;\cdots&amp;a_{mn}
+\end{bmatrix}
+\]</span></p>
+<div id="shifting" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Shifting</h2>
+<div id="diagonal-matrix" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Diagonal Matrix</h3>
+<p>This kind of square matrix only has values on the diagonal. The rest of the values are 0.</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+a_{11}&amp;0&amp;\cdots&amp;0\\
+0&amp;a_{22}&amp;\cdots&amp;0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+0&amp;0&amp;\cdots&amp;a_{mn}
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="shifting-definition-and-example" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Shifting Definition and Example</h3>
+<p>We can “shift” the matrix by applying an equation such as <span class="math inline">\(A + \lambda I\)</span>. This moves the entries by some specified value. This can turn linearly dependent columns into linearly independent columns. For example:</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+1&amp;1&amp;2\\
+0&amp;0&amp;5\\
+0&amp;0&amp;3
+\end{bmatrix} + \begin{bmatrix}
+1&amp;0&amp;0\\
+0&amp;1&amp;0\\
+0&amp;0&amp;1
+\end{bmatrix} = \begin{bmatrix}
+2&amp;1&amp;2\\
+0&amp;1&amp;5\\
+0&amp;0&amp;4
+\end{bmatrix}
+\]</span></p>
+<p>By shifting the values a small amount, it forces the values to become independent.</p>
+</div>
+<div id="applying-diagonal" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Applying Diagonal</h3>
+<p>If we take <span class="math inline">\(diag(A)\)</span>, it might generate a vector <span class="math inline">\(v\)</span> containing the diagonal of the matrix <span class="math inline">\(A\)</span>. Note that if the matrix is not a square, the diagonal is the values starting from the top-leftmost position going down and right until it hits an end. In this case, the diagonal vector’s size is <span class="math inline">\(\min (m,n)\)</span>.</p>
+</div>
+<div id="trace" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Trace</h3>
+<ul>
+<li>The trace is the sum of diagonal elements</li>
+<li>It is only defined for square matrices.</li>
+</ul>
+<p><span class="math display">\[
+trace \left( \begin{bmatrix}5&amp;3&amp;8\\1&amp;0&amp;4\\8&amp;6&amp;2\end{bmatrix}\right) = 5 + 0 + 2 = 7
+\]</span></p>
+</div>
+</div>
+<div id="addition" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Addition</h2>
+<p>We can simply add just like vector addition and subtraction.</p>
+<p><span class="math display">\[
+A + B = \begin{bmatrix}
+a_{11}+b_{11}&amp;\cdots&amp;a_{1n}+b_{1n}\\
+\vdots&amp;\ddots&amp;\vdots\\
+a_{m1}+b_{m1}&amp;\cdots&amp;a_{mn}+b_{mn}
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="scalar-multiplication" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Scalar Multiplication</h2>
+<p>This is commutative and just like vectors. Because of this, <span class="math inline">\(\lambda AB = A \lambda B = AB \lambda\)</span>.</p>
+<p><span class="math display">\[
+\lambda A = \begin{bmatrix}
+\lambda a_{11}&amp;\cdots&amp;\lambda a_{1n}\\
+\vdots&amp;\ddots&amp;\vdots\\
+\lambda a_{m1}&amp;\cdots&amp;\lambda a_{mn}
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="matrix-multiplication" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Matrix Multiplication</h2>
+<ul>
+<li><span class="math inline">\(AB \neq BA\)</span> because they do not have the same number of rows and columns.</li>
+<li>Note that <span class="math inline">\(A(B + C) = AB + AC\)</span>, so we can distribute
+<ul>
+<li>Because not commutative, <span class="math inline">\(A(B + C) \neq (B+C)A\)</span>.</li>
+<li><span class="math inline">\((B+C)A = BA + CA\)</span></li>
+</ul></li>
+</ul>
+<p>Let’s say we have matrix <span class="math inline">\(A\)</span> with dimensions (<span class="math inline">\(N \times M\)</span>) and matrix <span class="math inline">\(B\)</span> with dimensions (<span class="math inline">\(K \times L\)</span>). If <span class="math inline">\(M = K\)</span> (if the inner values are the same), then matrix multiplication is valid and will generate a matrix with dimensions (<span class="math inline">\(N \times L\)</span>).</p>
+<div id="how-do-we-multiply-them" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> How do we multiply them?</h3>
+<p>Let’s say we want to find <span class="math inline">\(AB\)</span>. For each element <span class="math inline">\(ab_{ij}\)</span> where <span class="math inline">\(i\)</span> is some row and <span class="math inline">\(j\)</span> is some column, we would take the dot product between row <span class="math inline">\(i\)</span> of matrix <span class="math inline">\(A\)</span> and column <span class="math inline">\(j\)</span> of matrix <span class="math inline">\(B\)</span>. For example, value <span class="math inline">\(ab_{53}\)</span> (value <span class="math inline">\(ab\)</span> at row 5 and column 3) would be equal to the dot product between row 5 of matrix <span class="math inline">\(A\)</span> and column 3 of matrix <span class="math inline">\(B\)</span>.</p>
+</div>
+<div id="matrix-multiplication-example-2x2" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Matrix Multiplication Example, (2x2)</h3>
+<p><span class="math display">\[\begin{align*}
+A &amp;= \begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}
+\end{bmatrix}\\
+B &amp;= \begin{bmatrix}
+b_{11}&amp;b_{12}\\
+b_{21}&amp;b_{22}
+\end{bmatrix}\\
+AB &amp;= \begin{bmatrix}
+a_{11}b_{11} + a_{12}b_{21} &amp; a_{11}b_{12} + a_{12}b_{22}\\
+a_{21}b_{11} + a_{22}b_{21} &amp; a_{21}b_{12} + a_{22}b_{22}
+\end{bmatrix}
+\end{align*}\]</span></p>
+</div>
+<div id="how-does-this-relate-to-the-dot-product" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> How does this relate to the dot product?</h3>
+<p>Say we have two vectors, <span class="math inline">\(a\)</span> with dimensions <span class="math inline">\((n \times 1)\)</span>, and <span class="math inline">\(b\)</span> with dimensions <span class="math inline">\((n \times 1)\)</span>. In this case,</p>
+<p><span class="math display">\[
+ab = a^Tb = \sum_{i=1}^n a_i b_i
+\]</span></p>
+<p>This would generate a number. In a similar case, we could do matrix multiplication on <span class="math inline">\(a^T\)</span> and <span class="math inline">\(b\)</span> to generate the same number, as this would create a matrix with dimensions <span class="math inline">\((1 \times 1)\)</span>.</p>
+</div>
+</div>
+<div id="identify-matrix" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Identify Matrix</h2>
+<ul>
+<li>Square, diagonal matrix where all diagonal entries are 1</li>
+<li>The reason this is called an identity matrix is because if you multiply a matrix by an identity matrix, then it returns exactly the matrix.
+<ul>
+<li><span class="math inline">\(A_{(m \times n)} I_n = A\)</span></li>
+<li><span class="math inline">\(I_m A_{(m \times n)} = A\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+I_3 = \begin{bmatrix}
+1&amp;0&amp;0\\
+0&amp;1&amp;0\\
+0&amp;0&amp;1
+\end{bmatrix}
+\]</span></p>
+<div id="what-does-this-mean-for-diagonal-matrix-multiplication" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> What does this mean for diagonal matrix multiplication?</h3>
+<p>Because a diagonal matrix is just a scaled identity matrix, using matrix multiplication with some matrix and a diagonal matrix would make the matrix scale. Take for example:</p>
+<p><span class="math display">\[
+D = \begin{bmatrix}
+d_1&amp;0&amp;0\\
+0&amp;d_2&amp;0\\
+0&amp;0&amp;d_3
+\end{bmatrix}
+\]</span></p>
+<p>In this case,</p>
+<ul>
+<li><span class="math inline">\(AD\)</span> scales the columns of <span class="math inline">\(A\)</span></li>
+<li><span class="math inline">\(DA\)</span> scales the rows of <span class="math inline">\(A\)</span></li>
+</ul>
+</div>
+<div id="multiplying-two-diagonal-matrices" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Multiplying two diagonal matrices</h3>
+<p>What is special in this case is that we can just multiply the corresponding elements of the diagonal matrices to create another diagonal matrix.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+a_1&amp;0&amp;0\\
+0&amp;a_2&amp;0\\
+0&amp;0&amp;a_3
+\end{bmatrix} \begin{bmatrix}
+b_1&amp;0&amp;0\\
+0&amp;b_2&amp;0\\
+0&amp;0&amp;b_3
+\end{bmatrix} = \begin{bmatrix}
+a_1b_1&amp;0&amp;0\\
+0&amp;a_2b_2&amp;0\\
+0&amp;0&amp;a_3b_3
+\end{bmatrix}
+\]</span></p>
+</div>
+</div>
+<div id="inverse-matrix" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Inverse Matrix</h2>
+<p>Matrix Division would essentially be multiplying by the inverse of a matrix (ex. <span class="math inline">\(A^{-1}\)</span>). This is found because:</p>
+<p><span class="math display">\[\begin{align*}
+A &amp;= IA\\
+(A^{-1})A &amp;= IA (A^{-1})
+\end{align*}\]</span></p>
+<div id="expanding" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Expanding</h3>
+<p>Just like transposing, we can expand through with inverses, such as: <span class="math inline">\((AB)^{-1} = B^{-1}A^{-1}\)</span>. Note the flipping.</p>
+<ul>
+<li>Note that we can do this for more than two matrices
+<ul>
+<li>Ex. <span class="math inline">\((ABCD)^T = D^TC^TB^TA^T\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="matrix-transposing" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Matrix Transposing</h2>
+<p><span class="math display">\[\begin{align*}
+A &amp;= \begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}
+\end{bmatrix}\\
+A^T &amp;= \begin{bmatrix}
+a_{11}&amp;a_{21}\\
+a_{12}&amp;a_{22}
+\end{bmatrix}
+\end{align*}\]</span></p>
+<div id="expanding-1" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Expanding</h3>
+<p>Something to note is that <span class="math inline">\((AB)^T = B^T A^T\)</span>. Note the flipping. Note that this can also be done with addition/subtraction.</p>
+</div>
+</div>
+<div id="symmetric-matrix" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Symmetric Matrix</h2>
+<p>A symmetric matrix is one which is equal to its transpose (<span class="math inline">\(A = A^T\)</span>). It is symmetric along its diagonal, as in the diagonal can be whatever but the other values must be mirrored. For example:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+0&amp;a&amp;b\\
+a&amp;0&amp;c\\
+b&amp;c&amp;0
+\end{bmatrix}
+\]</span></p>
+<div id="creating-with-addition" class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Creating with addition</h3>
+<p>A way to get a symmetric matrix is to add a square matrix to its transpose (<span class="math inline">\(S^T + S = S + S^T =\)</span> symmetric matrix). We can prove this:</p>
+<p><span class="math display">\[\begin{align*}
+(S+S^T)^T &amp;= S^T + S^{TT}\\
+&amp;= S^T + S\\
+&amp;= S + S^T
+\end{align*}\]</span></p>
+<p>Note that the transpose can be expanded to addition as well.</p>
+</div>
+<div id="creating-with-multiplication" class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Creating with multiplication</h3>
+<p>We can also make a symmetric matrix by multiplying a matrix by its transpose in any order.</p>
+<p><span class="math display">\[\begin{align*}
+BB^T &amp;\Rightarrow \text{ symmetric}\\
+B^TB &amp;\Rightarrow \text{ symmetric}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="matrix-norm" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Matrix Norm</h2>
+<p>This is a scalar value that quantifies the magnitude of a matrix.</p>
+<div id="frobenius-norm" class="section level3" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Frobenius Norm</h3>
+<p>Also called an <span class="math inline">\(\ell_2\)</span>-norm, it is the most common norm and is denoted by <span class="math inline">\(||A||_F\)</span> (do not use subscript 2, that’s something else). It is equal to:</p>
+<p><span class="math display">\[
+||A||_F = \sqrt{\sum_{i=1}^M \sum_{j=1}^N a_{ij}^2}
+\]</span></p>
+<p>If we had some matrix <span class="math inline">\(A\)</span> as follows:</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}
+\end{bmatrix}
+\]</span></p>
+<p>The Frobenius norm would be:</p>
+<p><span class="math display">\[
+||A||_F = \sqrt{a_{11}^2 + a_{12}^2 + a_{21}^2 + a_{22}^2}
+\]</span></p>
+</div>
+<div id="ell_1-norm" class="section level3" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> <span class="math inline">\(\ell_1\)</span>-norm</h3>
+<p><span class="math display">\[
+||A||_1 = \sum_{i=1}^M \sum_{j=1}^N |a_{ij}|
+\]</span></p>
+</div>
+<div id="ell_p-norm" class="section level3" number="2.9.3">
+<h3><span class="header-section-number">2.9.3</span> <span class="math inline">\(\ell_p\)</span>-norm</h3>
+<p><span class="math display">\[
+||A||_p = \left( \sum_{i=1}^M \sum_{j=1}^N |a_{ij}|^p \right)^{1/p}
+\]</span></p>
+</div>
+</div>
+<div id="matrix-rank" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> Matrix Rank</h2>
+<ul>
+<li>This is the number of dimensions of information that the matrix contains
+<ul>
+<li>This is essentially the number of linearly independent columns in a matrix</li>
+</ul></li>
+<li>The rank of any matrix is bounded between 0 and the minimum number of rows or columns in the matrix
+<ul>
+<li><span class="math inline">\(0 \leq rank(A) \leq \min(M,N)\)</span>
+<ul>
+<li>The only time a rank is 0 is for a zero vector</li>
+<li>In any other case, the rank is <span class="math inline">\(\geq 1\)</span>.</li>
+</ul></li>
+<li>A matrix is considered to be “full rank” if it is equal to <span class="math inline">\(\min(M,N)\)</span></li>
+<li>If less than this value, it is considered “rank deficient”</li>
+</ul></li>
+<li><span class="math inline">\(rank(A) = rank(A^T)\)</span></li>
+</ul>
+<div id="rank-of-added-matrices" class="section level3" number="2.10.1">
+<h3><span class="header-section-number">2.10.1</span> Rank of added matrices</h3>
+<p><span class="math inline">\(rank(A \pm B) \leq rank(A) + rank(B)\)</span></p>
+<ul>
+<li>For example, <span class="math inline">\(A+B\)</span> makes a <span class="math inline">\(3 \times 3\)</span> matrix
+<ul>
+<li><span class="math inline">\(rank(A) = 3\)</span></li>
+<li><span class="math inline">\(rank(B) = 2\)</span></li>
+<li><span class="math inline">\(\therefore rank(A+B) = 3\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="rank-of-multiplied-matrices" class="section level3" number="2.10.2">
+<h3><span class="header-section-number">2.10.2</span> Rank of multiplied matrices</h3>
+<p><span class="math inline">\(rank (AB) \leq \min (rank(A), rank(B))\)</span></p>
+<ul>
+<li>For example, <span class="math inline">\(AB\)</span> makes a <span class="math inline">\(3 \times 3\)</span> matrix
+<ul>
+<li><span class="math inline">\(rank(A) = 3\)</span></li>
+<li><span class="math inline">\(rank(B) = 2\)</span></li>
+<li><span class="math inline">\(\therefore rank(AB) = 2\)</span></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-algebra-introduction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

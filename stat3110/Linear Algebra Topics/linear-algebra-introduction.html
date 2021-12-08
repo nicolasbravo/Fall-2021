@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Linear Algebra Topics</title>
+  <meta name="description" content="Linear Algebra Topics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Linear Algebra Topics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linear Algebra Topics" />
+  
+  
+  
+
+<meta name="author" content="Nico Bravo" />
+
+
+<meta name="date" content="2021-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="matrix.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#scalar"><i class="fa fa-check"></i><b>1.1</b> Scalar</a></li>
+<li class="chapter" data-level="1.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector"><i class="fa fa-check"></i><b>1.2</b> Vector</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#zero-vector"><i class="fa fa-check"></i><b>1.2.1</b> Zero Vector</a></li>
+<li class="chapter" data-level="1.2.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#one-vector"><i class="fa fa-check"></i><b>1.2.2</b> One Vector</a></li>
+<li class="chapter" data-level="1.2.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#unit-vector"><i class="fa fa-check"></i><b>1.2.3</b> Unit Vector</a></li>
+<li class="chapter" data-level="1.2.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#row-and-column-vectors"><i class="fa fa-check"></i><b>1.2.4</b> Row and Column Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#basic-functions"><i class="fa fa-check"></i><b>1.3</b> Basic Functions</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#transpose"><i class="fa fa-check"></i><b>1.3.1</b> Transpose</a></li>
+<li class="chapter" data-level="1.3.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#addition-or-subtraction"><i class="fa fa-check"></i><b>1.3.2</b> Addition or Subtraction</a></li>
+<li class="chapter" data-level="1.3.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-scalar-multiplication"><i class="fa fa-check"></i><b>1.3.3</b> Vector-Scalar Multiplication</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-multiplication"><i class="fa fa-check"></i><b>1.4</b> Vector Multiplication</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-dot-product"><i class="fa fa-check"></i><b>1.4.1</b> Vector Dot Product</a></li>
+<li class="chapter" data-level="1.4.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#angle-between-vectors"><i class="fa fa-check"></i><b>1.4.2</b> Angle Between Vectors</a></li>
+<li class="chapter" data-level="1.4.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-weighted-combination"><i class="fa fa-check"></i><b>1.4.3</b> Linear Weighted Combination</a></li>
+<li class="chapter" data-level="1.4.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#outer-product"><i class="fa fa-check"></i><b>1.4.4</b> Outer Product</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-space"><i class="fa fa-check"></i><b>1.5</b> Vector Space</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#definition-of-a-field"><i class="fa fa-check"></i><b>1.5.1</b> Definition of a Field</a></li>
+<li class="chapter" data-level="1.5.2" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#vector-space-1"><i class="fa fa-check"></i><b>1.5.2</b> Vector Space</a></li>
+<li class="chapter" data-level="1.5.3" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subspace"><i class="fa fa-check"></i><b>1.5.3</b> Subspace</a></li>
+<li class="chapter" data-level="1.5.4" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#ambient-space"><i class="fa fa-check"></i><b>1.5.4</b> Ambient space</a></li>
+<li class="chapter" data-level="1.5.5" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-independence"><i class="fa fa-check"></i><b>1.5.5</b> Linear Independence</a></li>
+<li class="chapter" data-level="1.5.6" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subset"><i class="fa fa-check"></i><b>1.5.6</b> Subset</a></li>
+<li class="chapter" data-level="1.5.7" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#span"><i class="fa fa-check"></i><b>1.5.7</b> Span</a></li>
+<li class="chapter" data-level="1.5.8" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#subspace-example"><i class="fa fa-check"></i><b>1.5.8</b> Subspace Example</a></li>
+<li class="chapter" data-level="1.5.9" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#ambient-space-example"><i class="fa fa-check"></i><b>1.5.9</b> Ambient Space Example</a></li>
+<li class="chapter" data-level="1.5.10" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#linear-dependence"><i class="fa fa-check"></i><b>1.5.10</b> Linear Dependence</a></li>
+<li class="chapter" data-level="1.5.11" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#determining-dependence"><i class="fa fa-check"></i><b>1.5.11</b> Determining Dependence</a></li>
+<li class="chapter" data-level="1.5.12" data-path="linear-algebra-introduction.html"><a href="linear-algebra-introduction.html#basis"><i class="fa fa-check"></i><b>1.5.12</b> Basis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>2</b> Matrix</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="matrix.html"><a href="matrix.html#shifting"><i class="fa fa-check"></i><b>2.1</b> Shifting</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="matrix.html"><a href="matrix.html#diagonal-matrix"><i class="fa fa-check"></i><b>2.1.1</b> Diagonal Matrix</a></li>
+<li class="chapter" data-level="2.1.2" data-path="matrix.html"><a href="matrix.html#shifting-definition-and-example"><i class="fa fa-check"></i><b>2.1.2</b> Shifting Definition and Example</a></li>
+<li class="chapter" data-level="2.1.3" data-path="matrix.html"><a href="matrix.html#applying-diagonal"><i class="fa fa-check"></i><b>2.1.3</b> Applying Diagonal</a></li>
+<li class="chapter" data-level="2.1.4" data-path="matrix.html"><a href="matrix.html#trace"><i class="fa fa-check"></i><b>2.1.4</b> Trace</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrix.html"><a href="matrix.html#addition"><i class="fa fa-check"></i><b>2.2</b> Addition</a></li>
+<li class="chapter" data-level="2.3" data-path="matrix.html"><a href="matrix.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.3</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.4" data-path="matrix.html"><a href="matrix.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.4</b> Matrix Multiplication</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="matrix.html"><a href="matrix.html#how-do-we-multiply-them"><i class="fa fa-check"></i><b>2.4.1</b> How do we multiply them?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="matrix.html"><a href="matrix.html#matrix-multiplication-example-2x2"><i class="fa fa-check"></i><b>2.4.2</b> Matrix Multiplication Example, (2x2)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="matrix.html"><a href="matrix.html#how-does-this-relate-to-the-dot-product"><i class="fa fa-check"></i><b>2.4.3</b> How does this relate to the dot product?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="matrix.html"><a href="matrix.html#identify-matrix"><i class="fa fa-check"></i><b>2.5</b> Identify Matrix</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="matrix.html"><a href="matrix.html#what-does-this-mean-for-diagonal-matrix-multiplication"><i class="fa fa-check"></i><b>2.5.1</b> What does this mean for diagonal matrix multiplication?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="matrix.html"><a href="matrix.html#multiplying-two-diagonal-matrices"><i class="fa fa-check"></i><b>2.5.2</b> Multiplying two diagonal matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="matrix.html"><a href="matrix.html#inverse-matrix"><i class="fa fa-check"></i><b>2.6</b> Inverse Matrix</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="matrix.html"><a href="matrix.html#expanding"><i class="fa fa-check"></i><b>2.6.1</b> Expanding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="matrix.html"><a href="matrix.html#matrix-transposing"><i class="fa fa-check"></i><b>2.7</b> Matrix Transposing</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="matrix.html"><a href="matrix.html#expanding-1"><i class="fa fa-check"></i><b>2.7.1</b> Expanding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="matrix.html"><a href="matrix.html#symmetric-matrix"><i class="fa fa-check"></i><b>2.8</b> Symmetric Matrix</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="matrix.html"><a href="matrix.html#creating-with-addition"><i class="fa fa-check"></i><b>2.8.1</b> Creating with addition</a></li>
+<li class="chapter" data-level="2.8.2" data-path="matrix.html"><a href="matrix.html#creating-with-multiplication"><i class="fa fa-check"></i><b>2.8.2</b> Creating with multiplication</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="matrix.html"><a href="matrix.html#matrix-norm"><i class="fa fa-check"></i><b>2.9</b> Matrix Norm</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="matrix.html"><a href="matrix.html#frobenius-norm"><i class="fa fa-check"></i><b>2.9.1</b> Frobenius Norm</a></li>
+<li class="chapter" data-level="2.9.2" data-path="matrix.html"><a href="matrix.html#ell_1-norm"><i class="fa fa-check"></i><b>2.9.2</b> <span class="math inline">\(\ell_1\)</span>-norm</a></li>
+<li class="chapter" data-level="2.9.3" data-path="matrix.html"><a href="matrix.html#ell_p-norm"><i class="fa fa-check"></i><b>2.9.3</b> <span class="math inline">\(\ell_p\)</span>-norm</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="matrix.html"><a href="matrix.html#matrix-rank"><i class="fa fa-check"></i><b>2.10</b> Matrix Rank</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="matrix.html"><a href="matrix.html#rank-of-added-matrices"><i class="fa fa-check"></i><b>2.10.1</b> Rank of added matrices</a></li>
+<li class="chapter" data-level="2.10.2" data-path="matrix.html"><a href="matrix.html#rank-of-multiplied-matrices"><i class="fa fa-check"></i><b>2.10.2</b> Rank of multiplied matrices</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Algebra Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Linear Algebra Topics</h1>
+<p class="author"><em>Nico Bravo</em></p>
+<p class="date"><em>11/10/2021</em></p>
+</div>
+<div id="linear-algebra-introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Linear Algebra Introduction</h1>
+<div id="scalar" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Scalar</h2>
+<ul>
+<li>Represented in this class by a lowercase greek letter</li>
+<li>A single number: “constant”</li>
+<li>For example, 2 is a scalar, <span class="math inline">\(\pi\)</span> is a scalar, etc</li>
+</ul>
+</div>
+<div id="vector" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Vector</h2>
+<ul>
+<li>Represented in this class by a lowercase letter
+<ul>
+<li><span class="math inline">\(v = (v_1, v_2, v_3)\)</span></li>
+</ul></li>
+<li>A collection of numbers</li>
+<li>Line of dimension <span class="math inline">\(p\)</span> determined by a magnitude and direction
+<ul>
+<li>The direction is detailed by the values in the vector
+<ul>
+<li><span class="math inline">\((1,-2)\)</span> would be <span class="math inline">\(1\)</span> unit in the <span class="math inline">\(x\)</span> direction and <span class="math inline">\(-2\)</span> units in the <span class="math inline">\(y\)</span> direction</li>
+</ul></li>
+<li>The magnitude essentially is the length from the head of the vector to the tail of the vector
+<ul>
+<li><span class="math inline">\(||(a,b,c)|| = \sqrt{a^2 + b^2 + c^2}\)</span></li>
+</ul></li>
+</ul></li>
+<li>Ways to write
+<ul>
+<li>Parenthesis: <span class="math inline">\((1, -2)\)</span>
+<ul>
+<li>Can also be stacked: <span class="math inline">\(\binom{1}{-2}\)</span></li>
+</ul></li>
+<li>Brackets: <span class="math inline">\([1,-2]\)</span></li>
+<li>Angled brackets: <span class="math inline">\(&lt;1,-2&gt;\)</span></li>
+</ul></li>
+<li>Row vectors:</li>
+</ul>
+<p><span class="math display">\[
+v=(v_1,v_2,\dots,v_p)
+\]</span>
+- Column vectors:</p>
+<p><span class="math display">\[
+v = \begin{pmatrix}
+v_1\\
+v_2\\
+\vdots\\
+v_p
+\end{pmatrix}
+\]</span></p>
+<p>Note that sometimes it is easier to write column vectors horizontally by using the Transpose function covered later. This would be done by using <span class="math inline">\(v = (v_1,v_2,\dots,v_p)^T\)</span>.</p>
+<div id="zero-vector" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Zero Vector</h3>
+<p><span class="math display">\[
+0_p = (0,0,\dots,0)^T
+\]</span></p>
+</div>
+<div id="one-vector" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> One Vector</h3>
+<p><span class="math display">\[
+1_p = (1,1,\dots,1)^T
+\]</span></p>
+</div>
+<div id="unit-vector" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Unit Vector</h3>
+<p>This is a vector of any direction with a magnitude of 1.</p>
+<p><span class="math display">\[
+u = (u,u,\dots,u)^T, ||u|| = 1
+\]</span></p>
+<p>Note that if we multiply a unit vector by <span class="math inline">\(\lambda\)</span>, the resulting magnitude would be <span class="math inline">\(||\lambda u|| = \lambda (1) = \lambda\)</span>. This implies that we can make a unit vector out of any vector. To do so, we would simply need to multiply the vector by one over the magnitude.</p>
+<p><span class="math display">\[
+\frac{1}{||v||} v = \begin{pmatrix}
+v_1 / ||v||\\
+v_2 / ||v||\\
+v_3 / ||v||
+\end{pmatrix}
+\]</span></p>
+<p>To denote these unit vectors in a specified direction, we would use a hat. For example, this previous vector <span class="math inline">\(v\)</span>’s unit vector would be designated as <span class="math inline">\(\hat{v}\)</span>. Let’s try this out in an example.</p>
+<p>Say our vector <span class="math inline">\(v = (1, -2, 4)^T\)</span>. Our magnitude would therefore be</p>
+<p><span class="math display">\[
+||v|| = \sqrt{(1)^2 + (-2)^2 + (4)^2}
+= \sqrt{1+4+16}
+= \sqrt{21}
+\]</span></p>
+<p>Our unit vector <span class="math inline">\(\hat{v}\)</span> would then be</p>
+<p><span class="math display">\[
+\hat{v} = \left( \frac{1}{\sqrt{21}}, \frac{-2}{\sqrt{21}}, \frac{4}{\sqrt{21}} \right)^T
+\]</span></p>
+<p>Where <span class="math inline">\(|| \hat{v} || = 1\)</span>.</p>
+<p>Another thing to note is that the dot product between a unit vector and itself (its transpose) is 1: <span class="math inline">\(u^Tu = 1\)</span>.</p>
+</div>
+<div id="row-and-column-vectors" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Row and Column Vectors</h3>
+<ul>
+<li>A column vector has <span class="math inline">\(p\)</span> rows, for dimension <span class="math inline">\(p \times 1\)</span></li>
+<li>A row vector has <span class="math inline">\(p\)</span> columns, for dimension <span class="math inline">\(1 \times p\)</span></li>
+</ul>
+</div>
+</div>
+<div id="basic-functions" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Basic Functions</h2>
+<div id="transpose" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Transpose</h3>
+<p>This will flip the rows and columns (turn a row vector into a column vector, or the other way around). The transpose of a vector is denoted by a <span class="math inline">\(T\)</span> or apostrophe, for example <span class="math inline">\(v \Rightarrow v^T\)</span> or <span class="math inline">\(v&#39;\)</span>.</p>
+</div>
+<div id="addition-or-subtraction" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Addition or Subtraction</h3>
+<p>Assume we are talking about a vector <span class="math inline">\(a\)</span> with three elements:</p>
+<p><span class="math display">\[
+a= \begin{pmatrix}
+a_1\\
+a_2\\
+a_3
+\end{pmatrix}
+\]</span></p>
+<p>And a vector <span class="math inline">\(b\)</span> with three elements:</p>
+<p><span class="math display">\[
+b = \begin{pmatrix}
+b_1\\
+b_2\\
+b_3
+\end{pmatrix}
+\]</span></p>
+<p>If we were to add the vectors together, it would look something like this:</p>
+<p><span class="math display">\[
+a+b = \begin{pmatrix}
+a_1 + b_1\\
+a_2 + b_2\\
+a_3 + b_3
+\end{pmatrix} = b+a
+\]</span></p>
+<p>Note that addition is commutative. If we were to instead subtract, it would work the exact same way, except that subtraction is not commutative for vectors. Graphically, addition appears as the addition of two lines, while subtraction appears as the subtraction of two lines (view an image for this, as this description I gave was not as clear as I’d wish I could make it).</p>
+<p>Also, for addition or subtraction to work, the dimensions of the two vectors must be the same. This also results in the vector created being the same dimension-wise.</p>
+<p>Let’s look at an example. Say we have vectors <span class="math inline">\(a = (1,0,-3)^T\)</span> and <span class="math inline">\(b = (-2,4,1)^T\)</span>. Let’s first perform addition:</p>
+<p><span class="math display">\[
+a+b= \begin{pmatrix}
+1+-2\\
+0+4\\
+-3+1
+\end{pmatrix} = \begin{pmatrix}
+-1\\
+4\\
+-2
+\end{pmatrix}
+\]</span></p>
+<p>Now, let’s try to perform subtraction:</p>
+<p><span class="math display">\[
+a+b= \begin{pmatrix}
+1--2\\
+0-4\\
+-3-1
+\end{pmatrix} = \begin{pmatrix}
+-3\\
+-4\\
+-4
+\end{pmatrix}
+\]</span></p>
+</div>
+<div id="vector-scalar-multiplication" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Vector-Scalar Multiplication</h3>
+<p>Let’s say we have a vector <span class="math inline">\(v = (v_1, v_2, v_3)^T\)</span> and a scalar value <span class="math inline">\(\lambda\)</span>. If we were multiplying this vector by the scalar, we would multiply each member of the vector by the scalar value:</p>
+<p><span class="math display">\[
+\lambda v = (\lambda v_1, \lambda v_2, \lambda v_3)^T
+\]</span></p>
+<p>The effect of this is that the magnitude of the vector will change. The direction will <em>not</em> change.</p>
+<ul>
+<li>If <span class="math inline">\(\lambda &gt; 1\)</span>, <span class="math inline">\(v\)</span> will be stretched <span class="math inline">\(\lambda\)</span> times longer than the original</li>
+<li>If <span class="math inline">\(0 &lt; \lambda &lt; 1\)</span>, <span class="math inline">\(v\)</span> will be shrunk by a factor of <span class="math inline">\(\lambda\)</span></li>
+<li>If <span class="math inline">\(-1 &lt; \lambda &lt; 0\)</span>, <span class="math inline">\(v\)</span> will be shrunk in the opposite direction by a factor of <span class="math inline">\(\lambda\)</span>.</li>
+<li>If <span class="math inline">\(\lambda &lt; -1\)</span>, <span class="math inline">\(v\)</span> will be stretched in the opposite direction <span class="math inline">\(\lambda\)</span> times longer than the original</li>
+<li>If <span class="math inline">\(\lambda = 0\)</span>, <span class="math inline">\(v\)</span> is reduced to a point with zero magnitude, known as a “zero vector”</li>
+</ul>
+<p>Let’s try some examples. Assume we have a vector <span class="math inline">\(v = (1,-2,4)^T\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\lambda = 2\)</span></li>
+</ol>
+<p><span class="math display">\[
+2v = (2,-4,8)^T
+\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\lambda = \frac{-1}{2}\)</span></li>
+</ol>
+<p><span class="math display">\[
+\frac{-1}{2}v = \left(\frac{-1}{2},1,-2\right)^T
+\]</span></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\lambda = 0\)</span></li>
+</ol>
+<p><span class="math display">\[
+0v = 0_3 = (0,0,0)^T
+\]</span></p>
+</div>
+</div>
+<div id="vector-multiplication" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Vector Multiplication</h2>
+<div id="vector-dot-product" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Vector Dot Product</h3>
+<ul>
+<li>The sum of the products of corresponding entries</li>
+<li>Produces a scalar</li>
+<li>Both vectors must have same length</li>
+<li>Dot product between a vector and itself is the magnitude squared</li>
+</ul>
+<p>If <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are <span class="math inline">\(p \times 1\)</span> vectors,</p>
+<p><span class="math display">\[
+a \cdot b = a^T b = \sum_{i=1}^p a_i b_i
+\]</span></p>
+<p>Properties:
+- Dot product is invariant to associations of scalar-vector multiplication
+- <span class="math inline">\(\lambda (a \cdot b) = (\lambda a) \cdot b = a \cdot (\lambda b) = (a \cdot b) \lambda\)</span>
+- BUT… The dot product is not associative in general
+- <span class="math inline">\(a (b \cdot c) \neq (a \cdot b)c\)</span>
+- Commutative Property
+- YES! <span class="math inline">\(a \cdot b = b \cdot a\)</span>
+- Distributive Property
+- YES! <span class="math inline">\(a \cdot (b + c) = a \cdot b + a \cdot c\)</span>
+- Cauchy-Schwarz Inequality
+- Absolute value of the dot product is less than or equal to product of magnitudes
+- <span class="math inline">\(|a^Tb| \leq ||a||||b||\)</span></p>
+</div>
+<div id="angle-between-vectors" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Angle Between Vectors</h3>
+<p>We can use the dot product to solve for the angle between the two vectors:</p>
+<p><span class="math display">\[\begin{align*}
+a \cdot b = a^Tb &amp;= ||a||||b||\cos (\theta_{ab})\\
+\cos(\theta_{ab}) &amp;= \frac{a^Tb}{||a||||b||}\\
+\theta_{ab} &amp;= \cos^{-1} \left( \frac{a^Tb}{||a||||b||} \right)
+\end{align*}\]</span></p>
+<p>Note that if <span class="math inline">\(\theta = 0\)</span>, then <span class="math inline">\(a^Tb = ||a||||b||\)</span> (if <span class="math inline">\(\theta = 180\)</span>, then <span class="math inline">\(a^Tb = -||a||||b||\)</span>).</p>
+</div>
+<div id="linear-weighted-combination" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Linear Weighted Combination</h3>
+<p>This is a weighted combination of vectors (where <span class="math inline">\(\lambda_i\)</span> are scalars and <span class="math inline">\(v_i\)</span> are vectors of equal dimension):</p>
+<p><span class="math display">\[
+w = \lambda_1 v_1 + \lambda_2 v_2 + \cdots + \lambda_p v_p
+\]</span></p>
+</div>
+<div id="outer-product" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Outer Product</h3>
+<p>This is a vector multiplication that results in a matrix. While the dot product sums the products, this puts each product as a value in a matrix.</p>
+<p><span class="math display">\[
+ab^T = \begin{pmatrix}
+a_1b_1&amp;a_1b_2&amp;\cdots&amp;a_1b_p\\
+a_2b_1&amp;a_2b_2&amp;\cdots&amp;a_2b_p\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+a_pb_1&amp;a_pb&amp;\cdots&amp;a_pb_p
+\end{pmatrix}
+\]</span></p>
+<p>While a dot product is only valid for vectors of equal dimension, the outer product is valid for vectors of <em>any</em> dimension. It makes a matrix of size <span class="math inline">\((M \times N)\)</span>, if the dimensions of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are <span class="math inline">\((M \times 1)\)</span> and <span class="math inline">\((1 \times N)\)</span>, respectively.</p>
+</div>
+</div>
+<div id="vector-space" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Vector Space</h2>
+<div id="definition-of-a-field" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Definition of a Field</h3>
+<p>A field is a set of numbers for which the basic arithmetic operations are defined (ex. <span class="math inline">\(\mathbb{R}\)</span>, <span class="math inline">\(\mathbb{Z}\)</span>, <span class="math inline">\(\mathbb{N}\)</span>, etc).</p>
+<ul>
+<li>For vectors <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, where
+<ul>
+<li><span class="math inline">\(a = (a_1,a_2,\cdots,a_m)^T\)</span></li>
+<li><span class="math inline">\(b = (b_1,b_2,\cdots,b_n)^T\)</span></li>
+</ul></li>
+<li>These vectors are defined as
+<ul>
+<li><span class="math inline">\(a\)</span> is in the space of all real numbers to the power of the dimension
+<ul>
+<li><span class="math inline">\(a \in \mathbb{R}^m\)</span></li>
+</ul></li>
+<li>Same with <span class="math inline">\(b\)</span>.
+<ul>
+<li><span class="math inline">\(b \in \mathbb{R}^n\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="vector-space-1" class="section level3" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Vector Space</h3>
+<ul>
+<li>Any set of objects for which addition and scalar multiplication are defined
+<ul>
+<li>Additive Inverse</li>
+<li>Associativity</li>
+<li>Commutativity</li>
+<li>Additive Identity</li>
+<li>Multiplicative Identity</li>
+<li>Distributivity</li>
+</ul></li>
+</ul>
+</div>
+<div id="subspace" class="section level3" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Subspace</h3>
+<ul>
+<li>All other vectors that can be obtained from this vector
+<ul>
+<li>Any value of <span class="math inline">\(\lambda\)</span> times the vector for <span class="math inline">\(\lambda \in \mathbb{R}\)</span></li>
+<li>Any linear combination we can obtain from our original set is in the subset</li>
+</ul></li>
+<li>The set of all points obtained by combining a collection of vectors through addition and scalar multiplication
+<ul>
+<li>Some space that is “spanned” by a set of vectors</li>
+</ul></li>
+<li>If <span class="math inline">\(a = (-1,2)^T\)</span> and <span class="math inline">\(b = (1,0)^T\)</span>,
+<ul>
+<li>For one vector, a subspace is a line:
+<ul>
+<li><span class="math inline">\(\lambda_1 a\)</span> is a subspace for any <span class="math inline">\(\lambda_1 \in \mathbb{R}\)</span></li>
+<li>This vector subspace would be all of the vectors obtained by multiplying <span class="math inline">\(a\)</span> by the constant <span class="math inline">\(\lambda_1\)</span></li>
+</ul></li>
+<li>For two vectors, a subspace is a plane:
+<ul>
+<li><span class="math inline">\(\lambda_1 a + \lambda_2 b\)</span> is a subspace for any <span class="math inline">\(\lambda_1,\lambda_2 \in \mathbb{R}\)</span></li>
+<li>Any vector that can be created from the linear combination between the two vectors</li>
+</ul></li>
+</ul></li>
+<li>Any subspace must contain the origin for <span class="math inline">\(\lambda = 0\)</span></li>
+</ul>
+</div>
+<div id="ambient-space" class="section level3" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> Ambient space</h3>
+<ul>
+<li>The space in which a subspace is embedded</li>
+<li>Has the same dimension as the vectors themselves (is the dimension of some vector)
+<ul>
+<li>If dimension two, then <span class="math inline">\(\mathbb{R}^2\)</span></li>
+<li>If dimension three, then <span class="math inline">\(\mathbb{R}^3\)</span></li>
+</ul></li>
+<li>How many dimensions you need to explain a vector</li>
+</ul>
+</div>
+<div id="linear-independence" class="section level3" number="1.5.5">
+<h3><span class="header-section-number">1.5.5</span> Linear Independence</h3>
+<ul>
+<li>One vector in a set is not a linear scaling of the others</li>
+</ul>
+</div>
+<div id="subset" class="section level3" number="1.5.6">
+<h3><span class="header-section-number">1.5.6</span> Subset</h3>
+<ul>
+<li>A region in space that can be bounded and doesn’t need to include the origin</li>
+<li>A subspace is a subset, but a subset is not a subspace necessarily</li>
+<li>Can be an inequality, while a subspace needs to be closed</li>
+</ul>
+</div>
+<div id="span" class="section level3" number="1.5.7">
+<h3><span class="header-section-number">1.5.7</span> Span</h3>
+<ul>
+<li>The set of all points that can be obtained by any linear weighted combination of vectors
+<ul>
+<li>The subspace of a set of vectors</li>
+</ul></li>
+<li>The span of a set of vectors is the subspace created by the vectors</li>
+</ul>
+</div>
+<div id="subspace-example" class="section level3" number="1.5.8">
+<h3><span class="header-section-number">1.5.8</span> Subspace Example</h3>
+<p><span class="math display">\[\begin{align*}
+a = \begin{bmatrix}
+1\\0
+\end{bmatrix}, b = \begin{bmatrix}
+0\\1
+\end{bmatrix}, \lambda_1 a + \lambda_2 b = \begin{bmatrix}
+\lambda_1\\\lambda_2
+\end{bmatrix}\\
+span \left\{ \begin{bmatrix}1\\0\end{bmatrix},\begin{bmatrix}0\\1\end{bmatrix}\right\} = \mathbb{R}^2
+\end{align*}\]</span></p>
+</div>
+<div id="ambient-space-example" class="section level3" number="1.5.9">
+<h3><span class="header-section-number">1.5.9</span> Ambient Space Example</h3>
+<p><span class="math display">\[\begin{align*}
+a = \begin{bmatrix}
+2\\1
+\end{bmatrix}, b = \begin{bmatrix}
+1\\1/2
+\end{bmatrix}, \lambda_1 a + \lambda_2 b = \lambda a = \lambda \begin{bmatrix}2\\1 \end{bmatrix} = \frac{1}{2}a\\
+a \in \mathbb{R}^2, \begin{bmatrix}v_1\\\vdots\\v_n\end{bmatrix} \in \mathbb{R}^n
+\end{align*}\]</span></p>
+</div>
+<div id="linear-dependence" class="section level3" number="1.5.10">
+<h3><span class="header-section-number">1.5.10</span> Linear Dependence</h3>
+<p>Say we have <span class="math inline">\(n\)</span> vectors that are of size <span class="math inline">\(m \times 1\)</span> (<span class="math inline">\(m\)</span> rows, 1 column). They are <em>linearly dependent</em> if <span class="math inline">\(\sum \lambda_i v_i = 0\)</span>. Our linear equation is</p>
+<p><span class="math display">\[
+\lambda_1 v_1 + \lambda_2 v_2 + \dots + \lambda_n v_n
+\]</span></p>
+<p>For example, let’s try this with three vectors:</p>
+<p><span class="math display">\[\begin{align*}
+v_1 = \begin{bmatrix}1\\0\end{bmatrix}, v_2 = \begin{bmatrix}2\\0\end{bmatrix}, v_3 = \begin{bmatrix}0\\2\end{bmatrix}\\
+2v_1 - v_2 = 0
+\end{align*}\]</span></p>
+<p><span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> are linearly dependent.</p>
+</div>
+<div id="determining-dependence" class="section level3" number="1.5.11">
+<h3><span class="header-section-number">1.5.11</span> Determining Dependence</h3>
+<ol style="list-style-type: decimal">
+<li>Count number of vectors and the dimension</li>
+</ol>
+<ul>
+<li>If <span class="math inline">\(n &gt; m\)</span>, then dependent</li>
+<li>If <span class="math inline">\(n \leq m\)</span>, chance they are not dependent</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Check for a zero vector</li>
+</ol>
+<ul>
+<li>If one exists, then dependent</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Comparing linear combinations</li>
+</ol>
+</div>
+<div id="basis" class="section level3" number="1.5.12">
+<h3><span class="header-section-number">1.5.12</span> Basis</h3>
+<ul>
+<li>Some set of linearly independent vectors that span the subspace. Think of it as the opposite of the subspace, where instead of getting the linear equation, we get the end result and work backwards.</li>
+</ul>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="matrix.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
