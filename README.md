@@ -10,4 +10,4 @@ Notes for Fall 2021 Semester
 
 ## STAT 3110
 - [Unit 5](https://nicolasbravo.github.io/Fall2021/stat3110/Unit%205%20Notes/index.html)
-- [Linear Algebra Topics](https://nicolasbravo.github.io/Fall2021/stat3110/Linear%20Algebra%20Topics/index.html)
+- [Linear Algebra Topics](https://nicolasbravo.github.io/Fall2021/stat3110/Linear%20Algebra%20Topics/)
